@@ -1,0 +1,87 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+tmp/
+Obj/
+obj/
+Library/
+library/
+/.vscode/
+/Assets/VSCode*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+/.vs/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# ============================== #
+# Visual Studio Plugin Generated #
+# ============================== #
+# Tabs Studio
+/*.tss
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon\?
+ehthumbs.db
+Thumbs.db
+
+# ================= #
+# Eclipse generated #
+# ================= #
+.project
+
+# ========== #
+# WS Project #
+# ========== #
+WSProject/*
+!WSProject/*/
+WSProject/*/*/*
+!WSProject/*/*/App.xaml.cs
+!WSProject/*/*/MainPage.xaml.cs
+!WSProject/*/*/Package.appxmanifest
+!WSProject/*/*/Package.StoreAssociation.xml
+!WSProject/*/*/*.pfx
+!WSProject/*/*/Assets
+/bin/
+WSProject_bak/
+WSProject_Test/*
+!WSProject_Test/*/
+WSProject_Test/*/*/*
+!WSProject_Test/*/*/App.xaml.cs
+!WSProject_Test/*/*/MainPage.xaml.cs
+!WSProject_Test/*/*/Package.appxmanifest
+!WSProject_Test/*/*/Package.StoreAssociation.xml
+!WSProject_Test/*/*/*.pfx
+!WSProject_Test/*/*/Assets
+
+# ============= #
+# Localizations #
+# ============= #
+/.internals/
+
+Builds/
+
+.idea
+Assets/Plugins/Editor/JetBrains.meta
+Assets/Plugins/Editor/JetBrains/
+Assets/Plugins/Editor.meta
