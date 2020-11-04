@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingInformation : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Image buildingImage;
+    public Text buildingName;
+    public Text buildingDescription;
+    public Pointer pointer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void ShowBuildingInfo(BuildingSpot spot){
+        if(spot != null){
+            gameObject.SetActive(true);
+            buildingImage.sprite = spot.currentBuilding.sprite;
+            buildingName.text = spot.currentBuilding.buildingName;
+            pointer.gameObject.SetActive(true);
+            pointer.target = spot.transform;
+        }else{
+            gameObject.SetActive(false);
+            pointer.gameObject.SetActive(false);
+        }
     }
 }

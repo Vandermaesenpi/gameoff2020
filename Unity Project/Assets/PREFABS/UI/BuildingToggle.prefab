@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 787194994247577065}
-  - component: {fileID: 4630391882536739981}
+  - component: {fileID: 222910995392067126}
   m_Layer: 5
   m_Name: BuildingToggle
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_AnchoredPosition: {x: 88, y: -55}
   m_SizeDelta: {x: 166, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4630391882536739981
+--- !u!114 &222910995392067126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 504098949547188216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 563abc4cdf99054488d3d88282605f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -60,11 +60,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.25490198, g: 0.21176472, b: 0.23529413, a: 1}
-    m_HighlightedColor: {r: 0.4716981, g: 0.3982734, b: 0.43832323, a: 1}
+    m_NormalColor: {r: 0.4716981, g: 0.3982734, b: 0.43832323, a: 1}
+    m_HighlightedColor: {r: 0.7735849, g: 0.72614807, b: 0.75250185, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 0.25490198, g: 0.21176472, b: 0.23529413, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_SelectedColor: {r: 0.4716981, g: 0.3982734, b: 0.43832323, a: 1}
+    m_DisabledColor: {r: 0.12941177, g: 0.101960786, b: 0.11764706, a: 0.5882353}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -85,8 +85,23 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: SelectBuilding
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+  building: {fileID: 11400000, guid: e6715c7f99ecad144a766c5fc1099a64, type: 2}
+  buildingImage: {fileID: 4300087174172639913}
+  buildingName: {fileID: 2706988189832080094}
+  buildingDescription: {fileID: 3744371925745949361}
 --- !u!1 &1016173916364644356
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,13 +313,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4716981, g: 0.3982734, b: 0.43832323, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 08d6638a74265854b9286be5e1cd48c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -465,4 +480,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Housing District
+  m_Text: Housing district

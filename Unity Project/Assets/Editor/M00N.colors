@@ -33,3 +33,5 @@ MonoBehaviour:
     m_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
   - m_Name: White
     m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Name: Lightest
+    m_Color: {r: 0.7735849, g: 0.72614807, b: 0.75250185, a: 1}
