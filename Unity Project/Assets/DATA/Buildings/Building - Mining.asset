@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d02b96b24fa6b847a5435ac60ab6dc8, type: 3}
+  m_Name: Building - Mining
+  m_EditorClassIdentifier: 
+  buildingName: Mining facility
+  description: Extract and process usefull materials
+  sprite: {fileID: 21300000, guid: 9d4759d57baa48a498086ec821656f5d, type: 3}
+  prefab: {fileID: 834289757447313914, guid: 1f79fcdcdf6c62b4b87519a31a18697a, type: 3}
+  populationRequirement: 0
+  production:
+    resource:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
