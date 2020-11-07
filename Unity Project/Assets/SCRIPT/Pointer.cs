@@ -12,7 +12,7 @@ public class Pointer : MonoBehaviour
     void Update()
     {
         if(target != null){
-            Vector3 offset = target.InverseTransformVector(line.GetPosition(1)-target.position + Vector3.down * 1000).normalized;
+            Vector3 offset = target.InverseTransformVector(line.GetPosition(1)-target.position + Vector3.down * 1000 + Vector3.right * 1000).normalized;
             offset = new Vector3(offset.x, 0, offset.z) ;
             Vector3 targetPos = target.position + target.TransformVector(offset).normalized* radius;
             line.SetPosition(2,targetPos);

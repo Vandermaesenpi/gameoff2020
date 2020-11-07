@@ -14,7 +14,7 @@ public class BuildingInformation : MonoBehaviour
         if(spot != null){
             gameObject.SetActive(true);
             buildingImage.sprite = spot.currentBuilding.sprite;
-            buildingName.text = spot.currentBuilding.buildingName;
+            buildingName.text = spot.currentBuilding.buildingName + " " + spot.district;
             pointer.gameObject.SetActive(true);
             pointer.target = spot.transform;
         }else{

@@ -7,5 +7,6 @@ public class UIManager : MonoBehaviour
     public BuildingInformation buildingInformation;
     public BuildingMenu buildingMenu;
 
-    
+    public TimeKeeper timeKeeper;
+
 }

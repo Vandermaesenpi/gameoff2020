@@ -25,4 +25,5 @@ public class GM : MonoBehaviour
     public CityManager city;
     public UIManager ui;
     public ArtReferences art;
+    public GameplayManager gameplay;
 }

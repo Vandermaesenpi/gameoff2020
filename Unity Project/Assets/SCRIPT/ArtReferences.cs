@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class ArtReferences : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Color white, lightest, light, gray, dark, red, redLight, blue, blueLight, yellow, yellowLight, green, greenLight, iron;
 }
