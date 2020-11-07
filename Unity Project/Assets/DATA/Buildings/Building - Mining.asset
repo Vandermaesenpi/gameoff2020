@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Mining facility
   description: Extract and process usefull materials
+  color: {r: 0.4811321, g: 0.3293298, b: 0.12936097, a: 1}
   sprite: {fileID: 21300000, guid: 9d4759d57baa48a498086ec821656f5d, type: 3}
   prefab: {fileID: 834289757447313914, guid: 1f79fcdcdf6c62b4b87519a31a18697a, type: 3}
   populationRequirement: 0
@@ -25,3 +26,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+  constructionMonthlyCost:
+    resource:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  constructionTime: 12

@@ -11,8 +11,11 @@ public class BuildingMenu : MonoBehaviour
         bool value = !gameObject.activeInHierarchy;
         GM.I.ui.buildingInformation.ShowBuildingInfo(null);
         gameObject.SetActive(value);
+        GM.I.city.ShowHoloMoon(value);
         if(value){
-            GM.I.gameplay.PauseTime(true);
+            if(GM.I.ui.populationMenu.gameObject.activeInHierarchy){
+                GM.I.ui.populationMenu.ClicPopulationMenu();
+            }
             GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         }else{
             GM.I.city.UnselectAll();

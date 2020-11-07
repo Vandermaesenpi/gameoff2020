@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CityManager : MonoBehaviour
 {
+    public GameObject standardMoon, holoMoon;
     public List<BuildingSpot> buildings;
     public List<Connection> connections;
     private void Awake() {
@@ -31,5 +32,24 @@ public class CityManager : MonoBehaviour
             building.mode = BuildingSpotMode.Normal;
             building.UpdateVisual();
         }
+    }
+
+    public void UpdateCity(){
+        foreach (BuildingSpot building in buildings)
+        {
+            building.UpdateBuilding();
+        }
+    }
+
+    public void UpdateCityVisuals(){
+        foreach (BuildingSpot building in buildings)
+        {
+            building.UpdateVisual();
+        }
+    }
+
+    public void ShowHoloMoon(bool holo){
+        standardMoon.SetActive(!holo);
+        holoMoon.SetActive(holo);
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingName: Ice melting plant
   description: Melt lunar ice to make Moon water
+  color: {r: 0.35686275, g: 0.7529412, b: 0.92156863, a: 1}
   sprite: {fileID: 21300000, guid: 82347d30882fa324fbbd8691916d0d60, type: 3}
   prefab: {fileID: 6850164553109885813, guid: 1b7b0dbfe2d5b6c4e9a0937a0e9e1793, type: 3}
   populationRequirement: 0
@@ -25,3 +26,12 @@ MonoBehaviour:
     - 0
     - 0
     - 0
+  constructionMonthlyCost:
+    resource:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  constructionTime: 12

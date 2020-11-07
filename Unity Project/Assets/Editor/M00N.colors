@@ -43,3 +43,9 @@ MonoBehaviour:
     m_Color: {r: 1, g: 1, b: 1, a: 1}
   - m_Name: Lightest
     m_Color: {r: 0.7735849, g: 0.72614807, b: 0.75250185, a: 1}
+  - m_Name: Pink
+    m_Color: {r: 0.7924528, g: 0.13830544, b: 0.5017205, a: 1}
+  - m_Name: Purple
+    m_Color: {r: 0.4929325, g: 0.35686278, b: 0.92156863, a: 1}
+  - m_Name: Brown
+    m_Color: {r: 0.4811321, g: 0.3293298, b: 0.12936097, a: 1}

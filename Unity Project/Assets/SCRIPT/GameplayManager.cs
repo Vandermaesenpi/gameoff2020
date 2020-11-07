@@ -25,8 +25,11 @@ public class GameplayManager : MonoBehaviour
             if(monthTime >= timeSpeed){
                 currentTime++;
                 monthTime = 0;
+                GM.I.people.ProcessAging();
+                GM.I.city.UpdateCity();
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/timeSpeed);
+            
         }
     }
 

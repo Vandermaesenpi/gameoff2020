@@ -7,8 +7,11 @@ public class BuildingObject : ScriptableObject
 {
     public string buildingName;
     public string description;
+    public Color color;
     public Sprite sprite;
     public GameObject prefab;
     public int populationRequirement;
     public Resource production;
+    public Resource constructionMonthlyCost;
+    public int constructionTime;
 }
