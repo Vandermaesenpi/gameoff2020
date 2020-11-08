@@ -12,14 +12,14 @@ public class ResourceManager : MonoBehaviour
         foreach (BuildingSpot building in GM.I.city.buildings)
         {
             if(building.currentBuilding != null){
-                if(building.constructionAmount < building.currentBuilding.constructionTime){
-                    delta.r[0] -= building.currentBuilding.constructionMonthlyCost.r[0];
-                    delta.r[1] -= building.currentBuilding.constructionMonthlyCost.r[1];
-                    delta.r[2] -= building.currentBuilding.constructionMonthlyCost.r[2];
-                }else{
+                if(building.Built){
                     delta.r[0] += building.currentBuilding.production.r[0];
                     delta.r[1] += building.currentBuilding.production.r[1];
                     delta.r[2] += building.currentBuilding.production.r[2];
+                }else{
+                    delta.r[0] -= building.currentBuilding.constructionMonthlyCost.r[0];
+                    delta.r[1] -= building.currentBuilding.constructionMonthlyCost.r[1];
+                    delta.r[2] -= building.currentBuilding.constructionMonthlyCost.r[2];
                 }
             }
         }

@@ -14,4 +14,7 @@ public class BuildingObject : ScriptableObject
     public Resource production;
     public Resource constructionMonthlyCost;
     public int constructionTime;
+    public bool productor = true;
+    public bool housing = true;
+    public int maxStorageUpgrade;
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
   production:
     r:
     - -2
-    - 5
+    - 10
     - 0
   constructionMonthlyCost:
     r:
@@ -29,3 +29,5 @@ MonoBehaviour:
     - 0
     - 3
   constructionTime: 24
+  productor: 1
+  housing: 0

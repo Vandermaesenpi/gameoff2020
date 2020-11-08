@@ -7,6 +7,7 @@ public class TimeKeeper : MonoBehaviour
 {
     public Text clock;
     public Image clockBar;
+    public Image border;
     public Slider travelIndicator;
     public GameObject playButton, pauseButton;
     public void UpdateClock(int time, float smoothTime){
@@ -79,10 +80,17 @@ public class TimeKeeper : MonoBehaviour
     public void UpdatePausedStatus(){
         if(GM.I.gameplay.timePaused){
             clock.color = GM.I.art.red;
+            border.color = GM.I.art.red;
             clockBar.color = GM.I.art.red;
-        }else{
+        }else if (GM.I.gameplay.currentSpeed == GM.I.gameplay.timeSpeed){
             clock.color = GM.I.art.light;
-            clockBar.color = GM.I.art.gray;
+            border.color = GM.I.art.light;
+            clockBar.color = GM.I.art.light;
+        }
+        else if (GM.I.gameplay.currentSpeed == GM.I.gameplay.fastTimeSpeed){
+            clock.color = GM.I.art.greenLight;
+            border.color = GM.I.art.greenLight;
+            clockBar.color = GM.I.art.greenLight;
         }
     }
 }

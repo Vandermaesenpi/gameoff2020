@@ -21,7 +21,14 @@ public class BuildingSpot : MonoBehaviour
     public GameObject buildingModel;
 
     public int constructionAmount;
+    public float integrity;
+    public bool maintenance;
+    public float storageMax;
+    public float storage;
+    public bool increaseStorage;
+    public bool producing;
 
+    public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
 
     private void Start() {
         if(currentBuilding != null){

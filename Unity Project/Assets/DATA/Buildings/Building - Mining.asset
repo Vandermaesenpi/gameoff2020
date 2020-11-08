@@ -29,3 +29,5 @@ MonoBehaviour:
     - 0
     - 1
   constructionTime: 48
+  productor: 1
+  housing: 0

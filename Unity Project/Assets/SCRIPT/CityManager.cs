@@ -18,6 +18,17 @@ public class CityManager : MonoBehaviour
             item.spotEnd.connections.Add(item);
         }
     }
+
+    public int HousingSpace(){
+        int space = 0;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && building.Built){
+                space += building.currentBuilding.populationRequirement;
+            }
+        }
+        return space;
+    }
     public void SetBuildingSpotMode(BuildingSpotMode mode){
         foreach (BuildingSpot building in buildings)
         {

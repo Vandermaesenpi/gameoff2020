@@ -20,12 +20,14 @@ MonoBehaviour:
   populationRequirement: 0
   production:
     r:
-    - 5
-    - -1
+    - 10
+    - 0
     - 0
   constructionMonthlyCost:
     r:
     - 1
     - 0
-    - 7
-  constructionTime: 12
+    - 3
+  constructionTime: 24
+  productor: 1
+  housing: 0

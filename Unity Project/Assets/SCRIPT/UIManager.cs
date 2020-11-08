@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     public static string HumanNotation(float number){
         string newString = "";
-        int percent = (int)(number/1f);
+        int percent = (int)(100f * (number/1f));
         newString = "" + percent + "%";
         return newString;
     }

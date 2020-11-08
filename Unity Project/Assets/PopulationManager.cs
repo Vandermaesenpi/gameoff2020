@@ -20,7 +20,7 @@ public class PopulationManager : MonoBehaviour
     public float reproducingChance;
 
     public float needs, culture, comfort, hope;
-
+    public float needsModifier, cultureModifier, comfortModifier, hopeModifier;
     
     // --------------Processed variables
     public float Mood {get{return (needs + culture + comfort + hope)/4f;}}
@@ -47,19 +47,15 @@ public class PopulationManager : MonoBehaviour
     }
     public int MonthlyBirth{
         get{
-            return (int)((float)GetPopulationRange(reproducingAge) * reproducingChance); 
+            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood); 
         }
     }
 
     public int MonthlyDeath;
 
-    // --------------- Debug
-    public bool test;
-
-    private void Update() {
-        if(test){
-            test = false;
-            ProcessAging();
+    public bool Growing{
+        get{
+            return MonthlyBirth >= MonthlyDeath;
         }
     }
 
@@ -98,6 +94,41 @@ public class PopulationManager : MonoBehaviour
         MonthlyDeath += agingPouplationSlice;
 
         GM.I.ui.populationMenu.UpdateMenu();
+    }
+
+    public void ProcessMood(){
+        ProcessNeeds();
+        ProcessComfort();
+        ProcessCulture();
+        ProcessHope();
+    }
+
+    void ProcessNeeds(){
+        needs = 0;
+        if(GM.I.resource.resources.r[0] > 0){
+            needs += 0.33f;
+        }
+        if(GM.I.resource.resources.r[1] > 0){
+            needs += 0.33f;
+        }
+        if(GM.I.resource.resources.r[2] > 0){
+            needs += 0.33f;
+        }
+        if(needs > 0.98f){
+            needs = 1;
+        }
+    }
+
+    void ProcessComfort(){
+        comfort = Mathf.Clamp((float)GM.I.city.HousingSpace()/(float)TotalPopulation + comfortModifier, 0f, 1f);
+    }
+
+    void ProcessCulture(){
+
+    }
+
+    void ProcessHope(){
+        
     }
 
 }

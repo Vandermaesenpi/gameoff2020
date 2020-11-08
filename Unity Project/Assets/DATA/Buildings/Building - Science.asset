@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 0.4929325, g: 0.35686278, b: 0.92156863, a: 1}
   sprite: {fileID: 21300000, guid: cec4eb85c9edf034ba75f6cd93407cdf, type: 3}
   prefab: {fileID: 7133963252208107268, guid: 18dc6e6c29f5f124e839efac45c0014d, type: 3}
-  populationRequirement: 0
+  populationRequirement: 10000000
   production:
     r:
     - -2
@@ -29,3 +29,5 @@ MonoBehaviour:
     - 0
     - 5
   constructionTime: 12
+  productor: 0
+  housing: 0

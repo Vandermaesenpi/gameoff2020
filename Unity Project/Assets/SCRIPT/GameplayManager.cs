@@ -30,6 +30,7 @@ public class GameplayManager : MonoBehaviour
                 GM.I.people.ProcessAging();
                 GM.I.city.UpdateCity();
                 GM.I.resource.UpdateResources();
+                GM.I.people.ProcessMood();
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }
@@ -37,11 +38,12 @@ public class GameplayManager : MonoBehaviour
 
     public void PauseTime(bool shouldStop){
         timePaused = shouldStop;
-        GM.I.ui.timeKeeper.UpdatePausedStatus();
         currentSpeed = timeSpeed;
+        GM.I.ui.timeKeeper.UpdatePausedStatus();
     }
     public void FastTime(){
         PauseTime(false);
         currentSpeed = fastTimeSpeed;
+        GM.I.ui.timeKeeper.UpdatePausedStatus();
     }
 }
