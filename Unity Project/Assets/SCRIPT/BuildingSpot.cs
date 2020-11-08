@@ -113,13 +113,6 @@ public class BuildingSpot : MonoBehaviour
             break;
             case BuildingSpotMode.Selected:
                 selectedRing.SetActive(true);
-                foreach (Connection connection in connections)
-                {
-                    if(connection.GetOther(this).currentBuilding != null){
-                        connection.gameObject.SetActive(true);
-                        connection.GetOther(this).positionPoint.SetActive(true);
-                    }
-                }
             break;
         }
     }
