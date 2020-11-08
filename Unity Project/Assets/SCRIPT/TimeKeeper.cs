@@ -55,22 +55,28 @@ public class TimeKeeper : MonoBehaviour
         clockText += "" + (2150 + year);
 
         clock.text = clockText;
-        clockBar.fillAmount = smoothTime;
+        clockBar.fillAmount = (smoothTime + (float)month)/12f;
 
         travelIndicator.value = (float)time/(float)GM.I.gameplay.travelLenght;
     }
 
-    public void PauseButton(){
+    public void PauseButton(bool value){
+        if(value)
         GM.I.gameplay.PauseTime(true);
     }
 
-    public void PlayButton(){
+    public void PlayButton(bool value){
+        if(value)
         GM.I.gameplay.PauseTime(false);
     }
 
+    public void FastButton(bool value){
+        if(value)
+        GM.I.gameplay.FastTime();
+    }
+
+
     public void UpdatePausedStatus(){
-        playButton.SetActive(GM.I.gameplay.timePaused);
-        pauseButton.SetActive(!GM.I.gameplay.timePaused);
         if(GM.I.gameplay.timePaused){
             clock.color = GM.I.art.red;
             clockBar.color = GM.I.art.red;

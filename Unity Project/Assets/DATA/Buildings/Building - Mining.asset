@@ -19,19 +19,13 @@ MonoBehaviour:
   prefab: {fileID: 834289757447313914, guid: 1f79fcdcdf6c62b4b87519a31a18697a, type: 3}
   populationRequirement: 0
   production:
-    resource:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
+    r:
+    - -2
+    - -2
+    - 10
   constructionMonthlyCost:
-    resource:
+    r:
+    - 1
     - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-  constructionTime: 12
+    - 1
+  constructionTime: 48

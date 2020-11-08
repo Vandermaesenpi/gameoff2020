@@ -27,4 +27,5 @@ public class GM : MonoBehaviour
     public ArtReferences art;
     public GameplayManager gameplay;
     public PopulationManager people;
+    public ResourceManager resource;
 }
