@@ -414,7 +414,7 @@ MonoBehaviour:
   district: C5
   discovered: 0
   mode: 0
-  status: 0
+  status: 1
   currentBuilding: {fileID: 0}
   connections: []
   positionRing: {fileID: 7427492038603013293}
@@ -426,6 +426,13 @@ MonoBehaviour:
   progressBar: {fileID: 1513371307}
   buildingModel: {fileID: 0}
   constructionAmount: 0
+  constructionDate: 0
+  integrity: 0
+  maintenance: 0
+  storageMax: 0
+  storage: 0
+  increaseStorage: 0
+  producing: 0
 --- !u!135 &1696783290395367141
 SphereCollider:
   m_ObjectHideFlags: 0

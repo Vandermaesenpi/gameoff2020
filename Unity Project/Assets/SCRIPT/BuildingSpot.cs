@@ -21,6 +21,7 @@ public class BuildingSpot : MonoBehaviour
     public GameObject buildingModel;
 
     public int constructionAmount;
+    public int constructionDate;
     public float integrity;
     public bool maintenance;
     public float storageMax;
@@ -38,8 +39,8 @@ public class BuildingSpot : MonoBehaviour
     }
 
     public void Build(){
-        
         currentBuilding = GM.I.ui.buildingMenu.selectedBuilding;
+        integrity = 1f;
         buildingModel = Instantiate(currentBuilding.prefab, transform);
         buildingModel.SetActive(false);
         constructionModel.SetActive(true);
@@ -58,6 +59,7 @@ public class BuildingSpot : MonoBehaviour
             progressBar.fillAmount = ((float)constructionAmount / (float)currentBuilding.constructionTime);
         }else if (status == BuildingStatus.Construction){
             status = BuildingStatus.Stopped;
+            constructionDate = GM.I.gameplay.currentTime;
             progressBar.enabled = false;
             constructionModel.SetActive(false);
             buildingModel.SetActive(true);
@@ -67,6 +69,10 @@ public class BuildingSpot : MonoBehaviour
                 connection.GetOther(this).discovered = true;
             }
             GM.I.city.UpdateCityVisuals();
+        }else{
+            if(Random.value < 0.2f){
+                integrity = Mathf.Max(0,integrity - currentBuilding.decay);
+            }
         }
     }
 

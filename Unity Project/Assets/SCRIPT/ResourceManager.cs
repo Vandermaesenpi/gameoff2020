@@ -34,10 +34,31 @@ public class ResourceManager : MonoBehaviour
 [System.Serializable]
 public class Resource{
     public float[] r = new float[3];
-}
+    public float Energy {get{return r[0];}}
+    public float Water {get{return r[1];}}
+    public float Material {get{return r[2];}}
 
-public enum R{
-    Energy,
-    Water,
-    Material,
+    public Resource GetProduction(){
+        Resource r = new Resource();
+        if(Energy > 0){
+            r.r[0] = Energy;
+        }if(Water > 0){
+            r.r[1] = Water;
+        }if(Material > 0){
+            r.r[2] = Material;
+        }
+        return r;
+    }
+
+    public Resource GetCost(){
+        Resource r = new Resource();
+        if(Energy < 0){
+            r.r[0] = Energy;
+        }if(Water < 0){
+            r.r[1] = Water;
+        }if(Material < 0){
+            r.r[2] = Material;
+        }
+        return r;
+    }
 }

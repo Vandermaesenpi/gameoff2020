@@ -15,13 +15,17 @@ public class GameplayManager : MonoBehaviour
     [Header("TRAVEL")]
     public int travelLenght;
 
+    private void Start() {
+        UpdateTime(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        UpdateTime();
+        UpdateTime(false);
     }
 
-    public void UpdateTime(){
+    public void UpdateTime(bool force){
         if(!timePaused){
             monthTime += Time.deltaTime;
             if(monthTime >= currentSpeed){
@@ -32,6 +36,13 @@ public class GameplayManager : MonoBehaviour
                 GM.I.resource.UpdateResources();
                 GM.I.people.ProcessMood();
             }
+            GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
+        }
+        if(force){
+            GM.I.people.ProcessAging();
+            GM.I.city.UpdateCity();
+            GM.I.resource.UpdateResources();
+            GM.I.people.ProcessMood();
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }
     }

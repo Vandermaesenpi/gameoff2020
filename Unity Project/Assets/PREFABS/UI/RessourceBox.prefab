@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 6549858311061520380}
   - component: {fileID: 8094990272573862484}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 5581215017191636761}
   - component: {fileID: 6858398371410331264}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,6 +583,7 @@ GameObject:
   - component: {fileID: 5581215017605239804}
   - component: {fileID: 5581215017605239802}
   - component: {fileID: 650429782438069615}
+  - component: {fileID: 1950872852714631092}
   m_Layer: 5
   m_Name: RessourceBox
   m_TagString: Untagged
@@ -645,6 +646,24 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!114 &1950872852714631092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5581215017605239805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2feb6631150829c42b326c363703c704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: {fileID: 5581215017191636763}
+  water: {fileID: 4149634629821473090}
+  material: {fileID: 7606685924778926281}
+  energyText: {fileID: 7533805536794754724}
+  waterText: {fileID: 7630650177067313146}
+  materialText: {fileID: 7237519354509173115}
 --- !u!1 &7606685924778926281
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,7 +677,7 @@ GameObject:
   - component: {fileID: 4171013201814089071}
   - component: {fileID: 4178106507003850690}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Material
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: Control Center
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
-  sprite: {fileID: 21300000, guid: 4484f0b77058b9446a5cc6a0ec66a866, type: 3}
+  sprite: {fileID: 21300000, guid: d4ea69d632752254e8e3a392fc639601, type: 3}
   prefab: {fileID: 3597838710337147964, guid: 296726336e53a664d9de73ff47f9b936, type: 3}
   populationRequirement: 50000000
   production:
@@ -31,3 +31,4 @@ MonoBehaviour:
   constructionTime: 0
   productor: 0
   housing: 1
+  maxStorageUpgrade: 0

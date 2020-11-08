@@ -31,3 +31,5 @@ MonoBehaviour:
   constructionTime: 12
   productor: 0
   housing: 1
+  maxStorageUpgrade: 0
+  decay: 0.01

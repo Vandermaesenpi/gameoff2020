@@ -17,4 +17,5 @@ public class BuildingObject : ScriptableObject
     public bool productor = true;
     public bool housing = true;
     public int maxStorageUpgrade;
+    public float decay;
 }
