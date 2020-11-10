@@ -45,6 +45,12 @@ public class PopulationManager : MonoBehaviour
             return GetPopulationRange(workingAge);
         }
     }
+
+    public int IdlePopulation{
+        get{
+            return Mathf.Max(0, WorkingPopulation - GM.I.city.WorkplaceSpace());
+        }
+    }
     public int MonthlyBirth{
         get{
             return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood); 
@@ -105,22 +111,18 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessNeeds(){
         needs = 0;
-        if(GM.I.resource.resources.r[0] > 0){
-            needs += 0.33f;
-        }
-        if(GM.I.resource.resources.r[1] > 0){
-            needs += 0.33f;
-        }
-        if(GM.I.resource.resources.r[2] > 0){
-            needs += 0.33f;
-        }
+        int threshold = TotalPopulation/100000 + 1;
+        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
+        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
+        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));
+        
         if(needs > 0.98f){
             needs = 1;
         }
     }
 
     void ProcessComfort(){
-        comfort = Mathf.Clamp((float)GM.I.city.HousingSpace()/(float)TotalPopulation + comfortModifier, 0f, 1f);
+        comfort = Mathf.Clamp((float)GM.I.city.HousingSpace()/(float)TotalPopulation + comfortModifier -0.5f, 0f, 1f);
     }
 
     void ProcessCulture(){

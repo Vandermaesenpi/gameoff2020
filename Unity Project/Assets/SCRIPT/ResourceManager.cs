@@ -5,7 +5,13 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     public Resource resources;
-    public Resource resourcesLimit;
+    public Resource resourcesLimit{get{
+        Resource newR = new Resource();
+        newR.r[0] = GM.I.city.Storage(0);
+        newR.r[1] = GM.I.city.Storage(1);
+        newR.r[2] = GM.I.city.Storage(2);
+        return newR;
+    }}
 
     public void UpdateResources(){
         Resource delta = new Resource();
@@ -13,13 +19,12 @@ public class ResourceManager : MonoBehaviour
         {
             if(building.currentBuilding != null){
                 if(building.Built){
-                    delta.r[0] += building.currentBuilding.production.r[0];
-                    delta.r[1] += building.currentBuilding.production.r[1];
-                    delta.r[2] += building.currentBuilding.production.r[2];
+                    if(building.currentBuilding.productor && building.producing){
+                        delta.Add(building.currentBuilding.production.GetProduction().Multiply(building.efficiency));
+                    }
+                    delta.Add(building.currentBuilding.production.GetCost().Multiply(building.costEfficiency));
                 }else{
-                    delta.r[0] -= building.currentBuilding.constructionMonthlyCost.r[0];
-                    delta.r[1] -= building.currentBuilding.constructionMonthlyCost.r[1];
-                    delta.r[2] -= building.currentBuilding.constructionMonthlyCost.r[2];
+                    delta.Add(building.currentBuilding.constructionMonthlyCost);
                 }
             }
         }
@@ -37,6 +42,20 @@ public class Resource{
     public float Energy {get{return r[0];}}
     public float Water {get{return r[1];}}
     public float Material {get{return r[2];}}
+
+    public void Add(Resource delta){
+        r[0] += delta.r[0];
+        r[1] += delta.r[1];
+        r[2] += delta.r[2];
+    }
+
+    public Resource Multiply(float amount){
+        Resource newR = new Resource();
+        newR.r[0] = Energy * amount;
+        newR.r[1] = Water * amount;
+        newR.r[2] = Material * amount;
+        return newR;
+    }
 
     public Resource GetProduction(){
         Resource r = new Resource();

@@ -9,9 +9,12 @@ public class PopulationMenu : MonoBehaviour
     public Text totalText;
     public Text totalOverviewText;
     public Text workerText;
+    int lastWorkingPopulation;
     public Text idleText;
     public Text birthText;
+    int lastBirth;
     public Text deathText;
+    int lastDeath;
 
     public List<Image> agePyramid;
     public Text moodText;
@@ -34,9 +37,18 @@ public class PopulationMenu : MonoBehaviour
         totalText.text = UIManager.HumanNotation(GM.I.people.TotalPopulation);
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
+        totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         workerText.text = UIManager.HumanNotation(GM.I.people.WorkingPopulation);
+        workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.green : GM.I.art.red;
+        lastWorkingPopulation = GM.I.people.WorkingPopulation;
+        idleText.text = UIManager.HumanNotation(GM.I.people.IdlePopulation);
+        idleText.color = GM.I.people.IdlePopulation < GM.I.people.WorkingPopulation/3 ? GM.I.art.green : GM.I.art.red;
         birthText.text = UIManager.HumanNotation(GM.I.people.MonthlyBirth);
+        birthText.color = GM.I.people.MonthlyBirth >= lastBirth ? GM.I.art.green : GM.I.art.red;
+        lastBirth = GM.I.people.MonthlyBirth;
         deathText.text = UIManager.HumanNotation(GM.I.people.MonthlyDeath);
+        deathText.color = GM.I.people.MonthlyDeath < lastDeath ? GM.I.art.green : GM.I.art.red;
+        lastDeath = GM.I.people.MonthlyDeath;
 
         float maxAmount = 0;
         for (int i = 0; i < agePyramid.Count; i++)

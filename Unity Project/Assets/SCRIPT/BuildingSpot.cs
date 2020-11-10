@@ -28,6 +28,11 @@ public class BuildingSpot : MonoBehaviour
     public float storage;
     public bool increaseStorage;
     public bool producing;
+    public float efficiency;
+    public float efficiencyModifier;
+    public float costEfficiency;
+    public float costEfficiencyModifier;
+    public int population;
 
     public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
 
@@ -41,12 +46,24 @@ public class BuildingSpot : MonoBehaviour
     public void Build(){
         currentBuilding = GM.I.ui.buildingMenu.selectedBuilding;
         integrity = 1f;
+        constructionAmount = 0;
         buildingModel = Instantiate(currentBuilding.prefab, transform);
         buildingModel.SetActive(false);
         constructionModel.SetActive(true);
         progressBar.color = currentBuilding.color;
         GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         status = BuildingStatus.Construction;
+    }
+
+    public void Destroy(){
+        currentBuilding = null;
+        Destroy(buildingModel);
+        constructionModel.SetActive(false);
+        progressBar.fillAmount = 0f;
+        storage = 0;
+        status = BuildingStatus.Construction;
+        mode = BuildingSpotMode.Normal;
+        UpdateVisual();
     }
 
     public void UpdateBuilding(){
@@ -64,15 +81,47 @@ public class BuildingSpot : MonoBehaviour
             constructionModel.SetActive(false);
             buildingModel.SetActive(true);
             discovered = true;
+            storage = currentBuilding.baseStorage;
             foreach (Connection connection in connections)
             {
                 connection.GetOther(this).discovered = true;
             }
+            if(currentBuilding.productor){
+                producing = true;
+            }
             GM.I.city.UpdateCityVisuals();
+        }else{
+            ProcessIntegrity();
+            ProcessEfficiency();
+            
+        }
+    }
+
+    void ProcessIntegrity(){
+        if(maintenance){
+            integrity = Mathf.Min(integrity + 0.01f, 1f);
+            if(integrity == 1f){
+                GM.I.ui.buildingInformation.StartMaintenance(false, this);
+            }
         }else{
             if(Random.value < 0.2f){
                 integrity = Mathf.Max(0,integrity - currentBuilding.decay);
             }
+        }
+    }
+
+    void ProcessEfficiency(){
+        costEfficiencyModifier = 1f;
+        if(maintenance){
+            costEfficiencyModifier+= 2f;
+        }
+        if(currentBuilding.housing){
+            population = GM.I.people.TotalPopulation/GM.I.city.Housing();
+            costEfficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,3f) + costEfficiencyModifier, 0f);
+        }else if (currentBuilding.productor){
+            population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+            efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
+            costEfficiency = costEfficiencyModifier;
         }
     }
 
@@ -81,6 +130,17 @@ public class BuildingSpot : MonoBehaviour
         GM.I.city.UnselectAll();
         mode = BuildingSpotMode.Selected;
         UpdateVisual();
+    }
+
+    public void Unselect(){
+        GM.I.ui.buildingInformation.ShowBuildingInfo(null);
+        GM.I.city.UnselectAll();
+        mode = BuildingSpotMode.Normal;
+        UpdateVisual();
+    }
+
+    public float ResourcePortion(){
+        return GM.I.resource.resources.r[currentBuilding.ressourceType] * (storage/GM.I.city.Storage(currentBuilding.ressourceType));
     }
 
     private void Update() {

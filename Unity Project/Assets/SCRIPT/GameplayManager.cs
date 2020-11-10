@@ -35,6 +35,7 @@ public class GameplayManager : MonoBehaviour
                 GM.I.city.UpdateCity();
                 GM.I.resource.UpdateResources();
                 GM.I.people.ProcessMood();
+                GM.I.ui.buildingInformation.UpdateMenuInfo();
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }

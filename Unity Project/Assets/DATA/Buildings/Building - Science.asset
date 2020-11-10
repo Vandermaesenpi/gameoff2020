@@ -17,19 +17,22 @@ MonoBehaviour:
   color: {r: 0.4929325, g: 0.35686278, b: 0.92156863, a: 1}
   sprite: {fileID: 21300000, guid: cec4eb85c9edf034ba75f6cd93407cdf, type: 3}
   prefab: {fileID: 7133963252208107268, guid: 18dc6e6c29f5f124e839efac45c0014d, type: 3}
-  populationRequirement: 10000000
+  populationRequirement: 20000000
+  ressourceType: 0
   production:
     r:
-    - -2
-    - -1
-    - -1
+    - 0.2
+    - 0.1
+    - 0.2
   constructionMonthlyCost:
     r:
-    - 3
+    - -3
     - 0
-    - 5
+    - -5
   constructionTime: 12
-  productor: 0
+  productor: 1
   housing: 0
-  maxStorageUpgrade: 0
-  decay: 0.01
+  research: 1
+  control: 0
+  baseStorage: 0
+  decay: 0.005

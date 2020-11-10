@@ -23,11 +23,55 @@ public class CityManager : MonoBehaviour
         int space = 0;
         foreach (BuildingSpot building in buildings)
         {
-            if(building.currentBuilding != null && building.Built){
+            if(building.currentBuilding != null && building.Built && building.currentBuilding.housing){
                 space += building.currentBuilding.populationRequirement;
             }
         }
         return space;
+    }
+
+    public int Housing(){
+        int housing = 0;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && building.Built && building.currentBuilding.housing){
+                housing ++;
+            }
+        }
+        return housing;
+    }
+
+    public int WorkplaceSpace(){
+        int space = 0;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && building.Built && building.currentBuilding.productor){
+                space += building.currentBuilding.populationRequirement;
+            }
+        }
+        return space;
+    }
+
+    public int Workplace(){
+        int workplace = 0;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && building.Built && !building.currentBuilding.housing){
+                workplace ++;
+            }
+        }
+        return workplace;
+    }
+
+    public float Storage(int type){
+        float storage = 0;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && ((building.Built && !building.currentBuilding.housing && building.currentBuilding.ressourceType == type)||building.currentBuilding.control)){
+                storage += building.storage;
+            }
+        }
+        return storage;
     }
     public void SetBuildingSpotMode(BuildingSpotMode mode){
         foreach (BuildingSpot building in buildings)

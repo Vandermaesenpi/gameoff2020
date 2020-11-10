@@ -11,11 +11,14 @@ public class BuildingObject : ScriptableObject
     public Sprite sprite;
     public GameObject prefab;
     public int populationRequirement;
+    public int ressourceType;
     public Resource production;
     public Resource constructionMonthlyCost;
     public int constructionTime;
     public bool productor = true;
     public bool housing = true;
-    public int maxStorageUpgrade;
+    public bool research = true;
+    public bool control = false;
+    public float baseStorage;
     public float decay;
 }
