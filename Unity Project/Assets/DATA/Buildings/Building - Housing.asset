@@ -21,9 +21,9 @@ MonoBehaviour:
   ressourceType: 0
   production:
     r:
-    - -0.1
-    - -0.1
-    - -0.1
+    - -0.5
+    - -0.5
+    - -0.5
   constructionMonthlyCost:
     r:
     - -1
@@ -32,7 +32,12 @@ MonoBehaviour:
   constructionTime: 12
   productor: 0
   housing: 1
-  research: 1
+  research: 0
   control: 0
+  culture: 0
   baseStorage: 0
   decay: 0.005
+  costInfo: This building cost scales with population size
+  shortageEffect: 'Resource shortage!
+
+    Death/Month increased'

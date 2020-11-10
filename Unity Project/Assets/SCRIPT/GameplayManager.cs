@@ -42,7 +42,10 @@ public class GameplayManager : MonoBehaviour
         if(force){
             GM.I.people.ProcessAging();
             GM.I.city.UpdateCity();
-            GM.I.resource.UpdateResources();
+            GM.I.people.ProcessMood();
+            GM.I.people.ProcessAging();
+            GM.I.city.UpdateCity();
+            GM.I.ui.resourceMeters.UpdateResources();
             GM.I.people.ProcessMood();
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }

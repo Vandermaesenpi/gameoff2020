@@ -21,18 +21,28 @@ MonoBehaviour:
   ressourceType: 2
   production:
     r:
-    - -2
-    - -2
-    - 10
+    - -1
+    - -1
+    - 5
   constructionMonthlyCost:
     r:
-    - -1
-    - 0
     - -3
+    - 0
+    - 0
+  storageIncreaseMonthlyCost:
+    r:
+    - 0
+    - 0
+    - -2
   constructionTime: 24
   productor: 1
   housing: 0
-  research: 1
+  research: 0
   control: 0
+  culture: 0
   baseStorage: 200
   decay: 0.005
+  costInfo: This building cost is constant
+  shortageEffect: 'Resource shortage!
+
+    Production stopped'

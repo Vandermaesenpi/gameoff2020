@@ -21,16 +21,16 @@ MonoBehaviour:
   ressourceType: 0
   production:
     r:
-    - 0.2
-    - 0.1
-    - 0.2
+    - -2
+    - -1
+    - -2
   constructionMonthlyCost:
     r:
     - -3
     - 0
     - -5
   constructionTime: 12
-  productor: 1
+  productor: 0
   housing: 0
   research: 1
   control: 0

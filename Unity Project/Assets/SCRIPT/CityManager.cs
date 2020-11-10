@@ -45,7 +45,7 @@ public class CityManager : MonoBehaviour
         int space = 0;
         foreach (BuildingSpot building in buildings)
         {
-            if(building.currentBuilding != null && building.Built && building.currentBuilding.productor){
+            if(building.currentBuilding != null && building.Built && ((building.currentBuilding.productor && building.producing)||building.currentBuilding.research)){
                 space += building.currentBuilding.populationRequirement;
             }
         }
@@ -72,6 +72,10 @@ public class CityManager : MonoBehaviour
             }
         }
         return storage;
+    }
+
+    public bool ResourceShortage(){
+        return buildings[0].Cost.Limited(GM.I.resource.resources);
     }
     public void SetBuildingSpotMode(BuildingSpotMode mode){
         foreach (BuildingSpot building in buildings)

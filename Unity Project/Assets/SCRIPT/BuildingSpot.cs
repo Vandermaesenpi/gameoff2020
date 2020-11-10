@@ -13,7 +13,8 @@ public class BuildingSpot : MonoBehaviour
     public List<Connection> connections;
     public GameObject positionRing;
     public GameObject positionPoint;
-    public GameObject statusRing;
+    public GameObject statusRingWarning;
+    public GameObject statusRingBad;
     public GameObject selectionRing;
     public GameObject selectedRing;
     public GameObject constructionModel;
@@ -22,11 +23,13 @@ public class BuildingSpot : MonoBehaviour
 
     public int constructionAmount;
     public int constructionDate;
+    public bool constructionHalted;
     public float integrity;
     public bool maintenance;
     public float storageMax;
     public float storage;
     public bool increaseStorage;
+    public int storageCounter;
     public bool producing;
     public float efficiency;
     public float efficiencyModifier;
@@ -35,6 +38,12 @@ public class BuildingSpot : MonoBehaviour
     public int population;
 
     public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
+    public bool OverPopulated{get{return population > currentBuilding.populationRequirement;}}
+    public bool HighPopulated{get{return population > currentBuilding.populationRequirement*0.75f;}}
+    public bool LowPopulated{get{return population < currentBuilding.populationRequirement*0.5f;}}
+
+    public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency);}}
+    public Resource Cost {get{return currentBuilding.production.GetCost().Multiply(costEfficiency);}}
 
     private void Start() {
         if(currentBuilding != null){
@@ -71,8 +80,15 @@ public class BuildingSpot : MonoBehaviour
             return;
         }
         if(constructionAmount < currentBuilding.constructionTime){
+            if(currentBuilding.constructionMonthlyCost.Limited(GM.I.resource.resources)){
+                constructionHalted = true;
+                progressBar.color = GM.I.art.red;
+            }else{
+                progressBar.color = currentBuilding.color;
+                constructionHalted = false;
+                constructionAmount++;
+            }
             progressBar.enabled = true;
-            constructionAmount++;
             progressBar.fillAmount = ((float)constructionAmount / (float)currentBuilding.constructionTime);
         }else if (status == BuildingStatus.Construction){
             status = BuildingStatus.Stopped;
@@ -89,11 +105,20 @@ public class BuildingSpot : MonoBehaviour
             if(currentBuilding.productor){
                 producing = true;
             }
+            UpdateBuilding();
             GM.I.city.UpdateCityVisuals();
         }else{
+            if(increaseStorage){
+                if(storageCounter == 0){
+                    storage += 200;
+                    increaseStorage = false;
+                    storageCounter = 12 * (int)storage/200;
+                }else if (!currentBuilding.storageIncreaseMonthlyCost.Limited(GM.I.resource.resources)){
+                    storageCounter--;
+                }
+            }
             ProcessIntegrity();
             ProcessEfficiency();
-            
         }
     }
 
@@ -112,8 +137,10 @@ public class BuildingSpot : MonoBehaviour
 
     void ProcessEfficiency(){
         costEfficiencyModifier = 1f;
+        efficiencyModifier = 0f;
         if(maintenance){
             costEfficiencyModifier+= 2f;
+            efficiencyModifier = -500f;
         }
         if(currentBuilding.housing){
             population = GM.I.people.TotalPopulation/GM.I.city.Housing();
@@ -122,6 +149,11 @@ public class BuildingSpot : MonoBehaviour
             population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
             efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
             costEfficiency = costEfficiencyModifier;
+            if(!producing){
+                population = 0;
+                efficiency = 0f;
+                costEfficiency = 0f;
+            }
         }
     }
 
@@ -153,10 +185,26 @@ public class BuildingSpot : MonoBehaviour
 
         positionRing.SetActive(false);
         positionPoint.SetActive(false);
-        statusRing.SetActive(false);
         selectionRing.SetActive(false);
         selectedRing.SetActive(false);
-
+        if(currentBuilding != null){
+            int currentStatus = GM.I.ui.buildingInformation.ProcessStatus(this, false);
+            if(currentStatus == 0){
+                statusRingBad.SetActive(false);
+                statusRingWarning.SetActive(false);
+            }
+            if(currentStatus == 1){
+                statusRingBad.SetActive(false);
+                statusRingWarning.SetActive(true);
+            }if(currentStatus == 2){
+                statusRingBad.SetActive(true);
+                statusRingWarning.SetActive(false);
+            }
+        }else{
+            statusRingBad.SetActive(false);
+            statusRingWarning.SetActive(false);
+        }
+        
         
         switch (mode)
         {

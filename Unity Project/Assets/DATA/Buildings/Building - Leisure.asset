@@ -21,18 +21,19 @@ MonoBehaviour:
   ressourceType: 0
   production:
     r:
-    - -0.2
-    - -0.2
-    - -0.1
+    - -2
+    - -2
+    - -1
   constructionMonthlyCost:
     r:
     - -1
     - 0
     - -5
   constructionTime: 12
-  productor: 1
+  productor: 0
   housing: 0
   research: 1
   control: 0
+  culture: 100000000
   baseStorage: 0
   decay: 0.005

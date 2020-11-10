@@ -85,7 +85,7 @@ public class PopulationManager : MonoBehaviour
         // Kill
         for (int i = 0; i < Population.Length; i++)
         {
-            int deathInSlice = (int)((float)Population[i] * DeathProbability[i]);
+            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * (GM.I.city.ResourceShortage()? 1.5f: 1f));
             Population[i] -= deathInSlice;
             MonthlyDeath += deathInSlice;
         }
@@ -111,7 +111,7 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessNeeds(){
         needs = 0;
-        int threshold = TotalPopulation/100000 + 1;
+        int threshold = TotalPopulation/1000000 + 1;
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));

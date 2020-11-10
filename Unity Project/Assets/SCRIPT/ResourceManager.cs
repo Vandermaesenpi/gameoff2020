@@ -19,11 +19,14 @@ public class ResourceManager : MonoBehaviour
         {
             if(building.currentBuilding != null){
                 if(building.Built){
-                    if(building.currentBuilding.productor && building.producing){
-                        delta.Add(building.currentBuilding.production.GetProduction().Multiply(building.efficiency));
+                    if(building.currentBuilding.productor){
+                        delta.Add(building.Production);
                     }
-                    delta.Add(building.currentBuilding.production.GetCost().Multiply(building.costEfficiency));
-                }else{
+                    delta.Add(building.Cost);
+                    if(building.increaseStorage && !building.currentBuilding.storageIncreaseMonthlyCost.Limited(GM.I.resource.resources)){
+                        delta.Add(building.currentBuilding.storageIncreaseMonthlyCost);
+                    }
+                }else if (!building.constructionHalted){
                     delta.Add(building.currentBuilding.constructionMonthlyCost);
                 }
             }
@@ -79,5 +82,9 @@ public class Resource{
             r.r[2] = Material;
         }
         return r;
+    }
+
+    public bool Limited(Resource stock){
+        return stock.Energy < Mathf.Abs(Energy) || stock.Water < Mathf.Abs(Water) || stock.Material < Mathf.Abs(Material);
     }
 }

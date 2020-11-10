@@ -19,14 +19,18 @@ public class BuildingInformation : MonoBehaviour
     public Toggle maintenanceToggle;
     public GameObject overviewMenu, productionMenu, projectMenu, projectDetail, projectCurrent, maintenanceMenu;
     [Header("Overview")]
+    public List<Text> statusTexts;
+    public GameObject destroyButton;
+    public GameObject destroyWarning;
+    [Header("Maintenance")]
     public GameObject integrity;
     public Text buildDate;
+    public Text costInfo;
+    public Text shortageEffect;
     public Image integrityMeter;
     public Text integrityMeterText;
     public GameObject startMaintenanceButton;
     public GameObject stopMaintenanceButton;
-    public GameObject destroyButton;
-    public GameObject destroyWarning;
     [Header("Production")]
     public Text efficiency;
     public RessourceBox monthlyProduction;
@@ -36,6 +40,10 @@ public class BuildingInformation : MonoBehaviour
     public Text storage;
     public Image storageBar;
     public Image storageOutline;
+    public GameObject increaseStorageButton;
+    public GameObject stopStorageButton;
+    public RessourceBox increaseStorageCost;
+    public Text increaseStorageTime;
 
 
 
@@ -46,12 +54,36 @@ public class BuildingInformation : MonoBehaviour
             pointer.target = spot.transform;
             outline.color = spot.currentBuilding.color;
             buildingImage.color = spot.currentBuilding.color;
-            overviewToggle.SetIsOnWithoutNotify(true);
-            productionToggle.SetIsOnWithoutNotify(false);
-            projectToggle.SetIsOnWithoutNotify(false);
-            maintenanceToggle.SetIsOnWithoutNotify(false);
+            
             productionToggle.gameObject.SetActive(spot.currentBuilding.productor);
             projectToggle.gameObject.SetActive(spot.currentBuilding.research);
+            maintenanceToggle.gameObject.SetActive(true);
+
+            if(productionToggle.isOn && spot.currentBuilding.research){
+                productionToggle.SetIsOnWithoutNotify(false);
+                projectToggle.SetIsOnWithoutNotify(true);
+            }
+            if(projectToggle.isOn && spot.currentBuilding.productor){
+                productionToggle.SetIsOnWithoutNotify(true);
+                projectToggle.SetIsOnWithoutNotify(false);
+            }
+            if((productionToggle.isOn || projectToggle.isOn)&&!spot.currentBuilding.productor&&!spot.currentBuilding.research){
+                overviewToggle.SetIsOnWithoutNotify(true);
+                productionToggle.SetIsOnWithoutNotify(false);
+                projectToggle.SetIsOnWithoutNotify(false);
+                maintenanceToggle.SetIsOnWithoutNotify(false);
+            }
+
+            if(!spot.Built){
+                overviewToggle.SetIsOnWithoutNotify(true);
+                productionToggle.SetIsOnWithoutNotify(false);
+                projectToggle.SetIsOnWithoutNotify(false);
+                maintenanceToggle.SetIsOnWithoutNotify(false);
+                productionToggle.gameObject.SetActive(false);
+                projectToggle.gameObject.SetActive(false);
+                maintenanceToggle.gameObject.SetActive(false);
+            }
+
             DestroyMenu(false);
             selectedSpot = spot;
             UpdateMenuInfo(spot);
@@ -66,7 +98,7 @@ public class BuildingInformation : MonoBehaviour
         
         buildingImage.sprite = spot.currentBuilding.sprite;
         buildingName.text = spot.currentBuilding.buildingName + " " + spot.district;
-        Color populationColor = spot.population > spot.currentBuilding.populationRequirement ? GM.I.art.red : GM.I.art.white;
+        Color populationColor = spot.OverPopulated ? GM.I.art.red : GM.I.art.white;
         populationText.text = "<color=#"+ColorUtility.ToHtmlStringRGBA(populationColor) + ">" + UIManager.HumanNotation(spot.population) + "</color>" + " / " + UIManager.HumanNotation(spot.currentBuilding.populationRequirement);
         
         overviewMenu.SetActive(overviewToggle.isOn);
@@ -74,6 +106,8 @@ public class BuildingInformation : MonoBehaviour
         projectMenu.SetActive(projectToggle.isOn);
         maintenanceMenu.SetActive(maintenanceToggle.isOn);
 
+        costInfo.text = spot.currentBuilding.costInfo;
+        shortageEffect.text = spot.Cost.Limited(GM.I.resource.resources)? spot.currentBuilding.shortageEffect:"";
         integrity.SetActive(spot.Built && !spot.currentBuilding.control);
         buildDate.text = "Built in "+UIManager.TimeToDate(spot.constructionDate);
         integrityMeterText.text = UIManager.HumanNotation(spot.integrity);
@@ -85,8 +119,16 @@ public class BuildingInformation : MonoBehaviour
         storageBar.fillAmount = spot.ResourcePortion() / spot.storage;
         storageBar.color = spot.currentBuilding.color;
         storageOutline.color = spot.currentBuilding.color;
-
+        increaseStorageButton.SetActive(!(spot.increaseStorage||spot.storage == spot.storageMax));
+        stopStorageButton.SetActive(!(!spot.increaseStorage||spot.storage == spot.storageMax));
+        increaseStorageCost.gameObject.SetActive(spot.storage != spot.storageMax);
+        increaseStorageTime.gameObject.SetActive(spot.storage != spot.storageMax);
+        increaseStorageCost.UpdateRessourceBox(spot.currentBuilding.storageIncreaseMonthlyCost);
+        increaseStorageTime.text = spot.storageCounter + " months";
         StartMaintenance(spot.maintenance);
+        StopProduction(!spot.producing);
+
+        ProcessStatus(spot, true);
         
         if(spot.currentBuilding.control){
             destroyButton.SetActive(false);
@@ -94,6 +136,87 @@ public class BuildingInformation : MonoBehaviour
         if(!overviewToggle.isOn){
             DestroyMenu(false);
         }
+    }
+
+    public int ProcessStatus(BuildingSpot spot, bool updateText){
+        List<string> statuses = new List<string>();
+        List<Color> colors = new List<Color>();
+        if(updateText){
+            foreach (Text text in statusTexts)
+            {
+                text.text = "";
+            }
+        }
+
+        if(!spot.Built){
+            if(spot.constructionHalted){
+                statuses.Add("Construction stopped");
+                colors.Add(GM.I.art.red);
+                statuses.Add("Not enough resources!");
+                colors.Add(GM.I.art.red);
+            }else{
+                statuses.Add("Under construction");
+                colors.Add(GM.I.art.yellow);
+            }
+        }else{
+            if(spot.Cost.Limited(GM.I.resource.resources)){
+                statuses.Add("Not enough resources!");
+                colors.Add(GM.I.art.red);
+            }
+            if(spot.integrity < 0.3f){
+                statuses.Add("Needs maintenance!");
+                colors.Add(GM.I.art.red);
+            }
+            else if(spot.integrity < 0.6f){
+                statuses.Add("Needs maintenance");
+                colors.Add(GM.I.art.yellow);
+            }
+            if(spot.currentBuilding.housing){
+                if(spot.OverPopulated){
+                    statuses.Add("Overpopulated!");
+                    colors.Add(GM.I.art.red);
+                }else if(spot.HighPopulated){
+                    statuses.Add("Crowded");
+                    colors.Add(GM.I.art.yellow);
+                }
+            }
+            if(spot.currentBuilding.productor){
+                if(spot.LowPopulated){
+                    statuses.Add("Not enough workers");
+                    colors.Add(GM.I.art.yellow);
+                }
+                if(spot.storage == spot.ResourcePortion()){
+                    statuses.Add("Storage full");
+                    colors.Add(GM.I.art.yellow);
+                }
+                if(!spot.producing){
+                    statuses.Add("Production stopped");
+                    colors.Add(GM.I.art.yellow);
+                }
+            }
+        }
+
+        if(statuses.Count == 0){
+            statuses.Add("Working correctly");
+            colors.Add(GM.I.art.green);
+        }
+        int statusNumber = 0;
+        for (int i = 0; i < statusTexts.Count; i++)
+        {
+            if(i < statuses.Count){
+                if(updateText){
+                    statusTexts[i].text = statuses[i];
+                    statusTexts[i].color = colors[i];
+                }
+                if(colors[i] == GM.I.art.red){
+                    statusNumber = 2;
+                }
+                if(colors[i] == GM.I.art.yellow && statusNumber == 0){
+                    statusNumber = 1;
+                }
+            }
+        }
+        return statusNumber;
     }
 
     public void UpdateMenuInfo(){
@@ -113,6 +236,17 @@ public class BuildingInformation : MonoBehaviour
         integrityMeter.color = onOff? GM.I.art.white : GM.I.art.light;
     }
 
+    public void StopProduction(bool onOff){
+        StopProduction(onOff, selectedSpot);
+    }
+
+    public void StopProduction(bool onOff, BuildingSpot spot){
+        spot.producing = !onOff;
+        stopProduction.SetActive(!onOff);
+        resumeProduction.SetActive(onOff);
+        spot.UpdateVisual();
+    }
+
     public void DestroyMenu(bool onOff){
         destroyWarning.SetActive(onOff);
         destroyButton.SetActive(!onOff);
@@ -121,5 +255,11 @@ public class BuildingInformation : MonoBehaviour
     public void DestroyBuilding(){
         selectedSpot.Destroy();
         ShowBuildingInfo(null);
+    }
+
+    public void IncreaseStorage(bool onOff){
+        selectedSpot.increaseStorage = onOff;
+        increaseStorageButton.SetActive(!onOff);
+        stopStorageButton.SetActive(onOff);
     }
 }

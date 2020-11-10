@@ -14,11 +14,18 @@ public class BuildingObject : ScriptableObject
     public int ressourceType;
     public Resource production;
     public Resource constructionMonthlyCost;
+    public Resource storageIncreaseMonthlyCost;
     public int constructionTime;
     public bool productor = true;
     public bool housing = true;
     public bool research = true;
     public bool control = false;
+    public int culture;
     public float baseStorage;
     public float decay;
+    public string decayEffect;
+
+    public string costInfo;
+    [TextArea]
+    public string shortageEffect;
 }
