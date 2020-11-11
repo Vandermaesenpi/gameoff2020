@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   sprite: {fileID: 21300000, guid: d4ea69d632752254e8e3a392fc639601, type: 3}
   prefab: {fileID: 3597838710337147964, guid: 296726336e53a664d9de73ff47f9b936, type: 3}
-  populationRequirement: 50000000
+  populationRequirement: 100000000
   ressourceType: 0
   production:
     r:
@@ -25,6 +25,11 @@ MonoBehaviour:
     - -0.5
     - -0.5
   constructionMonthlyCost:
+    r:
+    - 0
+    - 0
+    - 0
+  storageIncreaseMonthlyCost:
     r:
     - 0
     - 0
@@ -37,6 +42,7 @@ MonoBehaviour:
   culture: 0
   baseStorage: 0
   decay: 0
+  decayEffect: 
   costInfo: This building cost scales with population size
   shortageEffect: 'Resource shortage!
 

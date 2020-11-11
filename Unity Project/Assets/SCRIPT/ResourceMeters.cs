@@ -7,10 +7,14 @@ public class ResourceMeters : MonoBehaviour
 {
     public Image energy, water, material;
     public Text energyText, waterText, materialText;
+    public Text energyDeltaText, waterDeltaText, materialDeltaText;
     public Resource lastDelta;
 
     public void UpdateResources(){
         Resource r = GM.I.resource.resources;
+        Resource delta = new Resource();
+        delta.Add(r);
+        delta.Add(lastDelta.Multiply(-1f));
         energy.fillAmount = r.Energy / GM.I.resource.resourcesLimit.Energy;
         water.fillAmount = r.Water / GM.I.resource.resourcesLimit.Water;
         material.fillAmount = r.Material / GM.I.resource.resourcesLimit.Material;
@@ -32,6 +36,31 @@ public class ResourceMeters : MonoBehaviour
         }else{
             materialText.color = GM.I.art.brown;
         }
+
+        energyDeltaText.text = ""+ (Mathf.Round(delta.Energy*10f))/10f;
+        waterDeltaText.text = ""+ (Mathf.Round(delta.Water*10f))/10f;
+        materialDeltaText.text = ""+ (Mathf.Round(delta.Material*10f))/10f;
+
+        if(delta.Energy >= 0){
+            energyDeltaText.text = "+"+energyDeltaText.text;
+            energyDeltaText.color = GM.I.art.yellow;
+        }else{
+            energyDeltaText.color = GM.I.art.red;
+        }
+        if(delta.Water >= 0){
+            waterDeltaText.text = "+"+waterDeltaText.text;
+            waterDeltaText.color = GM.I.art.blue;
+        }else{
+            waterDeltaText.color = GM.I.art.red;
+        }
+        if(delta.Material >= 0){
+            materialDeltaText.text = "+"+materialDeltaText.text;
+            materialDeltaText.color = GM.I.art.brown;
+        }else{
+            materialDeltaText.color = GM.I.art.red;
+        }
+
+
         lastDelta.r[0] = r.Energy;
         lastDelta.r[1] = r.Water;
         lastDelta.r[2] = r.Material;

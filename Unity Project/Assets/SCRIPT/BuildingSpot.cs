@@ -13,6 +13,7 @@ public class BuildingSpot : MonoBehaviour
     public List<Connection> connections;
     public GameObject positionRing;
     public GameObject positionPoint;
+    public GameObject statusRingInfo;
     public GameObject statusRingWarning;
     public GameObject statusRingBad;
     public GameObject selectionRing;
@@ -36,11 +37,14 @@ public class BuildingSpot : MonoBehaviour
     public float costEfficiency;
     public float costEfficiencyModifier;
     public int population;
+    public Project currentProject;
 
     public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
     public bool OverPopulated{get{return population > currentBuilding.populationRequirement;}}
-    public bool HighPopulated{get{return population > currentBuilding.populationRequirement*0.75f;}}
+    public bool HighPopulated{get{return population > currentBuilding.populationRequirement*0.9f;}}
     public bool LowPopulated{get{return population < currentBuilding.populationRequirement*0.5f;}}
+    public bool BadIntegrity{get{return integrity < 0.5f;}}
+    public bool DangerousIntegrity{get{return integrity < 0.25f;}}
 
     public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency);}}
     public Resource Cost {get{return currentBuilding.production.GetCost().Multiply(costEfficiency);}}
@@ -120,6 +124,7 @@ public class BuildingSpot : MonoBehaviour
             ProcessIntegrity();
             ProcessEfficiency();
         }
+        UpdateVisual();
     }
 
     void ProcessIntegrity(){
@@ -138,18 +143,18 @@ public class BuildingSpot : MonoBehaviour
     void ProcessEfficiency(){
         costEfficiencyModifier = 1f;
         efficiencyModifier = 0f;
-        if(maintenance){
-            costEfficiencyModifier+= 2f;
-            efficiencyModifier = -500f;
-        }
+        
         if(currentBuilding.housing){
-            population = GM.I.people.TotalPopulation/GM.I.city.Housing();
-            costEfficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,3f) + costEfficiencyModifier, 0f);
+            population = (int)((float)GM.I.people.TotalPopulation * ((float)currentBuilding.populationRequirement/(float)GM.I.city.HousingSpace()));
+            if(maintenance){
+                costEfficiencyModifier+= 1f;
+            }
+            costEfficiency = Mathf.Max(Mathf.Clamp((float)population*2f/(float)currentBuilding.populationRequirement,0f,1000f) + costEfficiencyModifier, 0f);
         }else if (currentBuilding.productor){
             population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
             efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
             costEfficiency = costEfficiencyModifier;
-            if(!producing){
+            if(!producing || maintenance){
                 population = 0;
                 efficiency = 0f;
                 costEfficiency = 0f;
@@ -192,17 +197,24 @@ public class BuildingSpot : MonoBehaviour
             if(currentStatus == 0){
                 statusRingBad.SetActive(false);
                 statusRingWarning.SetActive(false);
-            }
-            if(currentStatus == 1){
+                statusRingInfo.SetActive(false);
+            }if(currentStatus == 1){
+                statusRingBad.SetActive(false);
+                statusRingWarning.SetActive(false);
+                statusRingInfo.SetActive(true);
+            }if(currentStatus == 2){
                 statusRingBad.SetActive(false);
                 statusRingWarning.SetActive(true);
-            }if(currentStatus == 2){
+                statusRingInfo.SetActive(false);
+            }if(currentStatus == 3){
                 statusRingBad.SetActive(true);
                 statusRingWarning.SetActive(false);
+                statusRingInfo.SetActive(false);
             }
         }else{
             statusRingBad.SetActive(false);
             statusRingWarning.SetActive(false);
+            statusRingInfo.SetActive(false);
         }
         
         

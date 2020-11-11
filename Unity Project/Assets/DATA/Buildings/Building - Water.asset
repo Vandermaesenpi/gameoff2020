@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 0.35686275, g: 0.7529412, b: 0.92156863, a: 1}
   sprite: {fileID: 21300000, guid: 82347d30882fa324fbbd8691916d0d60, type: 3}
   prefab: {fileID: 6850164553109885813, guid: 1b7b0dbfe2d5b6c4e9a0937a0e9e1793, type: 3}
-  populationRequirement: 20000000
+  populationRequirement: 10000000
   ressourceType: 1
   production:
     r:
@@ -42,6 +42,7 @@ MonoBehaviour:
   culture: 0
   baseStorage: 200
   decay: 0.005
+  decayEffect: 
   costInfo: This building cost is constant
   shortageEffect: 'Resource shortage!
 

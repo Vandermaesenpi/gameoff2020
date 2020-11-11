@@ -6,7 +6,14 @@ using UnityEngine;
 public class Project : ScriptableObject
 {
     public string projectName;
-    public int projectLength;
+    public Vector3Int projectLength;
+    [TextArea]
     public string projectDescription;
-    public string flavorText;
+    public string effectDescription;
+    public Sprite sprite;
+
+    public Resource monthlyCost;
+    public EffectType type;
+    public int resourceType;
+    public Vector3 amount;
 }

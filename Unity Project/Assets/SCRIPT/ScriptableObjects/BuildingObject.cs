@@ -12,6 +12,7 @@ public class BuildingObject : ScriptableObject
     public GameObject prefab;
     public int populationRequirement;
     public int ressourceType;
+    public List<Project> projects;
     public Resource production;
     public Resource constructionMonthlyCost;
     public Resource storageIncreaseMonthlyCost;
@@ -24,7 +25,6 @@ public class BuildingObject : ScriptableObject
     public float baseStorage;
     public float decay;
     public string decayEffect;
-
     public string costInfo;
     [TextArea]
     public string shortageEffect;

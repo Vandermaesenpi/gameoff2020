@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ArtReferences : MonoBehaviour
 {
-    public Color white, lightest, light, gray, dark, red, redLight, blue, blueLight, yellow, yellowLight, green, greenLight, brown;
+    public Color white, lightest, light, gray, dark, orange, red, redLight, blue, blueLight, yellow, yellowLight, green, greenLight, brown;
 }

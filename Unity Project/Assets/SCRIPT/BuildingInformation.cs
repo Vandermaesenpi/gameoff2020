@@ -17,7 +17,7 @@ public class BuildingInformation : MonoBehaviour
     public Toggle productionToggle;
     public Toggle projectToggle;
     public Toggle maintenanceToggle;
-    public GameObject overviewMenu, productionMenu, projectMenu, projectDetail, projectCurrent, maintenanceMenu;
+    public GameObject overviewMenu, productionMenu, projectMenu, projectDetail, maintenanceMenu;
     [Header("Overview")]
     public List<Text> statusTexts;
     public GameObject destroyButton;
@@ -28,7 +28,9 @@ public class BuildingInformation : MonoBehaviour
     public Text costInfo;
     public Text shortageEffect;
     public Image integrityMeter;
+    public Image integrityMeterOutline;
     public Text integrityMeterText;
+    public Text integrityRiskText;
     public GameObject startMaintenanceButton;
     public GameObject stopMaintenanceButton;
     [Header("Production")]
@@ -44,6 +46,15 @@ public class BuildingInformation : MonoBehaviour
     public GameObject stopStorageButton;
     public RessourceBox increaseStorageCost;
     public Text increaseStorageTime;
+    [Header("Project")]
+    public List<ProjectChoice> projectChoices;
+    public Text projectNameText;
+    public Text projectDescriptionText;
+    public Text projectEffectText;
+    public Text projectLengthText;
+    public Image projectImage;
+    public RessourceBox projectCost;
+    public GameObject startProjectButton, stopProjectButton;
 
 
 
@@ -52,7 +63,7 @@ public class BuildingInformation : MonoBehaviour
             gameObject.SetActive(true);
             pointer.gameObject.SetActive(true);
             pointer.target = spot.transform;
-            outline.color = spot.currentBuilding.color;
+            buildingName.color = spot.currentBuilding.color;
             buildingImage.color = spot.currentBuilding.color;
             
             productionToggle.gameObject.SetActive(spot.currentBuilding.productor);
@@ -112,6 +123,19 @@ public class BuildingInformation : MonoBehaviour
         buildDate.text = "Built in "+UIManager.TimeToDate(spot.constructionDate);
         integrityMeterText.text = UIManager.HumanNotation(spot.integrity);
         integrityMeter.fillAmount = spot.integrity;
+        if(spot.BadIntegrity){
+            integrityMeter.color = GM.I.art.orange;
+            integrityRiskText.color = GM.I.art.orange;
+            integrityRiskText.text = "FAILURE RISK - MEDIUM";
+        }else if(spot.DangerousIntegrity){
+            integrityMeter.color = GM.I.art.red;
+            integrityRiskText.color = GM.I.art.red;
+            integrityRiskText.text = "FAILURE RISK - HIGH";
+        }else{
+            integrityMeter.color = GM.I.art.light;
+            integrityRiskText.color = GM.I.art.light;
+            integrityRiskText.text = "FAILURE RISK - LOW";
+        }
         
         monthlyProduction.UpdateRessourceBox(spot.currentBuilding.production.GetProduction().Multiply(spot.efficiency));
         monthlyCost.UpdateRessourceBox(spot.currentBuilding.production.GetCost().Multiply(spot.costEfficiency));
@@ -129,6 +153,12 @@ public class BuildingInformation : MonoBehaviour
         StopProduction(!spot.producing);
 
         ProcessStatus(spot, true);
+
+        for (int i = 0; i < spot.currentBuilding.projects.Count; i++)
+        {
+            Project project = spot.currentBuilding.projects[i];
+            projectChoices[i].Init(project);
+        }
         
         if(spot.currentBuilding.control){
             destroyButton.SetActive(false);
@@ -156,20 +186,25 @@ public class BuildingInformation : MonoBehaviour
                 colors.Add(GM.I.art.red);
             }else{
                 statuses.Add("Under construction");
-                colors.Add(GM.I.art.yellow);
+                colors.Add(GM.I.art.light);
             }
         }else{
+            
             if(spot.Cost.Limited(GM.I.resource.resources)){
                 statuses.Add("Not enough resources!");
                 colors.Add(GM.I.art.red);
             }
-            if(spot.integrity < 0.3f){
+            if(spot.maintenance){
+                    statuses.Add("Under maintenance");
+                    colors.Add(GM.I.art.light);
+            }
+            else if(spot.DangerousIntegrity){
                 statuses.Add("Needs maintenance!");
                 colors.Add(GM.I.art.red);
             }
-            else if(spot.integrity < 0.6f){
+            else if(spot.BadIntegrity){
                 statuses.Add("Needs maintenance");
-                colors.Add(GM.I.art.yellow);
+                colors.Add(GM.I.art.orange);
             }
             if(spot.currentBuilding.housing){
                 if(spot.OverPopulated){
@@ -177,22 +212,24 @@ public class BuildingInformation : MonoBehaviour
                     colors.Add(GM.I.art.red);
                 }else if(spot.HighPopulated){
                     statuses.Add("Crowded");
-                    colors.Add(GM.I.art.yellow);
+                    colors.Add(GM.I.art.orange);
                 }
             }
             if(spot.currentBuilding.productor){
-                if(spot.LowPopulated){
-                    statuses.Add("Not enough workers");
-                    colors.Add(GM.I.art.yellow);
-                }
-                if(spot.storage == spot.ResourcePortion()){
-                    statuses.Add("Storage full");
-                    colors.Add(GM.I.art.yellow);
-                }
                 if(!spot.producing){
                     statuses.Add("Production stopped");
-                    colors.Add(GM.I.art.yellow);
+                    colors.Add(GM.I.art.orange);
+                }else if (!spot.maintenance){
+                    if(spot.LowPopulated){
+                        statuses.Add("Not enough workers");
+                        colors.Add(GM.I.art.orange);
+                    }
+                    if(spot.storage == spot.ResourcePortion()){
+                        statuses.Add("Storage full");
+                        colors.Add(GM.I.art.light);
+                    }
                 }
+                
             }
         }
 
@@ -209,9 +246,12 @@ public class BuildingInformation : MonoBehaviour
                     statusTexts[i].color = colors[i];
                 }
                 if(colors[i] == GM.I.art.red){
+                    statusNumber = 3;
+                }
+                if(colors[i] == GM.I.art.orange && statusNumber <= 1){
                     statusNumber = 2;
                 }
-                if(colors[i] == GM.I.art.yellow && statusNumber == 0){
+                if(colors[i] == GM.I.art.light && statusNumber == 0){
                     statusNumber = 1;
                 }
             }
@@ -233,7 +273,7 @@ public class BuildingInformation : MonoBehaviour
         spot.maintenance = onOff;
         startMaintenanceButton.SetActive(!onOff);
         stopMaintenanceButton.SetActive(onOff);
-        integrityMeter.color = onOff? GM.I.art.white : GM.I.art.light;
+        integrityMeterOutline.color = onOff? GM.I.art.white : GM.I.art.light;
     }
 
     public void StopProduction(bool onOff){
@@ -261,5 +301,14 @@ public class BuildingInformation : MonoBehaviour
         selectedSpot.increaseStorage = onOff;
         increaseStorageButton.SetActive(!onOff);
         stopStorageButton.SetActive(onOff);
+    }
+
+    public void SelectProject(Project project){
+        projectMenu.SetActive(false);
+        projectDetail.SetActive(true);
+        projectNameText.text = project.projectName;
+        projectDescriptionText.text = project.projectDescription;
+        projectEffectText.text = project.effectDescription;
+        projectCost.UpdateRessourceBox(project.monthlyCost);
     }
 }

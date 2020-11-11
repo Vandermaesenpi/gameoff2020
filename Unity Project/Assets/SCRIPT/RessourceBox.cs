@@ -7,6 +7,7 @@ public class RessourceBox : MonoBehaviour
 {
     public GameObject energy, water, material;
     public Text energyText, waterText, materialText;
+    public bool hideZero;
     public void UpdateRessourceBox(Resource delta){
         ProcessBox(energy, energyText, GM.I.art.yellow, delta.r[0]);
         ProcessBox(water, waterText, GM.I.art.blue, delta.r[1]);
@@ -15,15 +16,19 @@ public class RessourceBox : MonoBehaviour
 
     void ProcessBox(GameObject box, Text text, Color goodColor, float value){
         if(value > 0){
-            box.SetActive(true);
+            if(hideZero)
+                box.SetActive(true);
             text.text = "+" + Mathf.Round(value*10f)/10f;
             text.color = goodColor;
         }else if(value < 0){
-            box.SetActive(true);
+            if(hideZero)
+                box.SetActive(true);
             text.text = ""+Mathf.Round(value*10f)/10f;
             text.color = GM.I.art.red;
         }else{
-            box.SetActive(false);
+            text.text = "0";
+            text.color = GM.I.art.gray;
+            box.SetActive(!hideZero);
         }
     }
 }

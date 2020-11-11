@@ -23,7 +23,7 @@ public class PopulationManager : MonoBehaviour
     public float needsModifier, cultureModifier, comfortModifier, hopeModifier;
     
     // --------------Processed variables
-    public float Mood {get{return (needs + culture + comfort + hope)/4f;}}
+    public float Mood {get{return (needs*7f + culture + comfort + hope)/10f;}}
     public int GetPopulationRange(int min, int max){
         int total = 0;
             for (int i = min * 12; i < max * 12; i++)
@@ -79,13 +79,16 @@ public class PopulationManager : MonoBehaviour
 
     public void ProcessAging(){
         // Calculate births
-        int agingPouplationSlice = MonthlyBirth;
+        int agingPouplationSlice = (GM.I.city.ResourceShortage()? 0: MonthlyBirth);
         // Reset death counter
         MonthlyDeath = 0;
         // Kill
         for (int i = 0; i < Population.Length; i++)
         {
-            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * (GM.I.city.ResourceShortage()? 1.5f: 1f));
+            float deathFactor = 1f;
+            deathFactor = (GM.I.city.ResourceShortage()? 500f: 0f);
+            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] + deathFactor);
+            deathInSlice = Mathf.Min(Population[i],deathInSlice);
             Population[i] -= deathInSlice;
             MonthlyDeath += deathInSlice;
         }
@@ -111,7 +114,7 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessNeeds(){
         needs = 0;
-        int threshold = TotalPopulation/1000000 + 1;
+        int threshold = TotalPopulation/200000 + 1;
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));
