@@ -157,7 +157,7 @@ public class BuildingInformation : MonoBehaviour
         for (int i = 0; i < spot.currentBuilding.projects.Count; i++)
         {
             Project project = spot.currentBuilding.projects[i];
-            projectChoices[i].Init(project);
+            projectChoices[i].Init(project, spot);
         }
         
         if(spot.currentBuilding.control){
@@ -307,6 +307,7 @@ public class BuildingInformation : MonoBehaviour
         projectMenu.SetActive(false);
         projectDetail.SetActive(true);
         projectNameText.text = project.projectName;
+        projectImage.sprite = project.sprite;
         projectDescriptionText.text = project.projectDescription;
         projectEffectText.text = project.effectDescription;
         projectCost.UpdateRessourceBox(project.monthlyCost);

@@ -17,8 +17,7 @@ MonoBehaviour:
   projectDescription: Hot water and skilled psychotherapists to forget you're in
     a metal box.
   effectDescription: +10% comfort
-  sprite: {fileID: 0}
-  littleSprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 17c15de0a7d5c804fa78ff9fb83a4a5b, type: 3}
   monthlyCost:
     r:
     - 0

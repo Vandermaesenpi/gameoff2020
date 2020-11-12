@@ -16,8 +16,7 @@ MonoBehaviour:
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Encourage fun parties, decadence and happy accidents.
   effectDescription: +5% births
-  sprite: {fileID: 0}
-  littleSprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 90761bd2bd5b3204e916dbde9031104c, type: 3}
   monthlyCost:
     r:
     - 0.5

@@ -16,8 +16,7 @@ MonoBehaviour:
   projectLength: {x: 120, y: 600, z: 2400}
   projectDescription: Optimize your cities and reduce monthly costs.
   effectDescription: -10% monthly cost
-  sprite: {fileID: 0}
-  littleSprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f4fb591ba5cfa244b81196cc766b166e, type: 3}
   monthlyCost:
     r:
     - 0

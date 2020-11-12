@@ -16,8 +16,7 @@ MonoBehaviour:
   projectLength: {x: 120, y: 600, z: 2400}
   projectDescription: Bigger heating tanks, increasing energy output.
   effectDescription: +50% energy production
-  sprite: {fileID: 0}
-  littleSprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 01012e33f1a13d3468eb6f65dc6b0b83, type: 3}
   monthlyCost:
     r:
     - 0

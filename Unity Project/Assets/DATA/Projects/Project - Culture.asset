@@ -16,8 +16,7 @@ MonoBehaviour:
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Hub for scholars, artists, actors and thinkers.
   effectDescription: +10% culture
-  sprite: {fileID: 0}
-  littleSprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 586c3fa8544c1f447ace23882a0a601c, type: 3}
   monthlyCost:
     r:
     - 0
