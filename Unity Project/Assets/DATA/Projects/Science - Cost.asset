@@ -15,13 +15,13 @@ MonoBehaviour:
   projectName: RECYCLING TECHNOLOGY
   projectLength: {x: 120, y: 600, z: 2400}
   projectDescription: Optimize your cities and reduce monthly costs.
-  effectDescription: -10% monthly cost
+  effectDescription: -5% monthly cost
   sprite: {fileID: 21300000, guid: f4fb591ba5cfa244b81196cc766b166e, type: 3}
   monthlyCost:
     r:
     - 0
     - -2
     - -1
-  type: 1
+  type: 4
   resourceType: 0
-  amount: {x: 0.9, y: 0, z: 0}
+  amount: {x: 0.9, y: 0.8, z: 0.7}

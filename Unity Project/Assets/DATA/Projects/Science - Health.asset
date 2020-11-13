@@ -22,6 +22,6 @@ MonoBehaviour:
     - -2
     - -1
     - 0
-  type: 9
+  type: 12
   resourceType: 0
   amount: {x: 0.95, y: 0.9, z: 0.85}

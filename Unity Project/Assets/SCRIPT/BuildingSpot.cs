@@ -46,8 +46,8 @@ public class BuildingSpot : MonoBehaviour
     public bool BadIntegrity{get{return integrity < 0.5f;}}
     public bool DangerousIntegrity{get{return integrity < 0.25f;}}
 
-    public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency);}}
-    public Resource Cost {get{return currentBuilding.production.GetCost().Multiply(costEfficiency);}}
+    public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency).Multiply(GM.I.project.FX(EffectType.Energy),GM.I.project.FX(EffectType.Water),GM.I.project.FX(EffectType.Material));}}
+    public Resource Cost {get{return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost));}}
 
     private void Start() {
         if(currentBuilding != null){
@@ -135,7 +135,7 @@ public class BuildingSpot : MonoBehaviour
             }
         }else{
             if(Random.value < 0.2f){
-                integrity = Mathf.Max(0,integrity - currentBuilding.decay);
+                integrity = Mathf.Max(0,integrity - currentBuilding.decay * GM.I.project.FX(EffectType.Integrity));
             }
         }
     }
@@ -151,13 +151,24 @@ public class BuildingSpot : MonoBehaviour
             }
             costEfficiency = Mathf.Max(Mathf.Clamp((float)population*2f/(float)currentBuilding.populationRequirement,0f,1000f) + costEfficiencyModifier, 0f);
         }else if (currentBuilding.productor){
-            population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
-            efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
-            costEfficiency = costEfficiencyModifier;
             if(!producing || maintenance){
                 population = 0;
                 efficiency = 0f;
                 costEfficiency = 0f;
+            }else{
+                population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
+                costEfficiency = costEfficiencyModifier;
+            }
+        }else if (currentBuilding.research){
+            if(currentProject == null || maintenance){
+                population = 0;
+                efficiency = 0f;
+                costEfficiency = 0f;
+            }else{
+                population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
+                costEfficiency = costEfficiencyModifier;
             }
         }
     }

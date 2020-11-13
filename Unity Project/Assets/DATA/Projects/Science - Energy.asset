@@ -20,8 +20,8 @@ MonoBehaviour:
   monthlyCost:
     r:
     - 0
-    - -3
+    - -1
     - 0
-  type: 0
+  type: 1
   resourceType: 0
   amount: {x: 1.5, y: 2.225, z: 3.375}

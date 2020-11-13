@@ -43,10 +43,13 @@ public class CityManager : MonoBehaviour
 
     public int WorkplaceSpace(){
         int space = 0;
-        foreach (BuildingSpot building in buildings)
+        foreach (BuildingSpot b in buildings)
         {
-            if(building.currentBuilding != null && building.Built && !building.currentBuilding.housing && !(building.currentBuilding.productor && (!building.producing || building.maintenance))){
-                space += building.currentBuilding.populationRequirement;
+            if(b.currentBuilding != null && b.Built && 
+            !b.currentBuilding.housing && !(b.currentBuilding.productor && (!b.producing || b.maintenance)) && 
+            !(b.currentBuilding.research && (b.currentProject == null || b.maintenance)))
+            {
+                space += b.currentBuilding.populationRequirement;
             }
         }
         return space;
@@ -54,9 +57,11 @@ public class CityManager : MonoBehaviour
 
     public int Workplace(){
         int workplace = 0;
-        foreach (BuildingSpot building in buildings)
+        foreach (BuildingSpot b in buildings)
         {
-            if(building.currentBuilding != null && building.Built && !building.currentBuilding.housing && !(building.currentBuilding.productor && (!building.producing || building.maintenance))){
+            if(b.currentBuilding != null && b.Built && 
+            !b.currentBuilding.housing && !(b.currentBuilding.productor && (!b.producing || b.maintenance)) && 
+            !(b.currentBuilding.research && (b.currentProject == null || b.maintenance))){
                 workplace ++;
             }
         }

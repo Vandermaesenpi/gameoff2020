@@ -55,6 +55,7 @@ public class BuildingInformation : MonoBehaviour
     public Image projectImage;
     public RessourceBox projectCost;
     public GameObject startProjectButton, stopProjectButton;
+    public Project selectedProject;
 
 
 
@@ -97,6 +98,7 @@ public class BuildingInformation : MonoBehaviour
 
             DestroyMenu(false);
             selectedSpot = spot;
+            selectedProject = null;
             UpdateMenuInfo(spot);
         }else{
             gameObject.SetActive(false);
@@ -114,8 +116,21 @@ public class BuildingInformation : MonoBehaviour
         
         overviewMenu.SetActive(overviewToggle.isOn);
         productionMenu.SetActive(productionToggle.isOn);
-        projectMenu.SetActive(projectToggle.isOn);
         maintenanceMenu.SetActive(maintenanceToggle.isOn);
+        projectDetail.SetActive(false);
+        projectMenu.SetActive(false);
+
+        if(projectToggle.isOn){
+            if(spot.currentProject != null){
+                SelectProject(spot.currentProject);
+            }
+            else if(selectedProject == null){
+                CloseProjectDetail();
+            }else{
+                SelectProject(selectedProject);
+            }
+        }
+        
 
         costInfo.text = spot.currentBuilding.costInfo;
         shortageEffect.text = spot.Cost.Limited(GM.I.resource.resources)? spot.currentBuilding.shortageEffect:"";
@@ -137,8 +152,8 @@ public class BuildingInformation : MonoBehaviour
             integrityRiskText.text = "FAILURE RISK - LOW";
         }
         
-        monthlyProduction.UpdateRessourceBox(spot.currentBuilding.production.GetProduction().Multiply(spot.efficiency));
-        monthlyCost.UpdateRessourceBox(spot.currentBuilding.production.GetCost().Multiply(spot.costEfficiency));
+        monthlyProduction.UpdateRessourceBox(spot.Production);
+        monthlyCost.UpdateRessourceBox(spot.Cost);
         storage.text = (int)spot.ResourcePortion() + " / " + spot.storage;
         storageBar.fillAmount = spot.ResourcePortion() / spot.storage;
         storageBar.color = spot.currentBuilding.color;
@@ -231,6 +246,12 @@ public class BuildingInformation : MonoBehaviour
                 }
                 
             }
+            if(spot.currentBuilding.research){
+                if(spot.currentProject == null){
+                    statuses.Add("Needs a project!");
+                    colors.Add(GM.I.art.light);
+                }
+            }
         }
 
         if(statuses.Count == 0){
@@ -304,12 +325,40 @@ public class BuildingInformation : MonoBehaviour
     }
 
     public void SelectProject(Project project){
+        selectedProject = project;
         projectMenu.SetActive(false);
         projectDetail.SetActive(true);
         projectNameText.text = project.projectName;
         projectImage.sprite = project.sprite;
+        projectLengthText.gameObject.SetActive(!GM.I.project.IsConstant(project));
+        projectLengthText.text = (GM.I.project.GetLength(project) - GM.I.project.GetTime(project)) + " months";
+        startProjectButton.SetActive(project != selectedSpot.currentProject);
+        stopProjectButton.SetActive(project == selectedSpot.currentProject);
         projectDescriptionText.text = project.projectDescription;
         projectEffectText.text = project.effectDescription;
         projectCost.UpdateRessourceBox(project.monthlyCost);
+    }
+
+    public void CloseProjectDetail(){
+        projectMenu.SetActive(true);
+        projectDetail.SetActive(false);
+        selectedProject = null;
+        if(selectedSpot != null){
+            for (int i = 0; i < selectedSpot.currentBuilding.projects.Count; i++)
+            {
+                Project project = selectedSpot.currentBuilding.projects[i];
+                projectChoices[i].Init(project, selectedSpot);
+            }
+        }
+    }
+
+    public void StartProject(){
+        selectedSpot.currentProject = selectedProject;
+        SelectProject(selectedProject);
+    }
+
+    public void StopProject(){
+        selectedSpot.currentProject = null;
+        CloseProjectDetail();
     }
 }

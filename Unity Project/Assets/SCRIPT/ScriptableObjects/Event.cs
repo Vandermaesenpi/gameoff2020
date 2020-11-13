@@ -9,6 +9,9 @@ public class Event : ScriptableObject
 
 public enum EffectType{
     Production,
+    Energy,
+    Water,
+    Material,
     Cost,
     Integrity,
     BasicNeeds,

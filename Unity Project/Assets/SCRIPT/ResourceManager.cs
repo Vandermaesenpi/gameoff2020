@@ -26,6 +26,9 @@ public class ResourceManager : MonoBehaviour
                     if(building.increaseStorage && !building.currentBuilding.storageIncreaseMonthlyCost.Limited(GM.I.resource.resources)){
                         delta.Add(building.currentBuilding.storageIncreaseMonthlyCost);
                     }
+                    if(building.currentProject != null){
+                        delta.Add(building.currentProject.monthlyCost);
+                    }
                 }else if (!building.constructionHalted){
                     delta.Add(building.currentBuilding.constructionMonthlyCost);
                 }
@@ -57,6 +60,14 @@ public class Resource{
         newR.r[0] = Energy * amount;
         newR.r[1] = Water * amount;
         newR.r[2] = Material * amount;
+        return newR;
+    }
+
+    public Resource Multiply(float e,float w,float m){
+        Resource newR = new Resource();
+        newR.r[0] = Energy * e;
+        newR.r[1] = Water * w;
+        newR.r[2] = Material * m;
         return newR;
     }
 

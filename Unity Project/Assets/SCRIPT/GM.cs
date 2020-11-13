@@ -28,4 +28,5 @@ public class GM : MonoBehaviour
     public GameplayManager gameplay;
     public PopulationManager people;
     public ResourceManager resource;
+    public ProjectManager project;
 }

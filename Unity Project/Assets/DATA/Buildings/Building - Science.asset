@@ -20,12 +20,12 @@ MonoBehaviour:
   populationRequirement: 20000000
   ressourceType: 0
   projects:
-  - {fileID: 11400000, guid: 9bf05044b45a3b642be91e7e21284537, type: 2}
   - {fileID: 11400000, guid: 78000d040550aaa49ab429372653759c, type: 2}
-  - {fileID: 11400000, guid: e125d478389f5d3469ab87a11238ee49, type: 2}
-  - {fileID: 11400000, guid: d81e90a95ef95444fbe620da6a6a5252, type: 2}
-  - {fileID: 11400000, guid: f685ef5b2d5047744bcaa90ad484476b, type: 2}
   - {fileID: 11400000, guid: 05110432dd8ccf247a375657025e4917, type: 2}
+  - {fileID: 11400000, guid: f685ef5b2d5047744bcaa90ad484476b, type: 2}
+  - {fileID: 11400000, guid: 9bf05044b45a3b642be91e7e21284537, type: 2}
+  - {fileID: 11400000, guid: d81e90a95ef95444fbe620da6a6a5252, type: 2}
+  - {fileID: 11400000, guid: e125d478389f5d3469ab87a11238ee49, type: 2}
   production:
     r:
     - -0.5

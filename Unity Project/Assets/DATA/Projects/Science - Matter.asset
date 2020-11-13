@@ -22,6 +22,6 @@ MonoBehaviour:
     - 0
     - 0
     - -3
-  type: 0
+  type: 3
   resourceType: 2
   amount: {x: 1.5, y: 2.25, z: 3.375}

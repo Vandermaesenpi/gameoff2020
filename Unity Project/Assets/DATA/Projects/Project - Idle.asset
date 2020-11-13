@@ -19,9 +19,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: f644542097012b74ebfc0b5b05c90fbd, type: 3}
   monthlyCost:
     r:
-    - 0.5
+    - -0.5
     - 0
     - 0
-  type: 10
+  type: 13
   resourceType: 0
-  amount: {x: 1.05, y: 0, z: 0}
+  amount: {x: 1.05, y: 1.05, z: 1.05}
