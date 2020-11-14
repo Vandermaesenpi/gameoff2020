@@ -19,7 +19,7 @@ public class ProjectManager : MonoBehaviour
         return project.projectLength.x < 0;
     }
     public bool IsMaxed(Project project){
-        return levels[projects.IndexOf(project)] == 4;
+        return levels[projects.IndexOf(project)] == 3;
     }
     public float FX(EffectType type){
         foreach (Project p in projects)
@@ -35,7 +35,7 @@ public class ProjectManager : MonoBehaviour
         return 1f;
     }
     public int GetLength(Project project){
-        if(GetLevel(project)<4){
+        if(GetLevel(project)<3){
             return project.projectLength[GetLevel(project)];
         }
         return 0;
@@ -59,7 +59,7 @@ public class ProjectManager : MonoBehaviour
                 int index = projects.IndexOf(spot.currentProject);
                 if(!spot.currentProject.monthlyCost.Limited(GM.I.resource.resources)){
                     if(IsConstant(spot.currentProject)){
-                        levels[index]++;
+                        levels[index] = 1;
                     }else{
                         time[index]++;
                     }
@@ -83,7 +83,7 @@ public class ProjectManager : MonoBehaviour
         {
             if(spot.currentProject != null){
                 int index = projects.IndexOf(spot.currentProject);
-                if(time[index] == 0){
+                if(time[index] == 0 && !IsConstant(projects[index])){
                     spot.currentProject = null;
                 }
             }

@@ -18,7 +18,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: d0b6552c1ed82f243913f4496b4888b9, type: 3}
   prefab: {fileID: 5125907079297291747, guid: a9d08e8f32ab24141ade1b5dd0f305a7, type: 3}
   populationRequirement: 10000000
+  populationName: WORKERS
   ressourceType: 0
+  projects: []
   production:
     r:
     - 5

@@ -49,10 +49,11 @@ public class Resource{
     public float Water {get{return r[1];}}
     public float Material {get{return r[2];}}
 
-    public void Add(Resource delta){
+    public Resource Add(Resource delta){
         r[0] += delta.r[0];
         r[1] += delta.r[1];
         r[2] += delta.r[2];
+        return this;
     }
 
     public Resource Multiply(float amount){

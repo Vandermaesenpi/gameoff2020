@@ -21,7 +21,7 @@ public class GM : MonoBehaviour
             return _instance;
         }
     }
-
+    public MoonRotator moonRotator;
     public CityManager city;
     public UIManager ui;
     public ArtReferences art;

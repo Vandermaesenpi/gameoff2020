@@ -20,40 +20,42 @@ public class PopulationManager : MonoBehaviour
     public float reproducingChance;
 
     public float needs, culture, comfort, hope;
+    public float cultureDecay;
+    public float cultureGain;
     public float needsModifier, cultureModifier, comfortModifier, hopeModifier;
     
     // --------------Processed variables
     public float Mood {get{return (needs*7f + culture + comfort + hope)/10f;}}
-    public int GetPopulationRange(int min, int max){
-        int total = 0;
+    public uint GetPopulationRange(int min, int max){
+        uint total = 0;
             for (int i = min * 12; i < max * 12; i++)
             {
-                total += Population[i];
+                total += (uint)Population[i];
             }
             return total;
     }
-    public int GetPopulationRange(Vector2Int minMax){
+    public uint GetPopulationRange(Vector2Int minMax){
         return GetPopulationRange(minMax.x, minMax.y);
     }
-    public int TotalPopulation{
+    public uint TotalPopulation{
         get{
             return GetPopulationRange(0, Population.Length/12);
         }
     }
-    public int WorkingPopulation{
+    public uint WorkingPopulation{
         get{
             return GetPopulationRange(workingAge);
         }
     }
 
-    public int IdlePopulation{
+    public uint IdlePopulation{
         get{
-            return Mathf.Max(0, WorkingPopulation - GM.I.city.WorkplaceSpace());
+            return (uint)Mathf.Max(0, WorkingPopulation - GM.I.city.WorkplaceSpace());
         }
     }
     public int MonthlyBirth{
         get{
-            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood); 
+            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood * GM.I.project.FX(EffectType.Birth)); 
         }
     }
 
@@ -87,7 +89,7 @@ public class PopulationManager : MonoBehaviour
         {
             float deathFactor = 1f;
             deathFactor = (GM.I.city.ResourceShortage()? 500f: 0f);
-            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] + deathFactor);
+            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * GM.I.project.FX(EffectType.Death) + deathFactor);
             deathInSlice = Mathf.Min(Population[i],deathInSlice);
             Population[i] -= deathInSlice;
             MonthlyDeath += deathInSlice;
@@ -114,7 +116,7 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessNeeds(){
         needs = 0;
-        int threshold = TotalPopulation/200000 + 1;
+        uint threshold = TotalPopulation/200000 + 1;
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
         needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));
@@ -129,7 +131,13 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessCulture(){
-
+        float cultureRatio = (float)TotalPopulation/(float)(GM.I.city.Culture() * 200000000f);
+        if(cultureRatio < 1){
+            culture += cultureGain * cultureRatio;
+        }else{
+            culture -= cultureDecay;
+        }
+        culture = Mathf.Clamp(culture, 0,1);
     }
 
     void ProcessHope(){

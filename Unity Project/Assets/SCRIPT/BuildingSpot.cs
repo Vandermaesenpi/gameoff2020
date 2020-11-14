@@ -19,9 +19,10 @@ public class BuildingSpot : MonoBehaviour
     public GameObject selectionRing;
     public GameObject selectedRing;
     public GameObject constructionModel;
+    public MeshRenderer constructionTipee;
     public Image progressBar;
     public GameObject buildingModel;
-
+    public bool selected = false;
     public int constructionAmount;
     public int constructionDate;
     public bool constructionHalted;
@@ -47,7 +48,14 @@ public class BuildingSpot : MonoBehaviour
     public bool DangerousIntegrity{get{return integrity < 0.25f;}}
 
     public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency).Multiply(GM.I.project.FX(EffectType.Energy),GM.I.project.FX(EffectType.Water),GM.I.project.FX(EffectType.Material));}}
-    public Resource Cost {get{return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost));}}
+    public Resource Cost {
+        get{
+            if(currentProject != null){
+                return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost)).Add(currentProject.monthlyCost);
+            }
+            return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost));
+        }
+    }
 
     private void Start() {
         if(currentBuilding != null){
@@ -75,8 +83,8 @@ public class BuildingSpot : MonoBehaviour
         progressBar.fillAmount = 0f;
         storage = 0;
         status = BuildingStatus.Construction;
-        mode = BuildingSpotMode.Normal;
-        UpdateVisual();
+        selected = false;
+        GM.I.city.UpdateCityVisuals();
     }
 
     public void UpdateBuilding(){
@@ -156,7 +164,7 @@ public class BuildingSpot : MonoBehaviour
                 efficiency = 0f;
                 costEfficiency = 0f;
             }else{
-                population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation/(uint)GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
                 efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
                 costEfficiency = costEfficiencyModifier;
             }
@@ -166,7 +174,7 @@ public class BuildingSpot : MonoBehaviour
                 efficiency = 0f;
                 costEfficiency = 0f;
             }else{
-                population = Mathf.Clamp(GM.I.people.WorkingPopulation/GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation/(uint)GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
                 efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
                 costEfficiency = costEfficiencyModifier;
             }
@@ -176,14 +184,14 @@ public class BuildingSpot : MonoBehaviour
     public void Select(){
         GM.I.ui.buildingInformation.ShowBuildingInfo(this);
         GM.I.city.UnselectAll();
-        mode = BuildingSpotMode.Selected;
+        GM.I.moonRotator.ShowBuildingSpot(transform);
+        selected = true;
         UpdateVisual();
     }
 
     public void Unselect(){
         GM.I.ui.buildingInformation.ShowBuildingInfo(null);
-        GM.I.city.UnselectAll();
-        mode = BuildingSpotMode.Normal;
+        selected = false;
         UpdateVisual();
     }
 
@@ -194,15 +202,12 @@ public class BuildingSpot : MonoBehaviour
     private void Update() {
         if(mode == BuildingSpotMode.Building && currentBuilding == null){
             positionRing.GetComponent<ButtonMesh>().highlight.GetComponent<MeshRenderer>().material.color = GM.I.ui.buildingMenu.selectedBuilding.color;
+            constructionTipee.material.color = GM.I.ui.buildingMenu.selectedBuilding.color;
         }
     }
 
     public void UpdateVisual(){
 
-        positionRing.SetActive(false);
-        positionPoint.SetActive(false);
-        selectionRing.SetActive(false);
-        selectedRing.SetActive(false);
         if(currentBuilding != null){
             int currentStatus = GM.I.ui.buildingInformation.ProcessStatus(this, false);
             if(currentStatus == 0){
@@ -232,9 +237,25 @@ public class BuildingSpot : MonoBehaviour
         switch (mode)
         {
             case BuildingSpotMode.Normal:
+
+                positionRing.SetActive(false);
+                positionPoint.SetActive(false);
+
                 if(currentBuilding != null){
-                    selectionRing.SetActive(true);
+                    if(selected){
+                        selectionRing.SetActive(false);
+                        if(!selectedRing.activeInHierarchy)
+                            selectedRing.SetActive(true);
+                    }else{
+                        selectedRing.SetActive(false);
+                        if(!selectionRing.activeInHierarchy)
+                            selectionRing.SetActive(true);
+                    }
+                }else{
+                    selectedRing.SetActive(false);
+                    selectedRing.SetActive(false);
                 }
+                
                 foreach (Connection connection in connections)
                 {
                     connection.gameObject.SetActive(false);
@@ -242,21 +263,43 @@ public class BuildingSpot : MonoBehaviour
             break;
             case BuildingSpotMode.Building:
                 if(discovered){
-                    if(currentBuilding == null){
-                        positionRing.SetActive(true);
-                    }else{
+                    if(currentBuilding != null){
+                        if(selected){
+                            selectionRing.SetActive(false);
+                            if(!selectedRing.activeInHierarchy)
+                                selectedRing.SetActive(true);
+                        }else{
+                            selectedRing.SetActive(false);
+                            if(!selectionRing.activeInHierarchy)
+                                selectionRing.SetActive(true);
+                        }
+                        if(positionRing.activeInHierarchy)
+                            positionRing.SetActive(false);
+                        if(!positionPoint.activeInHierarchy)
+                            positionPoint.SetActive(true);
                         if(constructionAmount >= currentBuilding.constructionTime){
                             foreach (Connection connection in connections)
                             {
                                 connection.gameObject.SetActive(true);
                             }
                         }
-                        positionPoint.SetActive(true);
+                    }else{
+                        selectedRing.SetActive(false);
+                        selectedRing.SetActive(false);
+
+                        if(!positionRing.activeInHierarchy)
+                            positionRing.SetActive(true);
+                        if(positionPoint.activeInHierarchy)
+                            positionPoint.SetActive(false);
+                        foreach (Connection connection in connections)
+                            {
+                                if(connection.GetOther(this).discovered && discovered){
+                                    connection.gameObject.SetActive(true);
+                                }
+                            }
                     }
+                    
                 }
-            break;
-            case BuildingSpotMode.Selected:
-                selectedRing.SetActive(true);
             break;
         }
     }
@@ -266,7 +309,6 @@ public class BuildingSpot : MonoBehaviour
 public enum BuildingSpotMode{
     Normal,
     Building,
-    Selected
 }
 
 public enum BuildingStatus{

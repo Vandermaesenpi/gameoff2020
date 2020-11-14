@@ -18,6 +18,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: cec4eb85c9edf034ba75f6cd93407cdf, type: 3}
   prefab: {fileID: 7133963252208107268, guid: 18dc6e6c29f5f124e839efac45c0014d, type: 3}
   populationRequirement: 20000000
+  populationName: WORKERS
   ressourceType: 0
   projects:
   - {fileID: 11400000, guid: 78000d040550aaa49ab429372653759c, type: 2}
@@ -50,6 +51,7 @@ MonoBehaviour:
   baseStorage: 0
   decay: 0.005
   decayEffect: 
+  maintenanceEffect: Maintenance pause current project
   costInfo: 
   shortageEffect: 'Resource Shortage!
 

@@ -9,7 +9,8 @@ public class PopulationMenu : MonoBehaviour
     public Text totalText;
     public Text totalOverviewText;
     public Text workerText;
-    int lastWorkingPopulation;
+    public Text workerOverviewText;
+    uint lastWorkingPopulation;
     public Text idleText;
     public Text birthText;
     int lastBirth;
@@ -40,6 +41,8 @@ public class PopulationMenu : MonoBehaviour
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         workerText.text = UIManager.HumanNotation(GM.I.people.WorkingPopulation);
         workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.green : GM.I.art.red;
+        workerOverviewText.text = workerText.text;
+        workerOverviewText.color = workerText.color;
         lastWorkingPopulation = GM.I.people.WorkingPopulation;
         idleText.text = UIManager.HumanNotation(GM.I.people.IdlePopulation);
         idleText.color = GM.I.people.IdlePopulation < GM.I.people.WorkingPopulation/3 ? GM.I.art.green : GM.I.art.red;

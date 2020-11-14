@@ -19,10 +19,10 @@ MonoBehaviour:
     m_Color: {r: 0.61089355, g: 0.8176397, b: 0.9056604, a: 1}
   - m_Name: Yellow
     m_Color: {r: 0.99215686, g: 0.90588236, b: 0.29803923, a: 1}
-  - m_Name: YellowLight
-    m_Color: {r: 1, g: 0.9716981, b: 0.7688679, a: 1}
   - m_Name: Green
     m_Color: {r: 0.60784316, g: 0.77254903, b: 0.23921569, a: 1}
+  - m_Name: YellowLight
+    m_Color: {r: 1, g: 0.9716981, b: 0.7688679, a: 1}
   - m_Name: GreenLight
     m_Color: {r: 0.7908823, g: 0.9056604, b: 0.5339979, a: 1}
   - m_Name: Red

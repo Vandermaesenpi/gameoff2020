@@ -9,7 +9,6 @@ public class BuildingMenu : MonoBehaviour
     public BuildingObject selectedBuilding;
     public void ClicBuildingMenu(){
         bool value = !gameObject.activeInHierarchy;
-        GM.I.ui.buildingInformation.ShowBuildingInfo(null);
         gameObject.SetActive(value);
         GM.I.city.ShowHoloMoon(value);
         if(value){
@@ -18,13 +17,11 @@ public class BuildingMenu : MonoBehaviour
             }
             GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         }else{
-            GM.I.city.UnselectAll();
+            GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Normal);
         }
         foreach (BuildingToggle choice in choices)
         {
-            choice.buildingImage.sprite = choice.building.sprite;
-            choice.buildingName.text = choice.building.buildingName;
-            choice.buildingDescription.text = choice.building.description;
+            choice.InitializeMiniature();
         }
     }
 

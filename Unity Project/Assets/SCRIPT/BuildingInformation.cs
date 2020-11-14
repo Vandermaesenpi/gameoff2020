@@ -12,6 +12,7 @@ public class BuildingInformation : MonoBehaviour
     public Image buildingImage;
     public Text buildingName;
     public Text populationText;
+    public Text populationName;
     [Header("Tabs")]
     public Toggle overviewToggle;
     public Toggle productionToggle;
@@ -31,6 +32,7 @@ public class BuildingInformation : MonoBehaviour
     public Image integrityMeterOutline;
     public Text integrityMeterText;
     public Text integrityRiskText;
+    public Text maintenanceEffecText;
     public GameObject startMaintenanceButton;
     public GameObject stopMaintenanceButton;
     [Header("Production")]
@@ -74,6 +76,8 @@ public class BuildingInformation : MonoBehaviour
             if(productionToggle.isOn && spot.currentBuilding.research){
                 productionToggle.SetIsOnWithoutNotify(false);
                 projectToggle.SetIsOnWithoutNotify(true);
+                projectDetail.SetActive(false);
+                projectMenu.SetActive(true);
             }
             if(projectToggle.isOn && spot.currentBuilding.productor){
                 productionToggle.SetIsOnWithoutNotify(true);
@@ -112,23 +116,21 @@ public class BuildingInformation : MonoBehaviour
         buildingImage.sprite = spot.currentBuilding.sprite;
         buildingName.text = spot.currentBuilding.buildingName + " " + spot.district;
         Color populationColor = spot.OverPopulated ? GM.I.art.red : GM.I.art.white;
+        populationName.text = spot.currentBuilding.populationName;
         populationText.text = "<color=#"+ColorUtility.ToHtmlStringRGBA(populationColor) + ">" + UIManager.HumanNotation(spot.population) + "</color>" + " / " + UIManager.HumanNotation(spot.currentBuilding.populationRequirement);
         
         overviewMenu.SetActive(overviewToggle.isOn);
         productionMenu.SetActive(productionToggle.isOn);
         maintenanceMenu.SetActive(maintenanceToggle.isOn);
-        projectDetail.SetActive(false);
-        projectMenu.SetActive(false);
+        productionToggle.gameObject.SetActive(spot.currentBuilding.productor);
+        projectToggle.gameObject.SetActive(spot.currentBuilding.research);
+        maintenanceToggle.gameObject.SetActive(true);
 
         if(projectToggle.isOn){
-            if(spot.currentProject != null){
-                SelectProject(spot.currentProject);
-            }
-            else if(selectedProject == null){
-                CloseProjectDetail();
-            }else{
-                SelectProject(selectedProject);
-            }
+                UpdateProject();
+        }else{
+            projectDetail.SetActive(false);
+            projectMenu.SetActive(false);
         }
         
 
@@ -137,6 +139,7 @@ public class BuildingInformation : MonoBehaviour
         integrity.SetActive(spot.Built && !spot.currentBuilding.control);
         buildDate.text = "Built in "+UIManager.TimeToDate(spot.constructionDate);
         integrityMeterText.text = UIManager.HumanNotation(spot.integrity);
+        maintenanceEffecText.text = spot.currentBuilding.maintenanceEffect;
         integrityMeter.fillAmount = spot.integrity;
         if(spot.BadIntegrity){
             integrityMeter.color = GM.I.art.orange;
@@ -166,7 +169,7 @@ public class BuildingInformation : MonoBehaviour
         increaseStorageTime.text = spot.storageCounter + " months";
         StartMaintenance(spot.maintenance);
         StopProduction(!spot.producing);
-
+        
         ProcessStatus(spot, true);
 
         for (int i = 0; i < spot.currentBuilding.projects.Count; i++)
@@ -328,15 +331,29 @@ public class BuildingInformation : MonoBehaviour
         selectedProject = project;
         projectMenu.SetActive(false);
         projectDetail.SetActive(true);
-        projectNameText.text = project.projectName;
-        projectImage.sprite = project.sprite;
-        projectLengthText.gameObject.SetActive(!GM.I.project.IsConstant(project));
-        projectLengthText.text = (GM.I.project.GetLength(project) - GM.I.project.GetTime(project)) + " months";
-        startProjectButton.SetActive(project != selectedSpot.currentProject);
-        stopProjectButton.SetActive(project == selectedSpot.currentProject);
-        projectDescriptionText.text = project.projectDescription;
-        projectEffectText.text = project.effectDescription;
-        projectCost.UpdateRessourceBox(project.monthlyCost);
+        UpdateProject();
+        
+    }
+
+    public void UpdateProject(){
+
+        if(selectedProject != null){
+            projectDetail.SetActive(true);
+            projectMenu.SetActive(false);
+            projectNameText.text = selectedProject.projectName;
+            projectImage.sprite = selectedProject.sprite;
+            projectLengthText.gameObject.SetActive(!GM.I.project.IsConstant(selectedProject));
+            projectLengthText.text = (GM.I.project.GetLength(selectedProject) - GM.I.project.GetTime(selectedProject)) + " months";
+            startProjectButton.SetActive(selectedProject != selectedSpot.currentProject);
+            stopProjectButton.SetActive(selectedProject == selectedSpot.currentProject);
+            projectDescriptionText.text = selectedProject.projectDescription;
+            projectEffectText.text = selectedProject.effectDescription;
+            projectCost.UpdateRessourceBox(selectedProject.monthlyCost);
+        }else{
+            projectDetail.SetActive(false);
+            projectMenu.SetActive(true);
+        }
+        
     }
 
     public void CloseProjectDetail(){

@@ -23,6 +23,7 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         UpdateTime(false);
+        
     }
 
     public void UpdateTime(bool force){
@@ -37,6 +38,8 @@ public class GameplayManager : MonoBehaviour
                 GM.I.people.ProcessMood();
                 GM.I.project.UpdateProjects();
                 GM.I.ui.buildingInformation.UpdateMenuInfo();
+                CheckLooseConditions();
+                CheckWinConditions();
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }
@@ -61,5 +64,23 @@ public class GameplayManager : MonoBehaviour
         PauseTime(false);
         currentSpeed = fastTimeSpeed;
         GM.I.ui.timeKeeper.UpdatePausedStatus();
+    }
+
+    void CheckWinConditions(){
+        if(currentTime == travelLenght){
+            GM.I.ui.ShowWinScreen();
+            timePaused = true;
+        }
+    }
+
+    void CheckLooseConditions(){
+        if(GM.I.people.TotalPopulation < 1){
+            GM.I.ui.ShowLooseScreen();
+            timePaused = true;
+        }
+    }
+
+    public void Restart(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

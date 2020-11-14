@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject gameScreen, winScreen, looseScreen;
     public BuildingInformation buildingInformation;
     public BuildingMenu buildingMenu;
     public TimeKeeper timeKeeper;
@@ -17,6 +18,15 @@ public class UIManager : MonoBehaviour
             newString = newString.Insert(newString.Length - i, "'");
         }
         return newString;
+    }
+
+    public void ShowWinScreen(){
+        gameScreen.SetActive(false);
+        winScreen.SetActive(true);
+    }
+    public void ShowLooseScreen(){
+        gameScreen.SetActive(false);
+        looseScreen.SetActive(true);
     }
 
     public static string HumanNotation(float number){
@@ -71,4 +81,5 @@ public class UIManager : MonoBehaviour
         clockText += "" + (2150 + year);
         return clockText;
     }
+
 }

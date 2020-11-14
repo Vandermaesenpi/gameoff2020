@@ -30,6 +30,17 @@ public class CityManager : MonoBehaviour
         return space;
     }
 
+    public int Culture(){
+        int space = 1;
+        foreach (BuildingSpot building in buildings)
+        {
+            if(building.currentBuilding != null && building.Built && building.currentBuilding.research){
+                space ++;
+            }
+        }
+        return space;
+    }
+
     public int Housing(){
         int housing = 0;
         foreach (BuildingSpot building in buildings)
@@ -89,11 +100,10 @@ public class CityManager : MonoBehaviour
             building.UpdateVisual();
         }
     }
-
     public void UnselectAll(){
         foreach (BuildingSpot building in buildings)
         {
-            building.mode = BuildingSpotMode.Normal;
+            building.selected = false;
             building.UpdateVisual();
         }
     }
