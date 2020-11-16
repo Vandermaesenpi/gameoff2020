@@ -4,10 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Event - ", menuName = "ScriptableObjects/Event", order = 1)]
 public class Event : ScriptableObject
 {
-    
+    public string eventName;
+    [TextArea]
+    public string description;
+    public List<EventChoice> choices;
 }
 
-public enum EffectType{
+public enum FXT{
     Production,
     Energy,
     Water,
@@ -21,5 +24,6 @@ public enum EffectType{
     Space,
     Birth,
     Death,
-    Idle
+    Idle,
+    None
 }

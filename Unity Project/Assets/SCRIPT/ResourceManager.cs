@@ -13,24 +13,36 @@ public class ResourceManager : MonoBehaviour
         return newR;
     }}
 
+    public Resource production;
+    public Resource cost;
     public void UpdateResources(){
         Resource delta = new Resource();
+        production = new Resource();
+        cost = new Resource();
         foreach (BuildingSpot building in GM.I.city.buildings)
         {
             if(building.currentBuilding != null){
                 if(building.Built){
-                    if(building.currentBuilding.productor){
-                        delta.Add(building.Production);
-                    }
-                    delta.Add(building.Cost);
-                    if(building.increaseStorage && !building.currentBuilding.storageIncreaseMonthlyCost.Limited(GM.I.resource.resources)){
-                        delta.Add(building.currentBuilding.storageIncreaseMonthlyCost);
-                    }
                     if(building.currentProject != null){
                         delta.Add(building.currentProject.monthlyCost);
+                        cost.Add(building.currentProject.monthlyCost);
+                        
+                    }else{
+                        if(building.currentBuilding.productor){
+                            delta.Add(building.Production);
+                            production.Add(building.Production);
+                        }
+                        delta.Add(building.Cost);
+                        cost.Add(building.Cost);
+                        if(building.increaseStorage && !building.currentBuilding.storageIncreaseMonthlyCost.Limited(GM.I.resource.resources)){
+                            delta.Add(building.currentBuilding.storageIncreaseMonthlyCost);
+                            cost.Add(building.currentBuilding.storageIncreaseMonthlyCost);
+                        }
                     }
+                    
                 }else if (!building.constructionHalted){
                     delta.Add(building.currentBuilding.constructionMonthlyCost);
+                    cost.Add(building.currentBuilding.constructionMonthlyCost);
                 }
             }
         }

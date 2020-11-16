@@ -13,7 +13,7 @@ public class Project : ScriptableObject
     public Sprite sprite;
 
     public Resource monthlyCost;
-    public EffectType type;
+    public FXT type;
     public int resourceType;
     public Vector3 amount;
 }

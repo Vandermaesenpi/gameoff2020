@@ -28,9 +28,9 @@ MonoBehaviour:
     - -1
   constructionMonthlyCost:
     r:
-    - -1
     - 0
     - -3
+    - -1
   storageIncreaseMonthlyCost:
     r:
     - 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   baseStorage: 200
   decay: 0.005
   decayEffect: 
+  maintenanceEffect: 
   costInfo: This building cost is constant
   shortageEffect: 'Resource shortage!
 

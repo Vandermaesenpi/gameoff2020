@@ -21,7 +21,7 @@ public class ProjectManager : MonoBehaviour
     public bool IsMaxed(Project project){
         return levels[projects.IndexOf(project)] == 3;
     }
-    public float FX(EffectType type){
+    public float FX(FXT type){
         foreach (Project p in projects)
         {
             if(p.type == type){

@@ -29,4 +29,5 @@ public class GM : MonoBehaviour
     public PopulationManager people;
     public ResourceManager resource;
     public ProjectManager project;
+    public EventManager eventManager;
 }

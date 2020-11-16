@@ -15,7 +15,7 @@ public class BuildingToggle : Toggle
         buildingImage.sprite = building.sprite;
         buildingName.text = building.buildingName;
         buildingDescription.text = building.description;
-        buildingImage.color = building.color;
+        //buildingImage.color = building.color;
         cost.UpdateRessourceBox(building.constructionMonthlyCost.Multiply((float)building.constructionTime));
     }
 }

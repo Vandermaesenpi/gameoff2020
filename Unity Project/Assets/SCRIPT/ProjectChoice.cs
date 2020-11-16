@@ -8,12 +8,29 @@ public class ProjectChoice : MonoBehaviour
     public Text text;
     public Image image;
     public Image selectedImage;
+    public List<GameObject> levelMarkers;
+    public GameObject additionnalInfo;
+    public Image time;
     public Project project;
     public void Init(Project _project, BuildingSpot spot){
         project = _project;
         text.text = project.projectName;
         image.sprite = project.sprite;
         selectedImage.enabled = spot.currentProject == project;
+        foreach (GameObject marker in levelMarkers)
+        {
+            marker.SetActive(false);
+        }
+        additionnalInfo.SetActive(!GM.I.project.IsConstant(project));
+        if(GM.I.project.IsConstant(project)){
+            time.fillAmount = 0f;
+        }else{
+            for (var i = 1; i < GM.I.project.GetLevel(project); i++)
+            {
+                levelMarkers[i-1].SetActive(true);
+            }
+            time.fillAmount = (float)GM.I.project.GetTime(project)/(float)GM.I.project.GetLength(project);
+        }
     }
 
     public void Clic(){

@@ -10,14 +10,18 @@ public class UIManager : MonoBehaviour
     public TimeKeeper timeKeeper;
     public PopulationMenu populationMenu;
     public ResourceMeters resourceMeters;
+    public WarningMenu warningMenu;
 
-    public static string HumanNotation(int number){
+    public static string HumanNotation(uint number){
         string newString = ""+number;
         for (int i = 3; i < newString.Length; i += 4)
         {
             newString = newString.Insert(newString.Length - i, "'");
         }
         return newString;
+    }
+    public static string HumanNotation(int number){
+        return HumanNotation((uint)number);
     }
 
     public void ShowWinScreen(){

@@ -37,6 +37,7 @@ public class GameplayManager : MonoBehaviour
                 GM.I.resource.UpdateResources();
                 GM.I.people.ProcessMood();
                 GM.I.project.UpdateProjects();
+                GM.I.eventManager.UpdateEvents();
                 GM.I.ui.buildingInformation.UpdateMenuInfo();
                 CheckLooseConditions();
                 CheckWinConditions();

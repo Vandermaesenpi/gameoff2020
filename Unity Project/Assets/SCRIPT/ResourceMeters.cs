@@ -8,6 +8,8 @@ public class ResourceMeters : MonoBehaviour
     public Image energy, water, material;
     public Text energyText, waterText, materialText;
     public Text energyDeltaText, waterDeltaText, materialDeltaText;
+    public Text energyProductionText, waterProductionText, materialProductionText;
+    public Text energyCostText, waterCostText, materialCostText;
     public Resource lastDelta;
 
     public void UpdateResources(){
@@ -60,6 +62,13 @@ public class ResourceMeters : MonoBehaviour
             materialDeltaText.color = GM.I.art.red;
         }
 
+        energyProductionText.text = "+"+(Mathf.Round(GM.I.resource.production.Energy*10f))/10f;
+        waterProductionText.text = "+"+(Mathf.Round(GM.I.resource.production.Water*10f))/10f;
+        materialProductionText.text = "+"+(Mathf.Round(GM.I.resource.production.Material*10f))/10f;
+
+        energyCostText.text = ""+(Mathf.Round(GM.I.resource.cost.Energy*10f))/10f;
+        waterCostText.text = ""+(Mathf.Round(GM.I.resource.cost.Water*10f))/10f;
+        materialCostText.text = ""+(Mathf.Round(GM.I.resource.cost.Material*10f))/10f;
 
         lastDelta.r[0] = r.Energy;
         lastDelta.r[1] = r.Water;

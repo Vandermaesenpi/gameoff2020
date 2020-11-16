@@ -29,9 +29,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d88d879cc5685da46ac85484719f8f92, type: 2}
   production:
     r:
-    - -0.2
-    - -0.2
-    - -0.5
+    - 0
+    - 0
+    - 0
   constructionMonthlyCost:
     r:
     - -1

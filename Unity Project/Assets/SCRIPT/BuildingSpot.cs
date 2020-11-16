@@ -47,13 +47,13 @@ public class BuildingSpot : MonoBehaviour
     public bool BadIntegrity{get{return integrity < 0.5f;}}
     public bool DangerousIntegrity{get{return integrity < 0.25f;}}
 
-    public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency).Multiply(GM.I.project.FX(EffectType.Energy),GM.I.project.FX(EffectType.Water),GM.I.project.FX(EffectType.Material));}}
+    public Resource Production {get{return currentBuilding.production.GetProduction().Multiply(efficiency).Multiply(GM.I.project.FX(FXT.Energy),GM.I.project.FX(FXT.Water),GM.I.project.FX(FXT.Material));}}
     public Resource Cost {
         get{
             if(currentProject != null){
-                return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost)).Add(currentProject.monthlyCost);
+                return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(FXT.Cost)).Add(currentProject.monthlyCost);
             }
-            return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(EffectType.Cost));
+            return currentBuilding.production.GetCost().Multiply(costEfficiency).Multiply(GM.I.project.FX(FXT.Cost));
         }
     }
 
@@ -143,7 +143,7 @@ public class BuildingSpot : MonoBehaviour
             }
         }else{
             if(Random.value < 0.2f){
-                integrity = Mathf.Max(0,integrity - currentBuilding.decay * GM.I.project.FX(EffectType.Integrity));
+                integrity = Mathf.Max(0,integrity - currentBuilding.decay * GM.I.project.FX(FXT.Integrity));
             }
         }
     }
@@ -157,7 +157,7 @@ public class BuildingSpot : MonoBehaviour
             if(maintenance){
                 costEfficiencyModifier+= 1f;
             }
-            costEfficiency = Mathf.Max(Mathf.Clamp((float)population*2f/(float)currentBuilding.populationRequirement,0f,1000f) + costEfficiencyModifier, 0f);
+            costEfficiency = Mathf.Max(Mathf.Clamp((float)population*5f/(float)currentBuilding.populationRequirement,0f,1000f) + costEfficiencyModifier, 0f);
         }else if (currentBuilding.productor){
             if(!producing || maintenance){
                 population = 0;

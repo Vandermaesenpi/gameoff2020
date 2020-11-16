@@ -29,8 +29,8 @@ MonoBehaviour:
   constructionMonthlyCost:
     r:
     - -1
-    - 0
-    - -5
+    - -1
+    - -1
   storageIncreaseMonthlyCost:
     r:
     - 0
