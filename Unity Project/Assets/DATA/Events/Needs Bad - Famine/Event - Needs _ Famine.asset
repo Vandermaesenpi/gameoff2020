@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Needs _ Famine
+  m_EditorClassIdentifier: 
+  eventName: FAMINE
+  description: The resource stock is dangerousely low, and the food production cannot
+    keep up with demand. People are starting to die of famine.
+  choices:
+  - {fileID: 11400000, guid: 80176e77bc547fd4dbef16e86a420c6d, type: 2}
+  - {fileID: 11400000, guid: b88404a573c34f742b4f17f1e3a3d1cf, type: 2}
+  - {fileID: 11400000, guid: 0b5d7138e633d2146999e28a33fc7bda, type: 2}

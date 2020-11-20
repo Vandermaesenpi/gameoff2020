@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Hope - Revolt
+  m_EditorClassIdentifier: 
+  eventName: REVOLT
+  description: The citizens are loosing hope, and thay've started to revolt against
+    the authority, threatening to kill government officials
+  choices:
+  - {fileID: 11400000, guid: c9a6da05c017c374991ea9b7508f1605, type: 2}
+  - {fileID: 11400000, guid: c96ff010930d38141ac8bad41750da7d, type: 2}
+  - {fileID: 11400000, guid: 06d1689c78084914baab8261108c89cd, type: 2}

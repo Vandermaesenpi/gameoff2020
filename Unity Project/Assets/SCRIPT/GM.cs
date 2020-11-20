@@ -30,4 +30,6 @@ public class GM : MonoBehaviour
     public ResourceManager resource;
     public ProjectManager project;
     public EventManager eventManager;
+    public SfxManager sfx;
+    public AudioManager audioManager;
 }

@@ -25,9 +25,11 @@ public class ProjectChoice : MonoBehaviour
         if(GM.I.project.IsConstant(project)){
             time.fillAmount = 0f;
         }else{
-            for (var i = 1; i < GM.I.project.GetLevel(project); i++)
+            for (var i = 1; i <= GM.I.project.GetLevel(project); i++)
             {
-                levelMarkers[i-1].SetActive(true);
+                if(levelMarkers.Count > i){
+                    levelMarkers[i].SetActive(true);
+                }
             }
             time.fillAmount = (float)GM.I.project.GetTime(project)/(float)GM.I.project.GetLength(project);
         }

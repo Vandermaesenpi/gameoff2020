@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Needs _ Stealing
+  m_EditorClassIdentifier: 
+  eventName: STEALING FRIENZY
+  description: The worsening resource shortage has lead many people to attack and
+    steal from your stocks.
+  choices:
+  - {fileID: 11400000, guid: a321549fdb9794142833b9c540b31bf8, type: 2}
+  - {fileID: 11400000, guid: df2afeb33d58d1144ae6dbf372aed3e4, type: 2}

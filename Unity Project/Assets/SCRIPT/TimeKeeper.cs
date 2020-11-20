@@ -21,18 +21,24 @@ public class TimeKeeper : MonoBehaviour
     }
 
     public void PauseButton(bool value){
-        if(value)
-        GM.I.gameplay.PauseTime(true);
+        if(value){
+            GM.I.gameplay.PauseTime(true);
+            GM.I.sfx.Play(SFX.Pause);
+        }
     }
 
     public void PlayButton(bool value){
-        if(value)
-        GM.I.gameplay.PauseTime(false);
+        if(value){
+            GM.I.gameplay.PauseTime(false);
+            GM.I.sfx.Play(SFX.Play);
+        }
     }
 
     public void FastButton(bool value){
-        if(value)
-        GM.I.gameplay.FastTime();
+        if(value){
+            GM.I.gameplay.FastTime();
+            GM.I.sfx.Play(SFX.PlayFast);
+        }
     }
 
 

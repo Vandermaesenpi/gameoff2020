@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Culture - Boredom
+  m_EditorClassIdentifier: 
+  eventName: BOREDOM
+  description: The citizens are ranting about the lack of cultural events, and the
+    overall morale is going down.
+  choices:
+  - {fileID: 11400000, guid: 74d7f69cfb4363f448c6eb60694da24d, type: 2}
+  - {fileID: 11400000, guid: 95449a138f71ca941b6a58a07a0dd6b3, type: 2}
+  - {fileID: 11400000, guid: bc8e64ea9dbcb044b8139291efde7d9e, type: 2}

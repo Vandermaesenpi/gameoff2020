@@ -13,9 +13,6 @@ public class BuildingToggle : Toggle
 
     public void InitializeMiniature(){
         buildingImage.sprite = building.sprite;
-        buildingName.text = building.buildingName;
-        buildingDescription.text = building.description;
-        //buildingImage.color = building.color;
-        cost.UpdateRessourceBox(building.constructionMonthlyCost.Multiply((float)building.constructionTime));
+        buildingImage.color = building.color;
     }
 }

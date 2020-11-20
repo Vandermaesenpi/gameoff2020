@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Hope - Doubt
+  m_EditorClassIdentifier: 
+  eventName: DOUBT
+  description: The citizens are starting to loose faith in this project. They demand
+    that their life conditions be improved.
+  choices:
+  - {fileID: 11400000, guid: 30fd64ecd89ba2a468314f284c6c94c0, type: 2}
+  - {fileID: 11400000, guid: f9dea4fd960fbfe40978182ce9d8b3ac, type: 2}
+  - {fileID: 11400000, guid: 33d8f60585af01e47b64828d78c5068b, type: 2}

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Hope - Motivation
+  m_EditorClassIdentifier: 
+  eventName: MOTIVATION DOWN
+  description: The citizens are starting to loose faith in this project. A lot of
+    them are lacking motivation to work hard, and production is down.
+  choices:
+  - {fileID: 11400000, guid: a6c4cb7c755b3da42854461fc5607943, type: 2}
+  - {fileID: 11400000, guid: 93ab52b10e0e28b47a7079b866e8f202, type: 2}
+  - {fileID: 11400000, guid: ea13ca38b6213404aba75e705864de98, type: 2}

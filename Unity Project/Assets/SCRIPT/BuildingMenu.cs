@@ -7,6 +7,15 @@ public class BuildingMenu : MonoBehaviour
 {
     public List<BuildingToggle> choices;
     public BuildingObject selectedBuilding;
+
+    public Text title;
+    public Text description;
+    public Text productionText;
+    public Text costText;
+    public Transform buildingHolder;
+    public RessourceBox production;
+    public RessourceBox cost;
+    public RessourceBox constructionCost;
     public void ClicBuildingMenu(){
         bool value = !gameObject.activeInHierarchy;
         gameObject.SetActive(value);
@@ -23,6 +32,11 @@ public class BuildingMenu : MonoBehaviour
         {
             choice.InitializeMiniature();
         }
+        GM.I.sfx.Play(value? SFX.Tic : SFX.Tuc);
+    }
+
+    private void Start() {
+        SelectBuilding(true);
     }
 
     public void SelectBuilding(bool value){
@@ -31,6 +45,16 @@ public class BuildingMenu : MonoBehaviour
             {
                 if(choice.isOn){
                     selectedBuilding = choice.building;
+                    title.text = selectedBuilding.buildingName;
+                    description.text = selectedBuilding.description;
+                    foreach (Transform t in buildingHolder)
+                    {
+                        Destroy(t.gameObject);
+                    }
+                    Instantiate(selectedBuilding.prefab, buildingHolder);
+                    production.UpdateRessourceBox(selectedBuilding.production.GetProduction());
+                    cost.UpdateRessourceBox(selectedBuilding.production.GetCost());
+                    constructionCost.UpdateRessourceBox(selectedBuilding.constructionMonthlyCost.Multiply((float)selectedBuilding.constructionTime));
                 }
             }
         }

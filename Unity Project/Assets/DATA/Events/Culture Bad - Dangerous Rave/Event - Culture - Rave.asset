@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Culture - Rave
+  m_EditorClassIdentifier: 
+  eventName: ILLEGAL RAVE
+  description: With not enough cultural spaces to blow steam off, a lot of illegal
+    rave parties are popping up everywhere. The health and infrastructure risks are
+    real.
+  choices:
+  - {fileID: 11400000, guid: 738b58b19034d9b4b86e0473c81c9422, type: 2}
+  - {fileID: 11400000, guid: 456f73b0b42b9a740af3e289419200c6, type: 2}
+  - {fileID: 11400000, guid: 249748f54af600b44866b4826f38e20e, type: 2}

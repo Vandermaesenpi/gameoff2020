@@ -17,5 +17,5 @@ MonoBehaviour:
     The crowd is mad and starting to destroy the infrastructures.
   choices:
   - {fileID: 11400000, guid: 2461542e835d02c4f9d27408d2c24e64, type: 2}
-  - {fileID: 11400000, guid: 9a9d50e7d5c146147bed39bfee35d18f, type: 2}
-  - {fileID: 11400000, guid: c637354b5cb21e74db8e62c585e490f8, type: 2}
+  - {fileID: 11400000, guid: b1d95bc44c350c541b7f9c95fb74b698, type: 2}
+  - {fileID: 11400000, guid: 751ffcca20ea44e42a33e51b8ef082fe, type: 2}

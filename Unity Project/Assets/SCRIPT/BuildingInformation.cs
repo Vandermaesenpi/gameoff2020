@@ -291,6 +291,7 @@ public class BuildingInformation : MonoBehaviour
 
     public void StartMaintenance(bool onOff){
         StartMaintenance(onOff, selectedSpot);
+        
     }
 
     public void StartMaintenance(bool onOff, BuildingSpot spot){
@@ -319,6 +320,7 @@ public class BuildingInformation : MonoBehaviour
     public void DestroyBuilding(){
         selectedSpot.Destroy();
         ShowBuildingInfo(null);
+        GM.I.sfx.Play(SFX.Build);
     }
 
     public void IncreaseStorage(bool onOff){

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Hope - Isolation
+  m_EditorClassIdentifier: 
+  eventName: ISOLATION
+  description: The citizens are starting to loose faith in this project. More and
+    more people are isolating themselves.
+  choices:
+  - {fileID: 11400000, guid: 6b48b7307852a004a8fa280e36bce755, type: 2}
+  - {fileID: 11400000, guid: b4fd4d88cda6dd64c9b62a4b2b083ed3, type: 2}
+  - {fileID: 11400000, guid: ae2504960ff685747b8d6e88e9686d69, type: 2}

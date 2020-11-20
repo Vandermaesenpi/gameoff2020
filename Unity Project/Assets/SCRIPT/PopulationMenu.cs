@@ -8,6 +8,8 @@ public class PopulationMenu : MonoBehaviour
     public GameObject populationOverview;
     public Text totalText;
     public Text totalOverviewText;
+    public Text growthOverviewText;
+    public Text unemployementOverviewText;
     public Text workerText;
     public Text workerOverviewText;
     uint lastWorkingPopulation;
@@ -39,6 +41,10 @@ public class PopulationMenu : MonoBehaviour
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
+        growthOverviewText.text = ""+Mathf.Round(1000f*GM.I.people.GrowthPercentage*12f)/1000f;
+        if((Mathf.Round(1000f*GM.I.people.GrowthPercentage))/1000f > 0) { growthOverviewText.text = "+"+growthOverviewText.text + "%";}
+        growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
+        unemployementOverviewText.text = UIManager.HumanNotation(GM.I.people.Unemployement);
         workerText.text = UIManager.HumanNotation(GM.I.people.WorkingPopulation);
         workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.green : GM.I.art.red;
         workerOverviewText.text = workerText.text;

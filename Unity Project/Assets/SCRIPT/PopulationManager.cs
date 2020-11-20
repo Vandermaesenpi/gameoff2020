@@ -67,6 +67,18 @@ public class PopulationManager : MonoBehaviour
         }
     }
 
+    public float GrowthPercentage{
+        get{
+            return (float)(MonthlyBirth - MonthlyDeath)/(float)TotalPopulation;
+        }
+    }
+
+    public float Unemployement{
+        get{
+            return (float)IdlePopulation/(float)WorkingPopulation;
+        }
+    }
+
     // --------------- Game functions
 
     private void Awake() {
@@ -122,15 +134,18 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessNeeds(){
-        needs = 0;
+        float needsDelta = 0;
         uint threshold = TotalPopulation/500000 + 1;
-        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
-        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
-        needs += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));
+        needsDelta += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[0]/(float)threshold, 0f,1f));
+        needsDelta += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[1]/(float)threshold, 0f,1f));
+        needsDelta += (0.33f)*(Mathf.Clamp(GM.I.resource.resources.r[2]/(float)threshold, 0f,1f));
         
-        if(needs > 0.98f){
-            needs = 1;
+        if(needsDelta < 0.5f){
+            needs -= cultureDecay;
+        }else{
+            needs += cultureGain;
         }
+        needs = Mathf.Clamp(needs, 0,1);
     }
 
     void ProcessComfort(){
@@ -143,7 +158,7 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessCulture(){
-        float cultureRatio = (float)TotalPopulation/(float)(GM.I.city.Culture() * 200000000f);
+        float cultureRatio = (float)TotalPopulation/(float)(GM.I.city.Culture() * 50000000f);
         if(cultureRatio < 1){
             culture += cultureGain;
         }else{
@@ -153,7 +168,7 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessHope(){
-        
+        hope = Mathf.Clamp(hope, 0,1);
     }
 
 }

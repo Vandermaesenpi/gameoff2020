@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 0.7924528, g: 0.13830544, b: 0.5017205, a: 1}
   sprite: {fileID: 21300000, guid: 0cda0da0089c95142a5182e49d712206, type: 3}
   prefab: {fileID: 6304534212485584884, guid: 21249f4ae2776ca429d5ad51ee0b8b8d, type: 3}
-  populationRequirement: 20000000
+  populationRequirement: 5000000
   populationName: WORKERS
   ressourceType: 0
   projects:

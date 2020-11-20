@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Event Choice - Leave
   m_EditorClassIdentifier: 
   choiceName: Do nothing
-  description: You decide that people can eat what they find
-  effectText: -10% Comfort, -5% Hope
-  type: 7
+  description: You decide to let them destroy the infrastructures
+  effectText: -10% Integrity
+  type: 5
   amount: -0.1
-  typeSecondary: 9
-  amountSecondary: -0.05
+  typeSecondary: 14
+  amountSecondary: 0

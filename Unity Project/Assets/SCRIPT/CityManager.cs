@@ -31,7 +31,7 @@ public class CityManager : MonoBehaviour
     }
 
     public int Culture(){
-        int space = 1;
+        int space = 2;
         foreach (BuildingSpot building in buildings)
         {
             if(building.currentBuilding != null && building.Built && building.currentBuilding.research){
@@ -125,5 +125,14 @@ public class CityManager : MonoBehaviour
     public void ShowHoloMoon(bool holo){
         standardMoon.SetActive(!holo);
         holoMoon.SetActive(holo);
+    }
+
+    public void ModifyIntegrity(float amount){
+        foreach (BuildingSpot building in buildings)
+        {
+            if(!building.currentBuilding.control){
+                building.integrity = Mathf.Clamp(building.integrity + amount,0,1);
+            }
+        }
     }
 }

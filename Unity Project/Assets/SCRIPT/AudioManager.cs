@@ -7,9 +7,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource audioSource;
     public List<AudioClip> songs;
     int index;
+    public bool canPlay;
 
     private void Update() {
-        if(!audioSource.isPlaying){
+        if(!audioSource.isPlaying && canPlay){
             audioSource.PlayOneShot(songs[index]);
             index ++;
             if(index == songs.Count){

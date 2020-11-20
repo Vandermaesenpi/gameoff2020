@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Culture - Depression
+  m_EditorClassIdentifier: 
+  eventName: DEPRESSION
+  description: The lack of entertainement is taking a big toll on your citizen's
+    psyche. Many of them are starting to loose their mind and let themselve die.
+  choices:
+  - {fileID: 11400000, guid: 5767c36bba7facf41b1fae018b467d43, type: 2}
+  - {fileID: 11400000, guid: 40265e08f0ed7024f8aa202b301f8b9c, type: 2}
+  - {fileID: 11400000, guid: eeb43fdc6556bce4dbf13f40da823162, type: 2}

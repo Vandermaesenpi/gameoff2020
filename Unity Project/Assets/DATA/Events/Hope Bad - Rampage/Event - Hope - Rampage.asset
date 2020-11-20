@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Hope - Rampage
+  m_EditorClassIdentifier: 
+  eventName: RAMPAGE
+  description: The citizens are loosing hope, and many are madly rampaging across
+    the planet.
+  choices:
+  - {fileID: 11400000, guid: 338573cdfaedfdc409f993594142826b, type: 2}
+  - {fileID: 11400000, guid: fd7813da0219c704f824d5307b684121, type: 2}
+  - {fileID: 11400000, guid: 36412ff4ace59f64583ab6c478ab7812, type: 2}
