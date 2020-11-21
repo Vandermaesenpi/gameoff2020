@@ -6,6 +6,11 @@ using UnityEngine.UI;
 public class IntroManager : MonoBehaviour
 {
     public GameObject dialogBox;
+    public GameObject skipIntro;
+    public GameObject rayCastBlocker;
+    public GameObject sun;
+    public GameObject earth;
+    public GameObject supernova;
     public Text dialogText;
     public Image faceScientistImage;
     public Image facePresidentImage;
@@ -14,6 +19,8 @@ public class IntroManager : MonoBehaviour
     public List<Sprite> facesScientist;
     public List<Sprite> facesPresident;
     public Animator animator;
+    public Animator bootAnimator;
+    public Animator tutorialScreenAnimator;
     public GameObject controlUI;
 
     public List<string> startDialog;
@@ -33,14 +40,15 @@ public class IntroManager : MonoBehaviour
     
 
     public IEnumerator IntroCoroutine(){
-        StartCoroutine(ProcessDialogLine(startDialog));
+        controlUI.SetActive(false);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(startDialog));
         while(currentStep == 0){
             yield return null;
         }
         animator.Play("ShieldUp");
         GM.I.sfx.PlayFaithfull(SFX.ShieldUp);
         yield return new WaitForSeconds(3f);
-        StartCoroutine(ProcessDialogLine(shieldUpDialog));
+        dialogRoutine = StartCoroutine(ProcessDialogLine(shieldUpDialog));
         while(currentStep == 1){
             yield return null;
         }
@@ -49,15 +57,63 @@ public class IntroManager : MonoBehaviour
         yield return new WaitForSeconds(7f);
         GM.I.audioManager.canPlay = true;
         yield return new WaitForSeconds(9f);
-        StartCoroutine(ProcessDialogLine(aloneInSpaceDialog));
+        dialogRoutine = StartCoroutine(ProcessDialogLine(aloneInSpaceDialog));
         while(currentStep == 2){
             yield return null;
         }
+        bootAnimator.Play("Boot");
+        yield return new WaitForSeconds(1.5f);
         controlUI.SetActive(true);
-        StartCoroutine(ProcessDialogLine(controlTutorial));
+        bootAnimator.gameObject.SetActive(false);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(controlTutorial, false));
+        while(currentStepLine != 3){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("TimeKeeper");
+        while(currentStepLine != 4){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Resources");
+        while(currentStepLine != 5){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Population");
+        while(currentStepLine != 6){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Idle");
+        while(currentStepLine != 7){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("BuildButton");
+        while (!GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
+        {
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Idle");
+        dialogBox.SetActive(false);
+        skipIntro.SetActive(false);
+        rayCastBlocker.SetActive(false);
+        
     }
 
-    public IEnumerator ProcessDialogLine(List<string> dialog){
+    public void SkipIntro(){
+        StopCoroutine(dialogRoutine);
+        GM.I.audioManager.canPlay = true;
+        controlUI.SetActive(true);
+        bootAnimator.gameObject.SetActive(false);
+        tutorialScreenAnimator.Play("Idle");
+        animator.enabled = false;
+        dialogBox.SetActive(false);
+        skipIntro.SetActive(false);
+        rayCastBlocker.SetActive(false);
+        sun.SetActive(false);
+        earth.SetActive(false);
+        supernova.SetActive(true);
+        Debug.Log("boop");
+    }
+
+    public IEnumerator ProcessDialogLine(List<string> dialog, bool closeOnEnd = true){
         dialogBox.SetActive(true);
         currentStepLine = 0;
         for (int i = 0; i < dialog.Count; i++)
@@ -115,7 +171,9 @@ public class IntroManager : MonoBehaviour
 
             currentStepLine ++;
         }
-        dialogBox.SetActive(false);
+        if(closeOnEnd){
+            dialogBox.SetActive(false);
+        }
         currentStep ++;
     }
 }

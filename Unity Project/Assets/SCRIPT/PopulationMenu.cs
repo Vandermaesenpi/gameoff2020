@@ -8,7 +8,9 @@ public class PopulationMenu : MonoBehaviour
     public GameObject populationOverview;
     public Text totalText;
     public Text totalOverviewText;
+    public Text growthText;
     public Text growthOverviewText;
+    public Text unemployementText;
     public Text unemployementOverviewText;
     public Text workerText;
     public Text workerOverviewText;
@@ -20,7 +22,6 @@ public class PopulationMenu : MonoBehaviour
     int lastDeath;
 
     public List<Image> agePyramid;
-    public Text moodText;
     public Text moodOverviewText;
     public Text needText;
     public Text comfortText;
@@ -41,10 +42,13 @@ public class PopulationMenu : MonoBehaviour
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
-        growthOverviewText.text = ""+Mathf.Round(1000f*GM.I.people.GrowthPercentage*12f)/1000f;
-        if((Mathf.Round(1000f*GM.I.people.GrowthPercentage))/1000f > 0) { growthOverviewText.text = "+"+growthOverviewText.text + "%";}
+        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage+1f,120f))/10f;
+        if(GM.I.people.GrowthPercentage > 0) { growthOverviewText.text = "+"+growthOverviewText.text + "%";}
         growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
+        growthText.text = growthOverviewText.text;
+        growthText.color = growthOverviewText.color;
         unemployementOverviewText.text = UIManager.HumanNotation(GM.I.people.Unemployement);
+        unemployementText.text = unemployementOverviewText.text;
         workerText.text = UIManager.HumanNotation(GM.I.people.WorkingPopulation);
         workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.green : GM.I.art.red;
         workerOverviewText.text = workerText.text;
@@ -71,8 +75,8 @@ public class PopulationMenu : MonoBehaviour
             agePyramid[i].fillAmount = agePyramid[i].fillAmount/maxAmount;
         }
 
-        moodText.text = UIManager.HumanNotation(GM.I.people.Mood);
-        moodOverviewText.text = moodText.text;
+        // moodText.text = UIManager.HumanNotation(GM.I.people.Mood);
+        // moodOverviewText.text = moodText.text;
         needText.text = UIManager.HumanNotation(GM.I.people.needs);
         comfortText.text = UIManager.HumanNotation(GM.I.people.comfort);
         cultureText.text = UIManager.HumanNotation(GM.I.people.culture);

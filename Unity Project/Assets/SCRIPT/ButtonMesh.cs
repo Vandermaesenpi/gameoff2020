@@ -10,6 +10,8 @@ public class ButtonMesh : MonoBehaviour
     public GameObject click;
 
     public UnityEvent onClic;
+    public UnityEvent onEnter;
+    public UnityEvent onExit;
 
     private void OnEnable() {
         if(highlight != null){
@@ -24,6 +26,7 @@ public class ButtonMesh : MonoBehaviour
     }
 
     private void OnMouseEnter() {
+        onEnter.Invoke();
         if(highlight != null){
             highlight.SetActive(true);
         }
@@ -36,6 +39,7 @@ public class ButtonMesh : MonoBehaviour
     }
 
     private void OnMouseExit() {
+        onExit.Invoke();
         if(highlight != null){
             highlight.SetActive(false);
         }

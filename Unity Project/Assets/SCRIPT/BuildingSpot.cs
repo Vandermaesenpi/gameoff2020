@@ -187,6 +187,7 @@ public class BuildingSpot : MonoBehaviour
         GM.I.city.UnselectAll();
         GM.I.moonRotator.ShowBuildingSpot(transform);
         selected = true;
+        GM.I.tooltip.HideTooltip();
         UpdateVisual();
     }
 
@@ -205,6 +206,25 @@ public class BuildingSpot : MonoBehaviour
             positionRing.GetComponent<ButtonMesh>().highlight.GetComponent<MeshRenderer>().material.color = GM.I.ui.buildingMenu.selectedBuilding.color;
             constructionTipee.material.color = GM.I.ui.buildingMenu.selectedBuilding.color;
         }
+    }
+
+    public void ShowTooltip(){
+        List<string> statuses = new List<string>();
+        List<Color> colors = new List<Color>();
+        GM.I.ui.buildingInformation.ProcessStatus(this, false, ref statuses, ref colors);
+
+        string tooltip = "";
+        for (var i = 0; i < statuses.Count; i++)
+        {
+            tooltip += UIManager.ColoredString(statuses[i],colors[i]);
+            if(i < statuses.Count-1){
+                tooltip += "\n";
+            }
+        }
+        GM.I.tooltip.ShowTooltip(tooltip, Vector2.up * 10);
+    }
+    public void HideTooltip(){
+        GM.I.tooltip.HideTooltip();        
     }
 
     public void UpdateVisual(){

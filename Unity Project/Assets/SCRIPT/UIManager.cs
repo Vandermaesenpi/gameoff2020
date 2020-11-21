@@ -86,4 +86,8 @@ public class UIManager : MonoBehaviour
         return clockText;
     }
 
+    public static string ColoredString(string text, Color color){
+        return "<color=#"+ColorUtility.ToHtmlStringRGBA(color) + ">" + text + "</color>";
+    }
+
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BuildingInformation : MonoBehaviour
 {
-    public Pointer pointer;
     public BuildingSpot selectedSpot;
     [Header("Header")]
     public Image outline;
@@ -64,8 +63,6 @@ public class BuildingInformation : MonoBehaviour
     public void ShowBuildingInfo(BuildingSpot spot){
         if(spot != null){
             gameObject.SetActive(true);
-            pointer.gameObject.SetActive(true);
-            pointer.target = spot.transform;
             buildingName.color = spot.currentBuilding.color;
             buildingImage.color = spot.currentBuilding.color;
             
@@ -106,7 +103,6 @@ public class BuildingInformation : MonoBehaviour
             UpdateMenuInfo(spot);
         }else{
             gameObject.SetActive(false);
-            pointer.gameObject.SetActive(false);
             selectedSpot = null;
         }
     }
@@ -117,7 +113,7 @@ public class BuildingInformation : MonoBehaviour
         buildingName.text = spot.currentBuilding.buildingName + " " + spot.district;
         Color populationColor = spot.OverPopulated ? GM.I.art.red : GM.I.art.white;
         populationName.text = spot.currentBuilding.populationName;
-        populationText.text = "<color=#"+ColorUtility.ToHtmlStringRGBA(populationColor) + ">" + UIManager.HumanNotation(spot.population) + "</color>" + " / " + UIManager.HumanNotation(spot.currentBuilding.populationRequirement);
+        populationText.text = UIManager.ColoredString(UIManager.HumanNotation(spot.population),populationColor) + " / " + UIManager.HumanNotation(spot.currentBuilding.populationRequirement);
         
         overviewMenu.SetActive(overviewToggle.isOn);
         productionMenu.SetActive(productionToggle.isOn);
@@ -185,10 +181,12 @@ public class BuildingInformation : MonoBehaviour
             DestroyMenu(false);
         }
     }
-
     public int ProcessStatus(BuildingSpot spot, bool updateText){
         List<string> statuses = new List<string>();
         List<Color> colors = new List<Color>();
+        return ProcessStatus(spot, updateText, ref statuses, ref colors);
+    }
+    public int ProcessStatus(BuildingSpot spot, bool updateText, ref List<string> statuses, ref List<Color> colors){
         if(updateText){
             foreach (Text text in statusTexts)
             {

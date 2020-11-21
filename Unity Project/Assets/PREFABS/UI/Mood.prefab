@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2173812362445891181}
   - component: {fileID: 2173812362445891183}
   - component: {fileID: 2173812362445891182}
+  - component: {fileID: 969220486972478362}
   m_Layer: 5
   m_Name: Mood
   m_TagString: Untagged
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &969220486972478362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173812362445891180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fac2f52536f014aac722f94eaeec89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: I like big butts
 --- !u!1 &2173812362599270005
 GameObject:
   m_ObjectHideFlags: 0

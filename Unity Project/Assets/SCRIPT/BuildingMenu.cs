@@ -10,12 +10,11 @@ public class BuildingMenu : MonoBehaviour
 
     public Text title;
     public Text description;
-    public Text productionText;
-    public Text costText;
     public Transform buildingHolder;
     public RessourceBox production;
     public RessourceBox cost;
     public RessourceBox constructionCost;
+    public Text constructionTime;
     public void ClicBuildingMenu(){
         bool value = !gameObject.activeInHierarchy;
         gameObject.SetActive(value);
@@ -55,6 +54,7 @@ public class BuildingMenu : MonoBehaviour
                     production.UpdateRessourceBox(selectedBuilding.production.GetProduction());
                     cost.UpdateRessourceBox(selectedBuilding.production.GetCost());
                     constructionCost.UpdateRessourceBox(selectedBuilding.constructionMonthlyCost.Multiply((float)selectedBuilding.constructionTime));
+                    constructionTime.text = selectedBuilding.constructionTime + "months";
                 }
             }
         }

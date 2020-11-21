@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 3121363510567708757}
   - component: {fileID: 5274611465027298094}
   - component: {fileID: 5524602615861595790}
+  - component: {fileID: 5136051679124583991}
   m_Layer: 5
   m_Name: Text (2)
   m_TagString: Untagged
@@ -227,6 +228,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: +10
+--- !u!114 &5136051679124583991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597710475554471171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fac2f52536f014aac722f94eaeec89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: Energy production
 --- !u!1 &2340260581446784051
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,6 +471,7 @@ GameObject:
   - component: {fileID: 7885814588642316808}
   - component: {fileID: 7906731272218835121}
   - component: {fileID: 2511583071897052990}
+  - component: {fileID: 3850165460903351000}
   m_Layer: 5
   m_Name: Text (3)
   m_TagString: Untagged
@@ -523,6 +538,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: +10
+--- !u!114 &3850165460903351000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3136128825334381569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fac2f52536f014aac722f94eaeec89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: Energy cost
 --- !u!1 &3527150965779854507
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +562,7 @@ GameObject:
   - component: {fileID: 1790839318947585943}
   - component: {fileID: 7552837163074743935}
   - component: {fileID: 6725755372502192698}
+  - component: {fileID: 6278631223224804874}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -600,6 +629,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 69550
+--- !u!114 &6278631223224804874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3527150965779854507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fac2f52536f014aac722f94eaeec89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: Energy
 --- !u!1 &3771856526991245932
 GameObject:
   m_ObjectHideFlags: 0
