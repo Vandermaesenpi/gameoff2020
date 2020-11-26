@@ -33,6 +33,16 @@ public class UIManager : MonoBehaviour
         looseScreen.SetActive(true);
     }
 
+    public void CloseAllUI(){
+        if(populationMenu.gameObject.activeInHierarchy){
+            populationMenu.ClicPopulationMenu();
+        }
+        if(buildingMenu.gameObject.activeInHierarchy){
+            buildingMenu.ClicBuildingMenu();
+        }
+        buildingInformation.ShowBuildingInfo(null);
+    }
+
     public static string HumanNotation(float number){
         string newString = "";
         int percent = (int)(100f * (number/1f));

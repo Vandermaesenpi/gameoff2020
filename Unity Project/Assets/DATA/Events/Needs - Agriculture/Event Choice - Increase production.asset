@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Boost crops
   description: You decide to redirect part of the stock to the crops
-  effectText: -50 Water, -50 Material
   type: 2
-  amount: -50
-  typeSecondary: 3
-  amountSecondary: -50
+  amount: -500
+  typeSecondary: 6
+  amountSecondary: 0.3

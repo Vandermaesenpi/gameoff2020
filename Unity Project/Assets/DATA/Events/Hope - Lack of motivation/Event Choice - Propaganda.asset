@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Propaganda
   description: You decide to boost morale via propaganda
-  effectText: -10% Culture
   type: 8
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.4
+  typeSecondary: 9
+  amountSecondary: 0.2

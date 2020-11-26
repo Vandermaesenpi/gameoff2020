@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MoonRotator : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class MoonRotator : MonoBehaviour
     public float mouseSensitivity;
     public Transform target;
     public float lerpSpeed;
+    public EventSystem eventSystem;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(1)){
+        if(Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject()){
             Vector3 delta = Input.mousePosition - mousePos;
             target.RotateAround(Vector3.zero, Vector3.down,delta.x * mouseSensitivity);
             target.RotateAround(Vector3.zero, Vector3.right,delta.y * mouseSensitivity);

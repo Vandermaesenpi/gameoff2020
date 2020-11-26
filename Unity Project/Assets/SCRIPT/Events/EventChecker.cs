@@ -29,7 +29,7 @@ public class EventChecker : MonoBehaviour
         }
         GM.I.ui.buildingInformation.ShowBuildingInfo(null);
         triggered = true;
-        GM.I.ui.timeKeeper.PauseButton(true);
+        GM.I.gameplay.PauseTime(true);
     }
 
     public virtual void Check(){

@@ -10,6 +10,7 @@ public class TimeKeeper : MonoBehaviour
     public Image border;
     public Slider travelIndicator;
     public GameObject playButton, pauseButton;
+    public Toggle pauseToggle, playToggle, fastToggle;
     public void UpdateClock(int time, float smoothTime){
         int month = time % 12;
         int year = (time-month)/12;
@@ -47,15 +48,24 @@ public class TimeKeeper : MonoBehaviour
             clock.color = GM.I.art.red;
             border.color = GM.I.art.red;
             clockBar.color = GM.I.art.red;
+            pauseToggle.SetIsOnWithoutNotify(true);
+            playToggle.SetIsOnWithoutNotify(false);
+            fastToggle.SetIsOnWithoutNotify(false);
         }else if (GM.I.gameplay.currentSpeed == GM.I.gameplay.timeSpeed){
             clock.color = GM.I.art.light;
             border.color = GM.I.art.light;
             clockBar.color = GM.I.art.light;
+            pauseToggle.SetIsOnWithoutNotify(false);
+            playToggle.SetIsOnWithoutNotify(true);
+            fastToggle.SetIsOnWithoutNotify(false);
         }
         else if (GM.I.gameplay.currentSpeed == GM.I.gameplay.fastTimeSpeed){
             clock.color = GM.I.art.greenLight;
             border.color = GM.I.art.greenLight;
             clockBar.color = GM.I.art.greenLight;
+            pauseToggle.SetIsOnWithoutNotify(false);
+            playToggle.SetIsOnWithoutNotify(false);
+            fastToggle.SetIsOnWithoutNotify(true);
         }
     }
 

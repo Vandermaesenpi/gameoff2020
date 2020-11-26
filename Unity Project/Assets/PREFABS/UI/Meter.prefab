@@ -100,7 +100,7 @@ RectTransform:
   m_GameObject: {fileID: 125108131095538400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 463520139392320181}
   - {fileID: 8507911301711421380}
@@ -109,10 +109,10 @@ RectTransform:
   m_Father: {fileID: 5465083127843158957}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.00066185, y: -3}
-  m_SizeDelta: {x: 164.67, y: 30}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 22}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &611519105947584486
 CanvasRenderer:
@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tip: Energy production
+  offset: {x: 0, y: 0}
 --- !u!1 &2340260581446784051
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tip: Energy cost
+  offset: {x: 0, y: 0}
 --- !u!1 &3527150965779854507
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tip: Energy
+  offset: {x: 0, y: 0}
 --- !u!1 &3771856526991245932
 GameObject:
   m_ObjectHideFlags: 0

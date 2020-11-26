@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Propaganda
   description: You decide to regain citizen's trust via propaganda
-  effectText: -10% Culture
   type: 8
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.4
+  typeSecondary: 9
+  amountSecondary: 0.1

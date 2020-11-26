@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -41,6 +42,22 @@ public class GameplayManager : MonoBehaviour
                 GM.I.ui.buildingInformation.UpdateMenuInfo();
                 CheckLooseConditions();
                 CheckWinConditions();
+                // Decade Analytics
+                if(monthTime % 120 == 0){
+                    Analytics.CustomEvent("DecadeGame", new Dictionary<string, object>
+                    {
+                        { "day", currentTime },
+                        { "population", GM.I.people.TotalPopulation },
+                        { "needs", GM.I.people.needs },
+                        { "comfort", GM.I.people.comfort },
+                        { "culture", GM.I.people.culture },
+                        { "hope", GM.I.people.hope },
+                        { "unemployement", GM.I.people.Unemployement },
+                        { "energy", GM.I.resource.resources.Energy },
+                        { "water", GM.I.resource.resources.Water },
+                        { "material", GM.I.resource.resources.Material }
+                    });
+                }
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }
@@ -70,7 +87,21 @@ public class GameplayManager : MonoBehaviour
     void CheckWinConditions(){
         if(currentTime == travelLenght){
             GM.I.ui.ShowWinScreen();
+            GM.I.introManager.animator.Play("Rocket");
             timePaused = true;
+            Analytics.CustomEvent("WinGame", new Dictionary<string, object>
+            {
+                { "day", currentTime },
+                { "population", GM.I.people.TotalPopulation },
+                { "needs", GM.I.people.needs },
+                { "comfort", GM.I.people.comfort },
+                { "culture", GM.I.people.culture },
+                { "hope", GM.I.people.hope },
+                { "unemployement", GM.I.people.Unemployement },
+                { "energy", GM.I.resource.resources.Energy },
+                { "water", GM.I.resource.resources.Water },
+                { "material", GM.I.resource.resources.Material }
+            });
         }
     }
 
@@ -78,10 +109,36 @@ public class GameplayManager : MonoBehaviour
         if(GM.I.people.TotalPopulation < 1){
             GM.I.ui.ShowLooseScreen();
             timePaused = true;
+            Analytics.CustomEvent("LooseGame", new Dictionary<string, object>
+            {
+                { "day", currentTime },
+                { "population", GM.I.people.TotalPopulation },
+                { "needs", GM.I.people.needs },
+                { "comfort", GM.I.people.comfort },
+                { "culture", GM.I.people.culture },
+                { "hope", GM.I.people.hope },
+                { "unemployement", GM.I.people.Unemployement },
+                { "energy", GM.I.resource.resources.Energy },
+                { "water", GM.I.resource.resources.Water },
+                { "material", GM.I.resource.resources.Material }
+            });
         }
     }
 
     public void Restart(){
+        Analytics.CustomEvent("RestartGame", new Dictionary<string, object>
+        {
+            { "day", currentTime },
+            { "population", GM.I.people.TotalPopulation },
+            { "needs", GM.I.people.needs },
+            { "comfort", GM.I.people.comfort },
+            { "culture", GM.I.people.culture },
+            { "hope", GM.I.people.hope },
+            { "unemployement", GM.I.people.Unemployement },
+            { "energy", GM.I.resource.resources.Energy },
+            { "water", GM.I.resource.resources.Water },
+            { "material", GM.I.resource.resources.Material }
+        });
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

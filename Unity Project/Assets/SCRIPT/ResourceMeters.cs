@@ -11,6 +11,7 @@ public class ResourceMeters : MonoBehaviour
     public Text energyProductionText, waterProductionText, materialProductionText;
     public Text energyCostText, waterCostText, materialCostText;
     public Resource lastDelta;
+    public List<RessourceBox> buildingDeltaBoxes;
 
     public void UpdateResources(){
         Resource r = GM.I.resource.resources;
@@ -73,5 +74,14 @@ public class ResourceMeters : MonoBehaviour
         lastDelta.r[0] = r.Energy;
         lastDelta.r[1] = r.Water;
         lastDelta.r[2] = r.Material;
+        if(GM.I.resource.buildingDeltas.Count > 0){
+            buildingDeltaBoxes[0].UpdateRessourceBox(GM.I.resource.buildingDeltas[1]);
+            buildingDeltaBoxes[1].UpdateRessourceBox(GM.I.resource.buildingDeltas[2]);
+            buildingDeltaBoxes[2].UpdateRessourceBox(GM.I.resource.buildingDeltas[3]);
+            buildingDeltaBoxes[3].UpdateRessourceBox(GM.I.resource.buildingDeltas[4].Add(GM.I.resource.buildingDeltas[0]));
+            buildingDeltaBoxes[4].UpdateRessourceBox(GM.I.resource.buildingDeltas[5]);
+            buildingDeltaBoxes[5].UpdateRessourceBox(GM.I.resource.buildingDeltas[6]);
+        }
+
     }
 }

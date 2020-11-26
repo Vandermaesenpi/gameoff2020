@@ -15,7 +15,7 @@ MonoBehaviour:
   projectName: ENTERTAINEMENT
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Makes jobless days a little more enjoyable.
-  effectDescription: Idle limit +5%
+  effectDescription: Unemployment limit +15%
   sprite: {fileID: 21300000, guid: f644542097012b74ebfc0b5b05c90fbd, type: 3}
   monthlyCost:
     r:
@@ -24,4 +24,4 @@ MonoBehaviour:
     - 0
   type: 13
   resourceType: 0
-  amount: {x: 1.05, y: 1.05, z: 1.05}
+  amount: {x: 0.15, y: 0.1, z: 0.15}

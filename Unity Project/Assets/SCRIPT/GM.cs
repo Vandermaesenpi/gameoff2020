@@ -33,4 +33,5 @@ public class GM : MonoBehaviour
     public SfxManager sfx;
     public AudioManager audioManager;
     public TooltipManager tooltip;
+    public IntroManager introManager;
 }

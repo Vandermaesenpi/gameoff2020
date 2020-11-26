@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let them die of famine
-  effectText: -10% Population
   type: 12
-  amount: 0.9
+  amount: 0.6
   typeSecondary: 14
   amountSecondary: 0

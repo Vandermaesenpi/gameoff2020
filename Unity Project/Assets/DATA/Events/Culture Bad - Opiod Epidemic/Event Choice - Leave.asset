@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide that addicts can die
-  effectText: -20% Population
   type: 12
-  amount: 0.8
+  amount: 0.6
   typeSecondary: 14
   amountSecondary: 0

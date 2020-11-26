@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Prohibit
   description: You decide to ban all opioids
-  effectText: -10% Comfort, -10% Population
   type: 7
-  amount: -0.1
+  amount: -0.3
   typeSecondary: 12
   amountSecondary: 0.9

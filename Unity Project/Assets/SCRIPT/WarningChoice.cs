@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class WarningChoice : MonoBehaviour
 {
     public Text choiceName, choiceEffect;
+    public Button myButton;
     public EventChoice currentChoice;
     public void InitChoice(EventChoice data){
         if(data == null){
@@ -14,8 +15,46 @@ public class WarningChoice : MonoBehaviour
             gameObject.SetActive(true);
             currentChoice = data;
             choiceName.text = currentChoice.choiceName;
-            choiceEffect.text = currentChoice.effectText;
+            choiceEffect.text = EffectString(currentChoice.type, currentChoice.amount);
+            if(currentChoice.typeSecondary != FXT.None){
+                choiceEffect.text += ", " + EffectString(currentChoice.typeSecondary, currentChoice.amountSecondary);
+            }
+            if(IsLimited(currentChoice.type, currentChoice.amount)||IsLimited(currentChoice.typeSecondary, currentChoice.amountSecondary)){
+                myButton.interactable = false;
+                choiceName.color = GM.I.art.gray;
+            }else{
+                myButton.interactable = true;
+                choiceName.color = GM.I.art.white;
+            }
         }
+    }
+
+    string EffectString(FXT fxt, float amount){
+        string output = "";
+        if(fxt == FXT.Needs || fxt == FXT.Comfort || fxt == FXT.Culture || fxt == FXT.Hope || fxt == FXT.Integrity){
+            output += ""+UIManager.HumanNotation(amount) + " "+fxt.ToString();
+            if(amount > 0){
+                output = UIManager.ColoredString(output, GM.I.art.green);
+            }else{
+                output = UIManager.ColoredString(output, GM.I.art.red);
+            }
+        }else if(fxt == FXT.Death){
+            output += ""+UIManager.HumanNotation(-(1f-amount)) + " Population";
+            if(amount > 1){
+                output = UIManager.ColoredString(output, GM.I.art.green);
+            }else{
+                output = UIManager.ColoredString(output, GM.I.art.red);
+            }
+        }else if (fxt == FXT.Energy || fxt == FXT.Water || fxt == FXT.Material){
+            if(amount > 0){
+                output += "+"+ amount + " "+fxt.ToString();
+                output = UIManager.ColoredString(output, GM.I.art.green);
+            }else{
+                output += ""+ amount + " "+fxt.ToString();
+                output = UIManager.ColoredString(output, GM.I.art.red);
+            }
+        }
+        return output;
     }
 
     public void ShowFlavorText(bool onOff){
@@ -40,7 +79,7 @@ public class WarningChoice : MonoBehaviour
     void ProcessEffect(FXT type, float amount){
         switch (type)
         {
-            case FXT.BasicNeeds:
+            case FXT.Needs:
                 GM.I.people.needs += amount;
                 break;
             case FXT.Birth:
@@ -73,5 +112,32 @@ public class WarningChoice : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    bool IsLimited(FXT type, float amount){
+        switch (type)
+        {
+            case FXT.Needs:
+                if(amount < -GM.I.people.needs){return true;}
+                break;
+            case FXT.Comfort:
+                if(amount < -GM.I.people.comfort){return true;}
+                break;
+            case FXT.Culture:
+                if(amount < -GM.I.people.culture){return true;}
+                break;
+            case FXT.Energy:
+                if(amount < -GM.I.resource.resources.Energy){return true;}
+                break;
+            case FXT.Material:
+                if(amount < -GM.I.resource.resources.Material){return true;}
+                break;
+            case FXT.Water:
+                if(amount < -GM.I.resource.resources.Water){return true;}
+                break;
+            default:
+                break;
+        }
+        return false;
     }
 }

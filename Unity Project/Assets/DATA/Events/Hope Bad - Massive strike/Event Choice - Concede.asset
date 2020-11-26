@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Concede
   description: You decide to give the people what they want
-  effectText: -200 Material
   type: 3
-  amount: -200
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -2000
+  typeSecondary: 9
+  amountSecondary: 0.2

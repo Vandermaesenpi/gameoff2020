@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class IntroManager : MonoBehaviour
 {
     public GameObject dialogBox;
     public GameObject skipIntro;
-    public GameObject rayCastBlocker;
+    public GameObject rayCastBlockerBuild;
+    public GameObject rayCastBlockerPlay;
     public GameObject sun;
     public GameObject earth;
     public GameObject supernova;
@@ -21,12 +23,22 @@ public class IntroManager : MonoBehaviour
     public Animator animator;
     public Animator bootAnimator;
     public Animator tutorialScreenAnimator;
-    public GameObject controlUI;
+    public CanvasGroup controlUIgroup;
+    public MoonRotator rotator;
+    public BuildingSpot controlSpot;
+    public GameObject houseButton;
+    public GameObject researchButton;
+    public GameObject leisureButton;
+    public BuildingSpot startSpot1,startSpot2,startSpot3;
 
     public List<string> startDialog;
     public List<string> shieldUpDialog;
     public List<string> aloneInSpaceDialog;
     public List<string> controlTutorial;
+    public List<string> buildProductionTutorial;
+    public List<string> playTutorial;
+    public List<string> buildHousingAlert;
+    public List<string> buildCultureAlert;
     int currentStep = 0;
     int currentStepLine = 0;
 
@@ -40,7 +52,8 @@ public class IntroManager : MonoBehaviour
     
 
     public IEnumerator IntroCoroutine(){
-        controlUI.SetActive(false);
+        Analytics.CustomEvent("StartGame");
+        controlUIgroup.alpha = 0;
         dialogRoutine = StartCoroutine(ProcessDialogLine(startDialog));
         while(currentStep == 0){
             yield return null;
@@ -63,8 +76,13 @@ public class IntroManager : MonoBehaviour
         }
         bootAnimator.Play("Boot");
         yield return new WaitForSeconds(1.5f);
-        controlUI.SetActive(true);
+        for (float i = 0; i < 100f; i++)
+        {
+            controlUIgroup.alpha = Mathf.Lerp(0,1,i/100f);
+            yield return null;
+        }
         bootAnimator.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
         dialogRoutine = StartCoroutine(ProcessDialogLine(controlTutorial, false));
         while(currentStepLine != 3){
             yield return null;
@@ -91,26 +109,90 @@ public class IntroManager : MonoBehaviour
             yield return null;
         }
         tutorialScreenAnimator.Play("Idle");
-        dialogBox.SetActive(false);
+        rotator.ShowBuildingSpot(controlSpot.transform);
+        rayCastBlockerBuild.SetActive(false);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(buildProductionTutorial, false));
         skipIntro.SetActive(false);
-        rayCastBlocker.SetActive(false);
+        while (startSpot1.currentBuilding == null ||startSpot2.currentBuilding == null ||startSpot3.currentBuilding == null)
+        {
+            yield return null;
+        }
+        GM.I.ui.CloseAllUI();
+        GM.I.gameplay.PauseTime(true);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(playTutorial, false));
+        rayCastBlockerPlay.SetActive(true);
+        while(currentStepLine != 5){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Play");
+        while (GM.I.gameplay.timePaused)
+        {
+            yield return null;
+        }
+        rayCastBlockerPlay.SetActive(false);
+        tutorialScreenAnimator.Play("Idle");
+        dialogBox.SetActive(false);
+        while (!controlSpot.HighPopulated)
+        {
+            yield return null;
+        }
+        GM.I.ui.CloseAllUI();
+        rayCastBlockerBuild.SetActive(true);
+        GM.I.gameplay.PauseTime(true);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(buildHousingAlert));
+        while(currentStepLine != 5){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("BuildButton");
+        while (!GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
+        {
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Idle");
+        rayCastBlockerBuild.SetActive(false);
+        houseButton.SetActive(true);
+        while (GM.I.people.culture > 0.9f)
+        {
+            yield return null;            
+        }
+        GM.I.ui.CloseAllUI();
+        rayCastBlockerBuild.SetActive(true);
+        GM.I.gameplay.PauseTime(true);
+        dialogRoutine = StartCoroutine(ProcessDialogLine(buildCultureAlert));
+        while(currentStepLine != 5){
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("BuildButton");
+        while (!GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
+        {
+            yield return null;
+        }
+        tutorialScreenAnimator.Play("Idle");
+        researchButton.SetActive(true);
+        leisureButton.SetActive(true);
+        rayCastBlockerBuild.SetActive(false);
+        Analytics.CustomEvent("IntroFinished");
         
     }
 
     public void SkipIntro(){
         StopCoroutine(dialogRoutine);
         GM.I.audioManager.canPlay = true;
-        controlUI.SetActive(true);
         bootAnimator.gameObject.SetActive(false);
         tutorialScreenAnimator.Play("Idle");
         animator.enabled = false;
         dialogBox.SetActive(false);
         skipIntro.SetActive(false);
-        rayCastBlocker.SetActive(false);
+        rayCastBlockerBuild.SetActive(false);
+        rayCastBlockerPlay.SetActive(false);
         sun.SetActive(false);
         earth.SetActive(false);
         supernova.SetActive(true);
-        Debug.Log("boop");
+        houseButton.SetActive(true);
+        researchButton.SetActive(true);
+        leisureButton.SetActive(true);
+        controlUIgroup.alpha = 1;
+        Analytics.CustomEvent("IntroSkipped");
     }
 
     public IEnumerator ProcessDialogLine(List<string> dialog, bool closeOnEnd = true){

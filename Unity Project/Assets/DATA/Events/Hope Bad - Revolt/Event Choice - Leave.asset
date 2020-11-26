@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let citizens kill officials
-  effectText: -10% Population, -20% Culture
   type: 12
   amount: 0.9
   typeSecondary: 8
-  amountSecondary: -0.2
+  amountSecondary: -0.5

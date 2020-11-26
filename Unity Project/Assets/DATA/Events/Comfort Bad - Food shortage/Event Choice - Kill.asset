@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1a9c2802231bb40829f939f2cadd01, type: 3}
   m_Name: Event Choice - Kill
   m_EditorClassIdentifier: 
-  choiceName: Make soylent
-  description: You decide to make food out of people
-  effectText: -15% Population
-  type: 12
-  amount: 0.85
+  choiceName: Make more food
+  description: You decide to convert part of your material stock in food pellets
+  type: 3
+  amount: -700
   typeSecondary: 14
   amountSecondary: 0

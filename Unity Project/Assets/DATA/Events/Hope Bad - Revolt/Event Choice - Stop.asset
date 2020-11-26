@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Stop
   description: You decide to kill revolt leaders
-  effectText: -5% Hope, -10% Population
   type: 9
-  amount: -0.05
+  amount: -0.1
   typeSecondary: 12
   amountSecondary: 0.9

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Surcharge coolers
   description: You decide to power coolers longer to refresh the air
-  effectText: -100 Energy
   type: 1
-  amount: -100
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -300
+  typeSecondary: 7
+  amountSecondary: 0.25

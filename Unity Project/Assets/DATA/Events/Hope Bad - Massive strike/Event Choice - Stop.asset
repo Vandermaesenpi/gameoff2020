@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Stop
   description: You decide to use armed forces to stop the strike
-  effectText: -5% Hope, -15% Population
-  type: 9
-  amount: -0.05
+  type: 5
+  amount: -0.3
   typeSecondary: 12
-  amountSecondary: 0.85
+  amountSecondary: 0.8

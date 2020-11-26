@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Training
   description: You decide to train every worker
-  effectText: -100 Energy, -10% Comfort
   type: 1
-  amount: -100
-  typeSecondary: 7
-  amountSecondary: 0
+  amount: -1000
+  typeSecondary: 8
+  amountSecondary: 0.3

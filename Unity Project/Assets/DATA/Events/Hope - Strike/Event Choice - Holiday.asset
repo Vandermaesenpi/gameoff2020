@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Holiday
   description: You decide to offer a holiday to ease the mood
-  effectText: -50 Energy, -50 Material
   type: 1
-  amount: -50
+  amount: -1000
   typeSecondary: 3
-  amountSecondary: -50
+  amountSecondary: -1000

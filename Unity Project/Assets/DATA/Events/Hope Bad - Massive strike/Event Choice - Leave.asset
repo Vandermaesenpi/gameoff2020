@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let the strike go on
-  effectText: -100 Energy, -100 Material
   type: 1
-  amount: -100
+  amount: -1000
   typeSecondary: 3
-  amountSecondary: -100
+  amountSecondary: -1000

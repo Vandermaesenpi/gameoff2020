@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Colocation
   description: You decide to force colocation to improve morale
-  effectText: -10% Comfort
   type: 7
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.4
+  typeSecondary: 9
+  amountSecondary: 0.1

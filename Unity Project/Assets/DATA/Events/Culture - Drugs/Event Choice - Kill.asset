@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Kill dealers
   description: You decide to kill drug dealers
-  effectText: -5% Hope, - 5% Population
   type: 9
-  amount: -0.05
+  amount: -0.1
   typeSecondary: 12
   amountSecondary: 0.95

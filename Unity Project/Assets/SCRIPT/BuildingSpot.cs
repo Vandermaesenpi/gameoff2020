@@ -43,7 +43,7 @@ public class BuildingSpot : MonoBehaviour
     public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
     public bool OverPopulated{get{return population > currentBuilding.populationRequirement;}}
     public bool HighPopulated{get{return population > currentBuilding.populationRequirement*0.9f;}}
-    public bool LowPopulated{get{return population < currentBuilding.populationRequirement*0.5f;}}
+    public bool LowPopulated{get{return population < currentBuilding.populationRequirement*0.3f;}}
     public bool BadIntegrity{get{return integrity < 0.5f;}}
     public bool DangerousIntegrity{get{return integrity < 0.25f;}}
 
@@ -155,12 +155,12 @@ public class BuildingSpot : MonoBehaviour
         
         if(currentBuilding.housing){
             population = (int)((float)GM.I.people.TotalPopulation * ((float)currentBuilding.populationRequirement/(float)GM.I.city.HousingSpace()));
-            if(maintenance){
+            if(maintenance || integrity == 0){
                 costEfficiencyModifier+= 1f;
             }
             costEfficiency = Mathf.Max(Mathf.Clamp((float)population*5f/(float)currentBuilding.populationRequirement,0f,1000f) + costEfficiencyModifier, 0f);
         }else if (currentBuilding.productor){
-            if(!producing || maintenance){
+            if(!producing || maintenance || integrity == 0){
                 population = 0;
                 efficiency = 0f;
                 costEfficiency = 0f;
@@ -170,7 +170,7 @@ public class BuildingSpot : MonoBehaviour
                 costEfficiency = costEfficiencyModifier;
             }
         }else if (currentBuilding.research){
-            if(currentProject == null || maintenance){
+            if(currentProject == null || maintenance || integrity == 0){
                 population = 0;
                 efficiency = 0f;
                 costEfficiency = 0f;

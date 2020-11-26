@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Stop
   description: You decide to interrupt the festivities
-  effectText: -10% Culture, -10% Comfort
   type: 8
-  amount: -0.1
+  amount: -0.2
   typeSecondary: 7
-  amountSecondary: -0.1
+  amountSecondary: -0.2

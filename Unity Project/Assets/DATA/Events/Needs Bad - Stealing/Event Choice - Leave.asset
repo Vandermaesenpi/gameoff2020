@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let them steal from your stock
-  effectText: -50 Water, -50 Material
   type: 3
-  amount: -50
+  amount: -500
   typeSecondary: 2
-  amountSecondary: -50
+  amountSecondary: -500

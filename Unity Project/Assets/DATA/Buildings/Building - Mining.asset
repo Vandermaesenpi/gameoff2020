@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 0.4811321, g: 0.3293298, b: 0.12936097, a: 1}
   sprite: {fileID: 21300000, guid: 9d4759d57baa48a498086ec821656f5d, type: 3}
   prefab: {fileID: 834289757447313914, guid: 1f79fcdcdf6c62b4b87519a31a18697a, type: 3}
-  populationRequirement: 10000000
+  populationRequirement: 30000
   populationName: WORKERS
   ressourceType: 2
   projects: []
@@ -25,11 +25,11 @@ MonoBehaviour:
     r:
     - -1
     - -1
-    - 5
+    - 10
   constructionMonthlyCost:
     r:
-    - -3
-    - -1
+    - -2
+    - 0
     - 0
   storageIncreaseMonthlyCost:
     r:
@@ -43,7 +43,7 @@ MonoBehaviour:
   control: 0
   culture: 0
   baseStorage: 200
-  decay: 0.005
+  decay: 0.002
   decayEffect: 
   maintenanceEffect: Maintenance stops productions
   costInfo: This building cost is constant

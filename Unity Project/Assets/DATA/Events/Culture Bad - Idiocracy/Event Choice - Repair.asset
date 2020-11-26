@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Repair
   description: You decide to increase repair funds
-  effectText: -150 Material
   type: 3
-  amount: -150
+  amount: -1500
   typeSecondary: 14
   amountSecondary: 0

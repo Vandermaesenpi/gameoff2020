@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Home school
   description: You decide to encourage homeschooling
-  effectText: -10% Comfort
   type: 7
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.3
+  typeSecondary: 8
+  amountSecondary: 0.3

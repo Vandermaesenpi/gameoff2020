@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Propaganda
   description: You decide to kill violent citizens
-  effectText: -15% Population
   type: 12
-  amount: 0.85
+  amount: 0.5
   typeSecondary: 14
   amountSecondary: 0

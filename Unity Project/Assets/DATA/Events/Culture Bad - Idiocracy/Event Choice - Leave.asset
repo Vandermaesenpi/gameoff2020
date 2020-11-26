@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide that dumb workers isn't that bad
-  effectText: -20% Integrity
   type: 5
-  amount: -0.2
+  amount: -0.3
   typeSecondary: 14
   amountSecondary: 0

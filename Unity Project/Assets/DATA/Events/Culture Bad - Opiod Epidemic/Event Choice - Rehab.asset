@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Rehab
   description: You decide to fund rehab sessions
-  effectText: -50 Energy, -5% Population
   type: 1
-  amount: -50
+  amount: -1000
   typeSecondary: 12
   amountSecondary: 0.95

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Lower population
   description: You decide to artificially reduce the population
-  effectText: -10% Hope, -10% Population
   type: 9
   amount: -0.1
   typeSecondary: 12
-  amountSecondary: 0.95
+  amountSecondary: 0.8

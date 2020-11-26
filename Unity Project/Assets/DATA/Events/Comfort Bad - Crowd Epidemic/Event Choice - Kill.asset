@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Kill infected
   description: You decide to execute homeless citizens
-  effectText: -10% Hope, -5% Population
   type: 9
   amount: -0.1
   typeSecondary: 12
-  amountSecondary: 0.95
+  amountSecondary: 0.8

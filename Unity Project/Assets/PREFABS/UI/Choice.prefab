@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.7647059, g: 0.25882354, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -219,6 +221,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -300,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: {fileID: 3252447906790037432}
   choiceEffect: {fileID: 3252447906620615333}
+  myButton: {fileID: 3252447908518206215}
   currentChoice: {fileID: 0}
 --- !u!114 &3863171021925776797
 MonoBehaviour:

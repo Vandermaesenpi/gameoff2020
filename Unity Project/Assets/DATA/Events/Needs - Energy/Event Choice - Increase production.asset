@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Ration
   description: You decide to ration resources
-  effectText: -10% Comfort
   type: 7
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.3
+  typeSecondary: 1
+  amountSecondary: 500

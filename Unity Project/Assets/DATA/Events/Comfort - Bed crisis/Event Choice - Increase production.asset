@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: More beds
   description: You decide to redirect part of your stock to make new beds
-  effectText: -100 Material
   type: 3
-  amount: -100
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -300
+  typeSecondary: 7
+  amountSecondary: 0.25

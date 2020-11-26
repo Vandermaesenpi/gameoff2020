@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Purge
   description: You decide to inject water ine the system to unclog it.
-  effectText: -100 Water
   type: 2
-  amount: -100
+  amount: -1000
   typeSecondary: 14
   amountSecondary: 0

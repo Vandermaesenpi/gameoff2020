@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let the strike go on
-  effectText: -100 Water
-  type: 2
-  amount: -100
-  typeSecondary: 14
-  amountSecondary: 0
+  type: 9
+  amount: 0.2
+  typeSecondary: 5
+  amountSecondary: -0.3

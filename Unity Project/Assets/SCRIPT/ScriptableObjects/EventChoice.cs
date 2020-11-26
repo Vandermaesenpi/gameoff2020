@@ -6,7 +6,6 @@ public class EventChoice : ScriptableObject
 {
     public string choiceName;
     public string description;
-    public string effectText;
     public FXT type;
     public float amount;
     public FXT typeSecondary;

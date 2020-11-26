@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Therapy
   description: You decide to fund therapy sessions
-  effectText: -50 Energy, -10% Comfort
   type: 1
-  amount: -50
+  amount: -500
   typeSecondary: 7
-  amountSecondary: -10
+  amountSecondary: -0.5

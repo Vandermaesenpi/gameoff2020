@@ -130,6 +130,9 @@ public class CityManager : MonoBehaviour
     public void ModifyIntegrity(float amount){
         foreach (BuildingSpot building in buildings)
         {
+            if(building.currentBuilding == null){
+                return;
+            }
             if(!building.currentBuilding.control){
                 building.integrity = Mathf.Clamp(building.integrity + amount,0,1);
             }

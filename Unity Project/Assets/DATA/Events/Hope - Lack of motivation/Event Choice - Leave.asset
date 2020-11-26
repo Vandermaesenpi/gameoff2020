@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let the motivation go down
-  effectText: -5% Hope
   type: 9
   amount: -0.05
-  typeSecondary: 1
-  amountSecondary: -100
+  typeSecondary: 14
+  amountSecondary: 0

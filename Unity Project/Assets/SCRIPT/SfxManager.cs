@@ -18,6 +18,12 @@ public class SfxManager : MonoBehaviour
     public void PlayFaithfull(SFX sfx){
         sourceFaithfull.PlayOneShot(clips[(int)sfx]);
     }
+
+    public void SetVolume(float amount){
+        source.volume = amount;
+        sourceFaithfull.volume = amount;
+        Play(SFX.Tic);
+    }
 }
 
 public enum SFX{

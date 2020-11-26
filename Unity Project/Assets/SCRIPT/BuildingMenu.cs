@@ -54,7 +54,7 @@ public class BuildingMenu : MonoBehaviour
                     production.UpdateRessourceBox(selectedBuilding.production.GetProduction());
                     cost.UpdateRessourceBox(selectedBuilding.production.GetCost());
                     constructionCost.UpdateRessourceBox(selectedBuilding.constructionMonthlyCost.Multiply((float)selectedBuilding.constructionTime));
-                    constructionTime.text = selectedBuilding.constructionTime + "months";
+                    constructionTime.text = selectedBuilding.constructionTime + " months";
                 }
             }
         }

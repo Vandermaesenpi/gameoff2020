@@ -17,7 +17,7 @@ MonoBehaviour:
   color: {r: 0.60784316, g: 0.77254903, b: 0.23921569, a: 1}
   sprite: {fileID: 21300000, guid: 08d6638a74265854b9286be5e1cd48c3, type: 3}
   prefab: {fileID: 807027760459648680, guid: d8face381565f464994815bbdf9c3232, type: 3}
-  populationRequirement: 100000000
+  populationRequirement: 100000
   populationName: CITIZENS
   ressourceType: 0
   projects: []
@@ -43,7 +43,7 @@ MonoBehaviour:
   control: 0
   culture: 0
   baseStorage: 0
-  decay: 0.005
+  decay: 0.002
   decayEffect: 
   maintenanceEffect: Maintenance increase cost
   costInfo: This building cost scales with population size

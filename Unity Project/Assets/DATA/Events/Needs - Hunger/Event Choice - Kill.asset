@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Make soylent
   description: You decide to make food out of people
-  effectText: -10% Hope, -5% Population
   type: 9
   amount: -0.1
   typeSecondary: 12
-  amountSecondary: 0.95
+  amountSecondary: 0.8

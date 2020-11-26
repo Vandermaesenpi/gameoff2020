@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let the desease spread
-  effectText: -5% Hope, -25% Population
   type: 9
   amount: -0.05
   typeSecondary: 12
-  amountSecondary: 0.75
+  amountSecondary: 0.5

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let them detroy part of your stock
-  effectText: -100 Water, -100 Material
   type: 2
-  amount: -100
+  amount: -300
   typeSecondary: 3
-  amountSecondary: -100
+  amountSecondary: -300

@@ -27,6 +27,10 @@ public class PopulationMenu : MonoBehaviour
     public Text comfortText;
     public Text cultureText;
     public Text hopeText;
+    public Text needTextMenu;
+    public Text comfortTextMenu;
+    public Text cultureTextMenu;
+    public Text hopeTextMenu;
 
     public void ClicPopulationMenu(){
         bool value = !gameObject.activeInHierarchy;
@@ -42,25 +46,31 @@ public class PopulationMenu : MonoBehaviour
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
-        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage+1f,120f))/10f;
+        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage+1f,120f))/10f + "%";
         if(GM.I.people.GrowthPercentage > 0) { growthOverviewText.text = "+"+growthOverviewText.text + "%";}
         growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
         growthText.text = growthOverviewText.text;
         growthText.color = growthOverviewText.color;
         unemployementOverviewText.text = UIManager.HumanNotation(GM.I.people.Unemployement);
+        if(GM.I.people.Unemployement > GM.I.people.UnemployementLimit){
+            unemployementOverviewText.color = GM.I.art.red;
+        }else{
+            unemployementOverviewText.color = GM.I.art.green;
+        }
         unemployementText.text = unemployementOverviewText.text;
+        unemployementText.color = unemployementOverviewText.color;
         workerText.text = UIManager.HumanNotation(GM.I.people.WorkingPopulation);
-        workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.green : GM.I.art.red;
+        workerText.color = GM.I.people.WorkingPopulation >= lastWorkingPopulation ? GM.I.art.light : GM.I.art.light;
         workerOverviewText.text = workerText.text;
         workerOverviewText.color = workerText.color;
         lastWorkingPopulation = GM.I.people.WorkingPopulation;
         idleText.text = UIManager.HumanNotation(GM.I.people.IdlePopulation);
-        idleText.color = GM.I.people.IdlePopulation < GM.I.people.WorkingPopulation/3 ? GM.I.art.green : GM.I.art.red;
+        idleText.color = GM.I.people.IdlePopulation < GM.I.people.WorkingPopulation/3 ? GM.I.art.light : GM.I.art.light;
         birthText.text = UIManager.HumanNotation(GM.I.people.MonthlyBirth);
-        birthText.color = GM.I.people.MonthlyBirth >= lastBirth ? GM.I.art.green : GM.I.art.red;
+        birthText.color = GM.I.people.MonthlyBirth >= GM.I.people.MonthlyDeath ? GM.I.art.green : GM.I.art.red;
         lastBirth = GM.I.people.MonthlyBirth;
         deathText.text = UIManager.HumanNotation(GM.I.people.MonthlyDeath);
-        deathText.color = GM.I.people.MonthlyDeath < lastDeath ? GM.I.art.green : GM.I.art.red;
+        deathText.color = GM.I.people.MonthlyDeath < GM.I.people.MonthlyBirth? GM.I.art.green : GM.I.art.red;
         lastDeath = GM.I.people.MonthlyDeath;
 
         float maxAmount = 0;
@@ -77,10 +87,28 @@ public class PopulationMenu : MonoBehaviour
 
         // moodText.text = UIManager.HumanNotation(GM.I.people.Mood);
         // moodOverviewText.text = moodText.text;
-        needText.text = UIManager.HumanNotation(GM.I.people.needs);
-        comfortText.text = UIManager.HumanNotation(GM.I.people.comfort);
-        cultureText.text = UIManager.HumanNotation(GM.I.people.culture);
-        hopeText.text = UIManager.HumanNotation(GM.I.people.hope);
+        
+        ProcessMood(GM.I.people.needs,needText,needTextMenu);
+        ProcessMood(GM.I.people.comfort,comfortText,comfortTextMenu);
+        ProcessMood(GM.I.people.culture,cultureText,cultureTextMenu);
+        ProcessMood(GM.I.people.hope,hopeText,hopeTextMenu);
 
+    }
+
+    void ProcessMood(float mood, Text text, Text text2){
+        Color color = Color.white;
+        if(mood < 0.25f){
+            color = GM.I.art.red;
+        }else if(mood < 0.5f){
+            color = GM.I.art.orange;
+        }else if(mood < 0.75f){
+            color = GM.I.art.yellowLight;
+        }else{
+            color = GM.I.art.green;
+        }
+        text.text = UIManager.HumanNotation(mood);
+        text.color = color;
+        text2.text = text.text;
+        text2.color = text.color;
     }
 }

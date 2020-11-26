@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Forced labor
   description: You decide that working is a great occupation
-  effectText: -10% Comfort
   type: 7
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -0.3
+  typeSecondary: 8
+  amountSecondary: 0.2

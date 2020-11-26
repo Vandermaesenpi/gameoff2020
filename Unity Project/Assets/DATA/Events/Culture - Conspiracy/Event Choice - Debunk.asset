@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Debunking
   description: You think that the best way is to debunk the conspiracies
-  effectText: -50 Energy, -5% Culture
   type: 1
-  amount: -50
+  amount: -300
   typeSecondary: 8
-  amountSecondary: -0.05
+  amountSecondary: 0.1

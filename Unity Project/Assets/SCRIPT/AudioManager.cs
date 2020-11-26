@@ -18,4 +18,8 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+    public void SetVolume(float amount){
+        audioSource.volume = amount;
+    }
 }

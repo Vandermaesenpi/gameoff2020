@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Prohibition
   description: You decide to prohibit all drugs
-  effectText: -10% Comfort
   type: 7
-  amount: -0.1
+  amount: -0.3
   typeSecondary: 14
   amountSecondary: 0

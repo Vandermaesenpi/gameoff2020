@@ -234,7 +234,7 @@ public class BuildingInformation : MonoBehaviour
             if(spot.currentBuilding.productor){
                 if(!spot.producing){
                     statuses.Add("Production stopped");
-                    colors.Add(GM.I.art.orange);
+                    colors.Add(GM.I.art.light);
                 }else if (!spot.maintenance){
                     if(spot.LowPopulated){
                         statuses.Add("Not enough workers");

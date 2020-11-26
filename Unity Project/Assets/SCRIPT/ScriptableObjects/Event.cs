@@ -17,7 +17,7 @@ public enum FXT{
     Material,
     Cost,
     Integrity,
-    BasicNeeds,
+    Needs,
     Comfort,
     Culture,
     Hope,

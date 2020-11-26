@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Improve
   description: You decide to add funds to the school system
-  effectText: -50 Energy, -50 Water
-  type: 1
-  amount: -50
-  typeSecondary: 2
-  amountSecondary: -50
+  type: 3
+  amount: -300
+  typeSecondary: 8
+  amountSecondary: 0.3

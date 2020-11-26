@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Orgy
   description: You decide to throw a planet wise party
-  effectText: -100 Energy, -100 Material
-  type: 1
-  amount: -100
-  typeSecondary: 14
-  amountSecondary: -100
+  type: 3
+  amount: -1000
+  typeSecondary: 8
+  amountSecondary: 0.3

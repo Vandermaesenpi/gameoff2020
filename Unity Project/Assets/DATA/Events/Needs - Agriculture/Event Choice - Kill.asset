@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Make fertilizer
   description: You decide to make fertilizer out of people
-  effectText: -10% Hope, -5% Population
-  type: 9
-  amount: -0.1
+  type: 6
+  amount: 0.3
   typeSecondary: 12
-  amountSecondary: 0.95
+  amountSecondary: 0.8

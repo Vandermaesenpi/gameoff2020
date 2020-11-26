@@ -373,9 +373,9 @@ MonoBehaviour:
   image: {fileID: 83190308}
   selectedImage: {fileID: 8661450422308079126}
   levelMarkers:
-  - {fileID: 6386391875354011982}
-  - {fileID: 1182999134851754912}
   - {fileID: 8757786122532658156}
+  - {fileID: 1182999134851754912}
+  - {fileID: 6386391875354011982}
   additionnalInfo: {fileID: 4400912216789921042}
   time: {fileID: 5093060237037645249}
   project: {fileID: 0}

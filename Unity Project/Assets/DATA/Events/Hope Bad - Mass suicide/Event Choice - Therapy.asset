@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Therapy
   description: You decide to fund wide therapy sessions
-  effectText: -100 Energy, -100 Material
   type: 1
-  amount: -100
-  typeSecondary: 3
-  amountSecondary: -100
+  amount: -2000
+  typeSecondary: 9
+  amountSecondary: 0.2

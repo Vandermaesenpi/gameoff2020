@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide that people can eat what they find
-  effectText: -10% Comfort, -5% Hope
   type: 7
-  amount: -0.1
+  amount: -0.3
   typeSecondary: 9
-  amountSecondary: -0.05
+  amountSecondary: -0.1

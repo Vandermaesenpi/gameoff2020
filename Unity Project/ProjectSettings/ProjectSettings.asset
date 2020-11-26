@@ -683,10 +683,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: bd9bcce8-d40b-4ec9-b897-2cbbf78f5635
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Moonkind
+  organizationId: vandermaesenp
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
