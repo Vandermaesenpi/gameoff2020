@@ -28,8 +28,13 @@ public class PopulationMenu : MonoBehaviour
     public Text cultureText;
     public Text hopeText;
     public Text needTextMenu;
+    public Text needEnergyRatioText;
+    public Text needWaterRatioText;
+    public Text needMaterialRatioText;
     public Text comfortTextMenu;
+    public Text comfortRatioText;
     public Text cultureTextMenu;
+    public Text cultureRatioText;
     public Text hopeTextMenu;
 
     public void ClicPopulationMenu(){
@@ -46,8 +51,9 @@ public class PopulationMenu : MonoBehaviour
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
-        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage+1f,120f))/10f + "%";
-        if(GM.I.people.GrowthPercentage > 0) { growthOverviewText.text = "+"+growthOverviewText.text + "%";}
+        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage,120f))/10f + "%";
+        
+        if(GM.I.people.GrowthPercentage > 0) { growthOverviewText.text = "+"+growthOverviewText.text;}else{ growthOverviewText.text = "-"+growthOverviewText.text;}
         growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
         growthText.text = growthOverviewText.text;
         growthText.color = growthOverviewText.color;
@@ -92,6 +98,13 @@ public class PopulationMenu : MonoBehaviour
         ProcessMood(GM.I.people.comfort,comfortText,comfortTextMenu);
         ProcessMood(GM.I.people.culture,cultureText,cultureTextMenu);
         ProcessMood(GM.I.people.hope,hopeText,hopeTextMenu);
+
+        needEnergyRatioText.text = ""+(int)GM.I.resource.resources.Energy + "/" + (int)GM.I.people.NeedsThreshold; 
+        needMaterialRatioText.text = ""+(int)GM.I.resource.resources.Material + "/" + (int)GM.I.people.NeedsThreshold; 
+        needWaterRatioText.text = ""+(int)GM.I.resource.resources.Water + "/" + (int)GM.I.people.NeedsThreshold; 
+
+        comfortRatioText.text = ""+GM.I.people.TotalPopulation+"/"+GM.I.people.ComfortThreshold;
+        cultureRatioText.text = ""+GM.I.people.TotalPopulation+"/"+GM.I.people.CultureThreshold;
 
     }
 

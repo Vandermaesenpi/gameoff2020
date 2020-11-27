@@ -27,6 +27,10 @@ public class PopulationManager : MonoBehaviour
     
     // --------------Processed variables
     public float Mood {get{return (needs*5f + culture + comfort + hope)/8f;}}
+
+    public float NeedsThreshold{get{return 200 + GM.I.project.FX(FXT.Needs);}}
+    public float ComfortThreshold{get{return GM.I.city.HousingSpace()+ GM.I.project.FX(FXT.Comfort);}}
+    public float CultureThreshold{get{return (float)(GM.I.city.Culture() * 50000f + GM.I.project.FX(FXT.Culture));}}
     public uint GetPopulationRange(int min, int max){
         uint total = 0;
             for (int i = min * 12; i < max * 12; i++)
@@ -56,7 +60,7 @@ public class PopulationManager : MonoBehaviour
     }
     public int MonthlyBirth{
         get{
-            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood * GM.I.project.FX(FXT.Birth)); 
+            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood * (1f+GM.I.project.FX(FXT.Birth))); 
         }
     }
 
@@ -146,7 +150,7 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessNeeds(){
         float needsDelta = 0;
-        float threshold = 200;
+        float threshold = NeedsThreshold;
         needsDelta += GM.I.resource.resources.Energy/threshold < 1 ? GM.I.resource.resources.Energy/threshold : 1;
         needsDelta += GM.I.resource.resources.Water/threshold < 1 ? GM.I.resource.resources.Water/threshold : 1;
         needsDelta += GM.I.resource.resources.Material/threshold < 1 ? GM.I.resource.resources.Material/threshold : 1;
@@ -160,9 +164,9 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessComfort(){
-        if(TotalPopulation  < GM.I.city.HousingSpace()){
+        if(TotalPopulation  < ComfortThreshold){
             comfort += cultureGain;
-        }else if(TotalPopulation  < 1.5f*GM.I.city.HousingSpace()){
+        }else if(TotalPopulation  < (1.5f*ComfortThreshold)){
             comfort -= cultureDecay/2f;
         }else{
             comfort -= cultureDecay;
@@ -171,7 +175,7 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessCulture(){
-        float cultureRatio = (float)TotalPopulation/(float)(GM.I.city.Culture() * 50000f);
+        float cultureRatio = (float)TotalPopulation/CultureThreshold;
         if(cultureRatio < 1){
             culture += cultureGain;
         }else{
@@ -181,7 +185,7 @@ public class PopulationManager : MonoBehaviour
     }
 
     void ProcessHope(){
-        hope = Mathf.Clamp(hope, 0,1);
+        hope = Mathf.Clamp(hope, 0,1) + GM.I.project.FX(FXT.Hope);
     }
 
 }

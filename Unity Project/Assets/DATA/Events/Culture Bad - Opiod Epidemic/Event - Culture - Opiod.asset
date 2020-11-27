@@ -16,6 +16,6 @@ MonoBehaviour:
   description: The lack of entertainment has lead a sizeable part of the population
     to take anti-depressant medecine, and overdoses are reaching dangerous heights.
   choices:
-  - {fileID: 11400000, guid: 2d517523c341a5d4fb606da8ffa5d150, type: 2}
-  - {fileID: 11400000, guid: d2ce9cf5fd075ca44930b0d8c201625c, type: 2}
-  - {fileID: 11400000, guid: 249748f54af600b44866b4826f38e20e, type: 2}
+  - {fileID: 11400000, guid: 4a32bef5d1bb079459ea290e28e89cc9, type: 2}
+  - {fileID: 11400000, guid: 9cf751e783f56a8459489e8af6ed6e6e, type: 2}
+  - {fileID: 11400000, guid: 10367408c58968e4dba392a4d19923bc, type: 2}

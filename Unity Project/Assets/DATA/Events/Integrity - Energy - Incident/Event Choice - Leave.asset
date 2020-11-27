@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1a9c2802231bb40829f939f2cadd01, type: 3}
   m_Name: Event Choice - Leave
   m_EditorClassIdentifier: 
-  choiceName: Do nothing
-  description: The grid can take it. I think...
-  type: 5
-  amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  choiceName: Redirect
+  description: You keep workers in the plant and tell them to redirect the energy
+    to the grid.
+  type: 12
+  amount: 0.9
+  typeSecondary: 9
+  amountSecondary: -0.05

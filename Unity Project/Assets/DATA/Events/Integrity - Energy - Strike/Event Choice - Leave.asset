@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Event Choice - Leave
   m_EditorClassIdentifier: 
   choiceName: Do nothing
-  description: The grid can take it. I think...
-  type: 5
+  description: You leave the strike going, they will calm down on their own.
+  type: 9
   amount: -0.1
-  typeSecondary: 14
-  amountSecondary: 0
+  typeSecondary: 1
+  amountSecondary: -200

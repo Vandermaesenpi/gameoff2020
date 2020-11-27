@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b1a9c2802231bb40829f939f2cadd01, type: 3}
-  m_Name: Event Choice - Contain
+  m_Name: Event Choice - Repair
   m_EditorClassIdentifier: 
-  choiceName: Contain
-  description: You contain the plant by sealing off the geothermal well.
+  choiceName: Repair
+  description: You command an emergency repair operation.
   type: 3
-  amount: -500
-  typeSecondary: 14
-  amountSecondary: 0
+  amount: -250
+  typeSecondary: 1
+  amountSecondary: -250

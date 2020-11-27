@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
-  m_Name: Event - Comfort - Bad Food
+  m_Name: Event - Energy - Power failure
   m_EditorClassIdentifier: 
   eventName: POWER GRID FAILURE
-  description: A badly damaged geothermal plant has experienced a critical failure.
+  description: A badly maintained geothermal plant has experienced a critical failure.
     A massive energy surge is threatening to damage the entire grid.
   choices:
   - {fileID: 11400000, guid: 541e1cf18e369f446adc51af806fbf4d, type: 2}

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b1a9c2802231bb40829f939f2cadd01, type: 3}
-  m_Name: Event Choice - Dissipate
+  m_Name: Event Choice - Leave
   m_EditorClassIdentifier: 
-  choiceName: Dissipate energy
-  description: You release the energy into the ground
-  type: 1
-  amount: -1000
-  typeSecondary: 14
-  amountSecondary: 0
+  choiceName: Do nothing
+  description: You leave the strike going, they will calm down on their own.
+  type: 9
+  amount: -0.1
+  typeSecondary: 2
+  amountSecondary: -200

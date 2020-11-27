@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Water - Strike
+  m_EditorClassIdentifier: 
+  eventName: ICE MELTER STRIKE
+  description: A strike has has begun in a badly maintained ice melter.
+  choices:
+  - {fileID: 11400000, guid: d829eeeeef4fdd04ab99adb126487b77, type: 2}
+  - {fileID: 11400000, guid: 0397d6e88d05cd44c846fe606453dbf3, type: 2}
+  - {fileID: 11400000, guid: d14472fdfa937b24db83497f034b43d6, type: 2}

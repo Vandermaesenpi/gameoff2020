@@ -15,7 +15,7 @@ MonoBehaviour:
   projectName: HOSPICE
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Hot soup and clean beds for the poor and weak.
-  effectDescription: +5% Basic needs
+  effectDescription: -10 basic needs threshold
   sprite: {fileID: 21300000, guid: 2aec4f920bf190546b1ff73fb9a9f3f2, type: 3}
   monthlyCost:
     r:

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide to let the filth settle on its own
-  effectText: -15% Comfort
-  type: 7
-  amount: -0.15
+  type: 5
+  amount: -0.1
   typeSecondary: 14
   amountSecondary: 0

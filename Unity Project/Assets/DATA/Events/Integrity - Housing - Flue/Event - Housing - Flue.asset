@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Housing - Flue
+  m_EditorClassIdentifier: 
+  eventName: AVIAN FLU
+  description: A deadly flu has spread in a badly maintained housing district. The
+    infection is spreadding quickly.
+  choices:
+  - {fileID: 11400000, guid: 12ea0b53c7ccf0243a3ea35baf3fba2a, type: 2}
+  - {fileID: 11400000, guid: 45c4514f1ed68e44aa0369d59440841f, type: 2}
+  - {fileID: 11400000, guid: 97158be0b2ed0e641ba9a4b3a79542ac, type: 2}

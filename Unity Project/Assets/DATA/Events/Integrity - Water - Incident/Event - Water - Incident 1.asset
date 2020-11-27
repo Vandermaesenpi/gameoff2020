@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Water - Incident 1
+  m_EditorClassIdentifier: 
+  eventName: ICE MELTER COLLAPSE
+  description: Part of a badly maintained ice melter is about to collapse.
+  choices:
+  - {fileID: 11400000, guid: 73f4046bd8fccb64b908d55f68a93d04, type: 2}
+  - {fileID: 11400000, guid: 30f8ad8e74cc0eb4ca6442eb55dea1f9, type: 2}
+  - {fileID: 11400000, guid: cf8cfc1afa41d6f4fb1aa5a518dc80bf, type: 2}

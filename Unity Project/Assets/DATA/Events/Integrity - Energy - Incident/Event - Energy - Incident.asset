@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Energy - Incident
+  m_EditorClassIdentifier: 
+  eventName: GEOTHERMAL PLANT COLLAPSE
+  description: Part of a badly maintained geothermal plant is about to collapse.
+  choices:
+  - {fileID: 11400000, guid: 844b0e13b010985448a63ec7ef7c2762, type: 2}
+  - {fileID: 11400000, guid: eb034aa8f3c6f2c4dabe1b0f5e9ee1d2, type: 2}
+  - {fileID: 11400000, guid: 628744ff0758cc44f9bc1c98803a5def, type: 2}

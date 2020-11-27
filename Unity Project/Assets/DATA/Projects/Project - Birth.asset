@@ -15,13 +15,13 @@ MonoBehaviour:
   projectName: NIGHT CLUB
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Encourage fun parties, decadence and happy accidents.
-  effectDescription: +5% births
+  effectDescription: +10% births
   sprite: {fileID: 21300000, guid: 90761bd2bd5b3204e916dbde9031104c, type: 3}
   monthlyCost:
     r:
-    - -0.5
+    - -1
     - 0
     - 0
   type: 11
   resourceType: 0
-  amount: {x: 1.05, y: 1.05, z: 1.05}
+  amount: {x: 0.1, y: 0, z: 0}

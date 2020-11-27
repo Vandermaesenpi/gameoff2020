@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b1a9c2802231bb40829f939f2cadd01, type: 3}
   m_Name: Event Choice - Dissipate
   m_EditorClassIdentifier: 
-  choiceName: Dissipate energy
+  choiceName: Dissipate
   description: You release the energy into the ground
   type: 1
   amount: -1000

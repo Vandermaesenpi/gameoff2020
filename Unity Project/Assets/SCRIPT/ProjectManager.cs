@@ -25,13 +25,14 @@ public class ProjectManager : MonoBehaviour
         foreach (Project p in projects)
         {
             if(p.type == type){
-                if(GetLevel(p)-1 == -1f){
-                    return 1f;
+                if(IsConstant(p)){
+                    return p.amount[0] * GetLevel(p);
                 }else{
                     return p.amount[GetLevel(p)-1];
                 }
             }
         }
+        
         return 1f;
     }
     public int GetLength(Project project){
@@ -46,9 +47,7 @@ public class ProjectManager : MonoBehaviour
         for (int i = 0; i < projects.Count; i++)
         {
             if(IsConstant(projects[i])){
-                if(projects[i].projectLength.x <= time[i]){
-                    levels[i] = 0;
-                }
+                levels[i] = 0;
             }
         }
 
@@ -59,7 +58,7 @@ public class ProjectManager : MonoBehaviour
                 int index = projects.IndexOf(spot.currentProject);
                 if(!spot.currentProject.monthlyCost.Limited(GM.I.resource.resources)){
                     if(IsConstant(spot.currentProject)){
-                        levels[index] = 1;
+                        levels[index] += 1;
                     }else{
                         time[index]++;
                     }
