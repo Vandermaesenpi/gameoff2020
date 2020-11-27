@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Comfort - Bad Food
+  m_EditorClassIdentifier: 
+  eventName: POWER GRID FAILURE
+  description: A badly damaged geothermal plant has experienced a critical failure.
+    A massive energy surge is threatening to damage the entire grid.
+  choices:
+  - {fileID: 11400000, guid: 541e1cf18e369f446adc51af806fbf4d, type: 2}
+  - {fileID: 11400000, guid: 735d0ec7bb971c64b803c1c86b0dc6d6, type: 2}
+  - {fileID: 11400000, guid: 26bfdee4497db0642a5a4ffbffeb4d5e, type: 2}

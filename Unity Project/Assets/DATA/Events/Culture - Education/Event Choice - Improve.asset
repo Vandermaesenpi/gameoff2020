@@ -15,6 +15,6 @@ MonoBehaviour:
   choiceName: Improve
   description: You decide to add funds to the school system
   type: 3
-  amount: -300
+  amount: -500
   typeSecondary: 8
-  amountSecondary: 0.3
+  amountSecondary: 0.5

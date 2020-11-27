@@ -15,6 +15,9 @@ public class GameplayManager : MonoBehaviour
 
     [Header("TRAVEL")]
     public int travelLenght;
+    public float timer = 0;
+
+    public MoonRotator rotator;
 
     private void Start() {
         UpdateTime(true);
@@ -28,6 +31,7 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void UpdateTime(bool force){
+        timer += Time.deltaTime;
         if(!timePaused){
             monthTime += Time.deltaTime;
             if(monthTime >= currentSpeed){
@@ -85,10 +89,36 @@ public class GameplayManager : MonoBehaviour
     }
 
     void CheckWinConditions(){
-        if(currentTime == travelLenght){
+        if(currentTime >= travelLenght){
+            rotator.interactable = false;
+            rotator.target.eulerAngles = Vector3.zero;
             GM.I.ui.ShowWinScreen();
-            GM.I.introManager.animator.Play("Rocket");
+            GM.I.introManager.myAnimator.enabled = true;
+            GM.I.introManager.myAnimator.Play("Rocket");
             timePaused = true;
+
+            PlayerPrefs.SetInt("NewHome", 1);
+            if(GM.I.people.TotalPopulation >= 5000000){
+                PlayerPrefs.SetInt("BabyBoom", 1);
+            }
+            if(timer < 60f*45f){
+                PlayerPrefs.SetInt("LightSpeed", 1);
+            }
+            if(GM.I.people.hope <= 0.05f){
+                PlayerPrefs.SetInt("Hopeless", 1);
+            }
+            if(GM.I.people.holiday){
+                PlayerPrefs.SetInt("Holiday", 1);
+            }
+            int terraIncognitCount = 0;
+            foreach (BuildingSpot spot in GM.I.city.buildings)
+            {
+                if(spot.terraIncognita){terraIncognitCount++;}
+            }
+            if(terraIncognitCount >= 10){
+                PlayerPrefs.SetInt("TerraIncognita", 1);
+            }
+
             Analytics.CustomEvent("WinGame", new Dictionary<string, object>
             {
                 { "day", currentTime },
@@ -126,6 +156,23 @@ public class GameplayManager : MonoBehaviour
     }
 
     public void Restart(){
+        Analytics.CustomEvent("RestartGame", new Dictionary<string, object>
+        {
+            { "day", currentTime },
+            { "population", GM.I.people.TotalPopulation },
+            { "needs", GM.I.people.needs },
+            { "comfort", GM.I.people.comfort },
+            { "culture", GM.I.people.culture },
+            { "hope", GM.I.people.hope },
+            { "unemployement", GM.I.people.Unemployement },
+            { "energy", GM.I.resource.resources.Energy },
+            { "water", GM.I.resource.resources.Water },
+            { "material", GM.I.resource.resources.Material }
+        });
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    public void GoToMenu(){
         Analytics.CustomEvent("RestartGame", new Dictionary<string, object>
         {
             { "day", currentTime },

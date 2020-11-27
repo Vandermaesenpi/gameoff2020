@@ -11,10 +11,11 @@ public class MoonRotator : MonoBehaviour
     public Transform target;
     public float lerpSpeed;
     public EventSystem eventSystem;
+    public bool interactable = true;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject()){
+        if(Input.GetMouseButton(0) && !eventSystem.IsPointerOverGameObject()&&interactable){
             Vector3 delta = Input.mousePosition - mousePos;
             target.RotateAround(Vector3.zero, Vector3.down,delta.x * mouseSensitivity);
             target.RotateAround(Vector3.zero, Vector3.right,delta.y * mouseSensitivity);

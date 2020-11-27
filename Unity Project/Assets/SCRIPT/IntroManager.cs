@@ -20,7 +20,7 @@ public class IntroManager : MonoBehaviour
     public int charPerVoice;
     public List<Sprite> facesScientist;
     public List<Sprite> facesPresident;
-    public Animator animator;
+    public Animator myAnimator;
     public Animator bootAnimator;
     public Animator tutorialScreenAnimator;
     public CanvasGroup controlUIgroup;
@@ -58,14 +58,14 @@ public class IntroManager : MonoBehaviour
         while(currentStep == 0){
             yield return null;
         }
-        animator.Play("ShieldUp");
+        myAnimator.Play("ShieldUp");
         GM.I.sfx.PlayFaithfull(SFX.ShieldUp);
         yield return new WaitForSeconds(3f);
         dialogRoutine = StartCoroutine(ProcessDialogLine(shieldUpDialog));
         while(currentStep == 1){
             yield return null;
         }
-        animator.Play("Supernova");
+        myAnimator.Play("Supernova");
         GM.I.sfx.PlayFaithfull(SFX.SuperNova);
         yield return new WaitForSeconds(7f);
         GM.I.audioManager.canPlay = true;
@@ -180,7 +180,7 @@ public class IntroManager : MonoBehaviour
         GM.I.audioManager.canPlay = true;
         bootAnimator.gameObject.SetActive(false);
         tutorialScreenAnimator.Play("Idle");
-        animator.enabled = false;
+        myAnimator.enabled = false;
         dialogBox.SetActive(false);
         skipIntro.SetActive(false);
         rayCastBlockerBuild.SetActive(false);

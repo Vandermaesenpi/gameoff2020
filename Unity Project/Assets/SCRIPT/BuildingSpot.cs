@@ -14,6 +14,7 @@ public class BuildingSpot : MonoBehaviour
     public GameObject positionRing;
     public GameObject positionPoint;
     public GameObject statusRingInfo;
+    public GameObject statusRingProject;
     public GameObject statusRingWarning;
     public GameObject statusRingBad;
     public GameObject selectionRing;
@@ -38,6 +39,7 @@ public class BuildingSpot : MonoBehaviour
     public float costEfficiency;
     public float costEfficiencyModifier;
     public int population;
+    public bool terraIncognita = true;
     public Project currentProject;
 
     public bool Built{ get{ return constructionAmount >= currentBuilding.constructionTime;}}
@@ -110,6 +112,7 @@ public class BuildingSpot : MonoBehaviour
             constructionModel.SetActive(false);
             buildingModel.SetActive(true);
             discovered = true;
+            terraIncognita = false;
             storage = currentBuilding.baseStorage;
             foreach (Connection connection in connections)
             {
@@ -234,24 +237,34 @@ public class BuildingSpot : MonoBehaviour
             if(currentStatus == 0){
                 statusRingBad.SetActive(false);
                 statusRingWarning.SetActive(false);
+                statusRingProject.SetActive(false);
                 statusRingInfo.SetActive(false);
             }if(currentStatus == 1){
                 statusRingBad.SetActive(false);
                 statusRingWarning.SetActive(false);
+                statusRingProject.SetActive(false);
                 statusRingInfo.SetActive(true);
             }if(currentStatus == 2){
                 statusRingBad.SetActive(false);
-                statusRingWarning.SetActive(true);
+                statusRingWarning.SetActive(false);
+                statusRingProject.SetActive(true);
                 statusRingInfo.SetActive(false);
             }if(currentStatus == 3){
+                statusRingBad.SetActive(false);
+                statusRingWarning.SetActive(true);
+                statusRingProject.SetActive(false);
+                statusRingInfo.SetActive(false);
+            }if(currentStatus == 4){
                 statusRingBad.SetActive(true);
                 statusRingWarning.SetActive(false);
+                statusRingProject.SetActive(false);
                 statusRingInfo.SetActive(false);
             }
         }else{
             statusRingBad.SetActive(false);
             statusRingWarning.SetActive(false);
             statusRingInfo.SetActive(false);
+            statusRingProject.SetActive(false);
         }
         
         

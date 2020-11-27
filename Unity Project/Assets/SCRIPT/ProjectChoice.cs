@@ -11,12 +11,14 @@ public class ProjectChoice : MonoBehaviour
     public List<GameObject> levelMarkers;
     public GameObject additionnalInfo;
     public Image time;
+    public Tooltip tooltip;
     public Project project;
     public void Init(Project _project, BuildingSpot spot){
         project = _project;
         text.text = project.projectName;
         image.sprite = project.sprite;
         selectedImage.enabled = spot.currentProject == project;
+        tooltip.tip = project.effectDescription;
         foreach (GameObject marker in levelMarkers)
         {
             marker.SetActive(false);

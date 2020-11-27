@@ -23,6 +23,7 @@ public class PopulationManager : MonoBehaviour
     public float cultureDecay;
     public float cultureGain;
     public float needsModifier, cultureModifier, comfortModifier, hopeModifier;
+    public bool holiday = true;
     
     // --------------Processed variables
     public float Mood {get{return (needs*5f + culture + comfort + hope)/8f;}}
@@ -138,6 +139,9 @@ public class PopulationManager : MonoBehaviour
         ProcessComfort();
         ProcessCulture();
         ProcessHope();
+        if(culture < 0.5f || needs < 0.5f || comfort < 0.5f){
+            holiday = false;
+        }
     }
 
     void ProcessNeeds(){

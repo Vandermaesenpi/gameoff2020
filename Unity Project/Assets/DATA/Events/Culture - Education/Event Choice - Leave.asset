@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choiceName: Do nothing
   description: You decide that education isn't that important
-  effectText: -10% Culture
   type: 8
-  amount: -0.1
+  amount: 0
   typeSecondary: 14
   amountSecondary: 0

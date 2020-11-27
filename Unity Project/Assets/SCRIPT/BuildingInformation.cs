@@ -18,6 +18,7 @@ public class BuildingInformation : MonoBehaviour
     public Toggle projectToggle;
     public Toggle maintenanceToggle;
     public GameObject overviewMenu, productionMenu, projectMenu, projectDetail, maintenanceMenu;
+    public GameObject overviewAlert, productionAlert, projectAlert, maintenanceAlert;
     [Header("Overview")]
     public List<Text> statusTexts;
     public GameObject destroyButton;
@@ -192,72 +193,62 @@ public class BuildingInformation : MonoBehaviour
             {
                 text.text = "";
             }
+            overviewAlert.SetActive(false);
+            productionAlert.SetActive(false);
+            projectAlert.SetActive(false);
+            maintenanceAlert.SetActive(false);
         }
 
         if(!spot.Built){
             if(spot.constructionHalted){
-                statuses.Add("Construction stopped");
-                colors.Add(GM.I.art.red);
-                statuses.Add("Not enough resources!");
-                colors.Add(GM.I.art.red);
+                ProcessIndividualStatus("Construction stopped",GM.I.art.red,overviewAlert, ref statuses, ref colors, updateText);
+                
             }else{
-                statuses.Add("Under construction");
-                colors.Add(GM.I.art.light);
+                ProcessIndividualStatus("Under construction",GM.I.art.light,null, ref statuses, ref colors, updateText);
             }
         }else{
             
             if(spot.Cost.Limited(GM.I.resource.resources)){
-                statuses.Add("Not enough resources!");
-                colors.Add(GM.I.art.red);
+                ProcessIndividualStatus("Not enough resources!",GM.I.art.red,maintenanceAlert, ref statuses, ref colors, updateText);
             }
             if(spot.maintenance){
-                    statuses.Add("Under maintenance");
-                    colors.Add(GM.I.art.light);
+                ProcessIndividualStatus("Under maintenance",GM.I.art.light,maintenanceAlert, ref statuses, ref colors, updateText);
             }
             else if(spot.DangerousIntegrity){
-                statuses.Add("Needs maintenance!");
-                colors.Add(GM.I.art.red);
+                ProcessIndividualStatus("Needs maintenance!",GM.I.art.red,maintenanceAlert, ref statuses, ref colors, updateText);
             }
             else if(spot.BadIntegrity){
-                statuses.Add("Needs maintenance");
-                colors.Add(GM.I.art.orange);
+                ProcessIndividualStatus("Needs maintenance",GM.I.art.orange,maintenanceAlert, ref statuses, ref colors, updateText);
             }
             if(spot.currentBuilding.housing){
                 if(spot.OverPopulated){
-                    statuses.Add("Overpopulated!");
-                    colors.Add(GM.I.art.red);
+                    ProcessIndividualStatus("Overpopulated!",GM.I.art.red,overviewAlert, ref statuses, ref colors, updateText);
                 }else if(spot.HighPopulated){
-                    statuses.Add("Crowded");
-                    colors.Add(GM.I.art.orange);
+                    ProcessIndividualStatus("Crowded!",GM.I.art.orange,overviewAlert, ref statuses, ref colors, updateText);
                 }
             }
             if(spot.currentBuilding.productor){
                 if(!spot.producing){
-                    statuses.Add("Production stopped");
-                    colors.Add(GM.I.art.light);
+                    ProcessIndividualStatus("Production stopped",GM.I.art.light,productionAlert, ref statuses, ref colors, updateText);
                 }else if (!spot.maintenance){
                     if(spot.LowPopulated){
-                        statuses.Add("Not enough workers");
-                        colors.Add(GM.I.art.orange);
+                        ProcessIndividualStatus("Not enough workers",GM.I.art.orange,productionAlert, ref statuses, ref colors, updateText);
                     }
                     if(spot.storage == spot.ResourcePortion()){
-                        statuses.Add("Storage full");
-                        colors.Add(GM.I.art.light);
+                        ProcessIndividualStatus("Storage full",GM.I.art.light,productionAlert, ref statuses, ref colors, updateText);
                     }
                 }
                 
             }
             if(spot.currentBuilding.research){
                 if(spot.currentProject == null){
-                    statuses.Add("Needs a project!");
-                    colors.Add(GM.I.art.light);
+                    ProcessIndividualStatus("Needs a project",GM.I.art.pink,projectAlert, ref statuses, ref colors, updateText);
                 }
             }
         }
 
         if(statuses.Count == 0){
-            statuses.Add("Working correctly");
-            colors.Add(GM.I.art.green);
+            ProcessIndividualStatus("Working correctly",GM.I.art.green,null, ref statuses, ref colors, updateText);
         }
         int statusNumber = 0;
         for (int i = 0; i < statusTexts.Count; i++)
@@ -268,9 +259,12 @@ public class BuildingInformation : MonoBehaviour
                     statusTexts[i].color = colors[i];
                 }
                 if(colors[i] == GM.I.art.red){
+                    statusNumber = 4;
+                }
+                if(colors[i] == GM.I.art.orange && statusNumber <= 2){
                     statusNumber = 3;
                 }
-                if(colors[i] == GM.I.art.orange && statusNumber <= 1){
+                if(colors[i] == GM.I.art.pink && statusNumber <= 1){
                     statusNumber = 2;
                 }
                 if(colors[i] == GM.I.art.light && statusNumber == 0){
@@ -279,6 +273,14 @@ public class BuildingInformation : MonoBehaviour
             }
         }
         return statusNumber;
+    }
+
+    void ProcessIndividualStatus(string txt, Color color, GameObject alert, ref List<string> statuses, ref List<Color> colors, bool updateText){
+        statuses.Add(txt);
+        colors.Add(color);
+        if(updateText && alert != null){
+            alert.gameObject.SetActive(true);
+        }
     }
 
     public void UpdateMenuInfo(){
