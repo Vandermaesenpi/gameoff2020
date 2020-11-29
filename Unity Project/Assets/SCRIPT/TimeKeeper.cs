@@ -11,6 +11,7 @@ public class TimeKeeper : MonoBehaviour
     public Slider travelIndicator;
     public GameObject playButton, pauseButton;
     public Toggle pauseToggle, playToggle, fastToggle;
+    public Tooltip travelTip;
     public void UpdateClock(int time, float smoothTime){
         int month = time % 12;
         int year = (time-month)/12;
@@ -19,6 +20,7 @@ public class TimeKeeper : MonoBehaviour
         clockBar.fillAmount = (smoothTime + (float)month)/12f;
 
         travelIndicator.value = (float)time/(float)GM.I.gameplay.travelLenght;
+        travelTip.tip = GM.I.gameplay.travelLenght-time + " months left";
     }
 
     public void PauseButton(bool value){

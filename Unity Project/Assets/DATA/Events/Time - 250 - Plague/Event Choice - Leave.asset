@@ -16,5 +16,5 @@ MonoBehaviour:
   description: You let the plague decimate your population
   type: 12
   amount: 0.5
-  typeSecondary: 9
-  amountSecondary: -0.1
+  typeSecondary: 14
+  amountSecondary: 0

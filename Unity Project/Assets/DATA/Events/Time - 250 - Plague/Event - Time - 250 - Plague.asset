@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event - Time - 250 - Plague
   m_EditorClassIdentifier: 
   eventName: PLAGUE
-  description: A deadly plague is spreading in tyhe population. It is highly infectious
+  description: A deadly plague is spreading in the population. It is highly infectious
     and could pose a serious threat to society.
   choices:
   - {fileID: 11400000, guid: 661fb00fa63ab1848bb048a7191245e6, type: 2}

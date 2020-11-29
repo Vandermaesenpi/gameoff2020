@@ -21,7 +21,6 @@ public class EventChecker : MonoBehaviour
         lastTime = GM.I.gameplay.currentTime;
 
         Event randomEvent = events[Random.Range(0,events.Count)];
-        Debug.Log(randomEvent);
         GM.I.ui.warningMenu.InitEventMenu(randomEvent);
         if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy){
             GM.I.ui.buildingMenu.ClicBuildingMenu();

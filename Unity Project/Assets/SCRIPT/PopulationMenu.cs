@@ -73,7 +73,7 @@ public class PopulationMenu : MonoBehaviour
         growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
         growthText.text = growthOverviewText.text;
         growthText.color = growthOverviewText.color;
-        unemployementOverviewText.text = UIManager.HumanNotation(GM.I.people.Unemployement);
+        unemployementOverviewText.text = UIManager.HumanNotation(GM.I.people.IdlePopulation);
         if(GM.I.people.Unemployement > GM.I.people.UnemployementLimit){
             unemployementOverviewText.color = GM.I.art.red;
         }else{
@@ -86,7 +86,7 @@ public class PopulationMenu : MonoBehaviour
         workerOverviewText.text = workerText.text;
         workerOverviewText.color = workerText.color;
         lastWorkingPopulation = GM.I.people.WorkingPopulation;
-        idleText.text = UIManager.HumanNotation(GM.I.people.IdlePopulation);
+        idleText.text = UIManager.HumanNotation(GM.I.city.WorkplaceSpace());
         idleText.color = GM.I.people.IdlePopulation < GM.I.people.WorkingPopulation/3 ? GM.I.art.light : GM.I.art.light;
         birthText.text = UIManager.HumanNotation(GM.I.people.MonthlyBirth);
         birthText.color = GM.I.people.MonthlyBirth >= GM.I.people.MonthlyDeath ? GM.I.art.green : GM.I.art.red;

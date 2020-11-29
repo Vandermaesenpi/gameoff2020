@@ -117,10 +117,8 @@ public class PopulationManager : MonoBehaviour
         // Kill
         for (int i = 0; i < Population.Length; i++)
         {
-            float deathFactor = 1f;
-            deathFactor = (GM.I.city.ResourceShortage()? 2f: 1f);
-            deathFactor *= GM.I.city.buildings[0].OverPopulated?2f:1f;
-            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * GM.I.project.FX(FXT.Death) * deathFactor * (2f-Mood));
+            float deathFactor =  4f-(Mood*3f);
+            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * GM.I.project.FX(FXT.Death) * deathFactor);
             deathInSlice = Mathf.Min(Population[i],deathInSlice);
             Population[i] -= deathInSlice;
             MonthlyDeath += deathInSlice;
