@@ -141,7 +141,7 @@ public class PopulationManager : MonoBehaviour
         ProcessComfort();
         ProcessCulture();
         ProcessHope();
-        if(culture < 0.5f || needs < 0.5f || comfort < 0.5f){
+        if(culture < 0.2f || needs < 0.2f || comfort < 0.2f){
             holiday = false;
         }
     }

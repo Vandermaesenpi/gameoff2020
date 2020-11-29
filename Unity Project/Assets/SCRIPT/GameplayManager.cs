@@ -47,21 +47,21 @@ public class GameplayManager : MonoBehaviour
                 CheckLooseConditions();
                 CheckWinConditions();
                 // Decade Analytics
-                if(monthTime % 120 == 0){
-                    Analytics.CustomEvent("DecadeGame", new Dictionary<string, object>
-                    {
-                        { "day", currentTime },
-                        { "population", GM.I.people.TotalPopulation },
-                        { "needs", GM.I.people.needs },
-                        { "comfort", GM.I.people.comfort },
-                        { "culture", GM.I.people.culture },
-                        { "hope", GM.I.people.hope },
-                        { "unemployement", GM.I.people.Unemployement },
-                        { "energy", GM.I.resource.resources.Energy },
-                        { "water", GM.I.resource.resources.Water },
-                        { "material", GM.I.resource.resources.Material }
-                    });
-                }
+                // if(monthTime % 120 == 0){
+                //     Analytics.CustomEvent("DecadeGame", new Dictionary<string, object>
+                //     {
+                //         { "day", currentTime },
+                //         { "population", GM.I.people.TotalPopulation },
+                //         { "needs", GM.I.people.needs },
+                //         { "comfort", GM.I.people.comfort },
+                //         { "culture", GM.I.people.culture },
+                //         { "hope", GM.I.people.hope },
+                //         { "unemployement", GM.I.people.Unemployement },
+                //         { "energy", GM.I.resource.resources.Energy },
+                //         { "water", GM.I.resource.resources.Water },
+                //         { "material", GM.I.resource.resources.Material }
+                //     });
+                // }
             }
             GM.I.ui.timeKeeper.UpdateClock(currentTime, monthTime/currentSpeed);
         }
@@ -98,7 +98,7 @@ public class GameplayManager : MonoBehaviour
             timePaused = true;
 
             PlayerPrefs.SetInt("NewHome", 1);
-            if(GM.I.people.TotalPopulation >= 1000000){
+            if(GM.I.people.TotalPopulation >= 500000){
                 PlayerPrefs.SetInt("BabyBoom", 1);
             }
             if(timer < 60f*45f){
@@ -115,7 +115,7 @@ public class GameplayManager : MonoBehaviour
             {
                 if(spot.terraIncognita){terraIncognitCount++;}
             }
-            if(terraIncognitCount >= 10){
+            if(terraIncognitCount == 0){
                 PlayerPrefs.SetInt("TerraIncognita", 1);
             }
 

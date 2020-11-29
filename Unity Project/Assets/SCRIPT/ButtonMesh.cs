@@ -69,4 +69,10 @@ public class ButtonMesh : MonoBehaviour
         }
     }
 
+    private void Update() {
+        if(GM.I.gameplay.currentTime >= GM.I.gameplay.travelLenght){
+            this.enabled = false;
+        }
+    }
+
 }

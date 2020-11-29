@@ -16,6 +16,6 @@ MonoBehaviour:
   description: A massive moonquake is damaging your infrastructure aroung the globe.
     A rapid response is required.
   choices:
-  - {fileID: 11400000, guid: 661fb00fa63ab1848bb048a7191245e6, type: 2}
-  - {fileID: 11400000, guid: 24101e8fd3027ef499ba27691bbc0ff5, type: 2}
-  - {fileID: 11400000, guid: 051ed98c233b1964d97f9a220c0d2aeb, type: 2}
+  - {fileID: 11400000, guid: 177f739d89fd09644a758544a0926324, type: 2}
+  - {fileID: 11400000, guid: 9cd701023a283c24eac841ed3147bc6d, type: 2}
+  - {fileID: 11400000, guid: 73ced83343caa1e44b3402a0b47a10a3, type: 2}

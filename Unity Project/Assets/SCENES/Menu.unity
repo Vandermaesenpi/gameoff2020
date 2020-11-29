@@ -8535,7 +8535,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Finish the game without having Needs, Culture or Comfort dropping bellow
-        50%
+        20%
       objectReference: {fileID: 0}
     - target: {fileID: 7900560377511039720, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}
@@ -48661,7 +48661,7 @@ PrefabInstance:
     - target: {fileID: 7841309341224748089, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}
       propertyPath: m_Text
-      value: Finish the game with at least 1'000'000 citizens
+      value: Finish the game with at least 500'000 citizens
       objectReference: {fileID: 0}
     - target: {fileID: 7900560377511039720, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}
@@ -54322,6 +54322,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 4f86d48c6e2516f4eafa06382f1b4a7b,
         type: 3}
+    - target: {fileID: 7841309341224748089, guid: 78e7f6d0a62b8894b991bcef4877caba,
+        type: 3}
+      propertyPath: m_Text
+      value: Finish the game having built something on every spot
+      objectReference: {fileID: 0}
     - target: {fileID: 7900560377511039720, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}
       propertyPath: linkedAchievement
