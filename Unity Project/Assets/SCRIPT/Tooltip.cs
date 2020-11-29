@@ -19,6 +19,7 @@ public class Tooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler{
      }
 
      private void OnDisable() {
+         if(GM.I.tooltip != null)
          GM.I.tooltip.HideTooltip();
      }
 }

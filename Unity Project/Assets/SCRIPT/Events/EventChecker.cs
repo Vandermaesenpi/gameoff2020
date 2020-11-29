@@ -28,6 +28,9 @@ public class EventChecker : MonoBehaviour
         }if(GM.I.ui.populationMenu.gameObject.activeInHierarchy){
             GM.I.ui.populationMenu.ClicPopulationMenu();
         }
+        if(GM.I.ui.populationMenu.moodMenu.activeInHierarchy){
+            GM.I.ui.populationMenu.ClicMoodMenu();
+        }
         GM.I.ui.buildingInformation.ShowBuildingInfo(null);
         triggered = true;
         GM.I.gameplay.PauseTime(true);

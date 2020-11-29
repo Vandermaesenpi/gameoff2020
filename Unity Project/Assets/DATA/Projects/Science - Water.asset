@@ -16,7 +16,7 @@ MonoBehaviour:
   projectLength: {x: 120, y: 600, z: 2400}
   projectDescription: Powerfull heating technology capable of melting ice at an accelerated
     pace.
-  effectDescription: +50% production
+  effectDescription: +25% water production
   sprite: {fileID: 21300000, guid: ed81811f79a421d4eb74cd2c0637715b, type: 3}
   monthlyCost:
     r:
@@ -25,4 +25,4 @@ MonoBehaviour:
     - 0
   type: 2
   resourceType: 1
-  amount: {x: 1.5, y: 2.25, z: 3.375}
+  amount: {x: 1.25, y: 1.5, z: 2}

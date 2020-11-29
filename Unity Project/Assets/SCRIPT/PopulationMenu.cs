@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PopulationMenu : MonoBehaviour
 {
-    public GameObject populationOverview;
+    public GameObject moodMenu;
     public Text totalText;
     public Text totalOverviewText;
     public Text growthText;
@@ -23,6 +23,10 @@ public class PopulationMenu : MonoBehaviour
 
     public List<Image> agePyramid;
     public Text moodOverviewText;
+    public Image needIcon;
+    public Image comfortIcon;
+    public Image cultureIcon;
+    public Image hopeIcon;
     public Text needText;
     public Text comfortText;
     public Text cultureText;
@@ -39,11 +43,24 @@ public class PopulationMenu : MonoBehaviour
 
     public void ClicPopulationMenu(){
         bool value = !gameObject.activeInHierarchy;
-        if(value && GM.I.ui.buildingMenu.gameObject.activeInHierarchy){
+        if(value){
+            if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
             GM.I.ui.buildingMenu.ClicBuildingMenu();
+            if(moodMenu.activeInHierarchy)
+            ClicMoodMenu();
         }
         gameObject.SetActive(value);
-        populationOverview.SetActive(!value);
+    }
+
+    public void ClicMoodMenu(){
+        bool value = !moodMenu.activeInHierarchy;
+        if(value){
+            if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
+            GM.I.ui.buildingMenu.ClicBuildingMenu();
+            if(gameObject.activeInHierarchy)
+            ClicPopulationMenu();
+        }
+        moodMenu.SetActive(value);
     }
 
     public void UpdateMenu(){
@@ -51,9 +68,8 @@ public class PopulationMenu : MonoBehaviour
         totalOverviewText.text = totalText.text;
         totalOverviewText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
         totalText.color = GM.I.people.Growing? GM.I.art.green : GM.I.art.red;
-        growthOverviewText.text = ""+Mathf.Round(10f*Mathf.Pow(GM.I.people.GrowthPercentage,120f))/10f + "%";
+        growthOverviewText.text = UIManager.HumanNotationSigned(GM.I.people.GrowthPercentage);
         
-        if(GM.I.people.GrowthPercentage > 0) { growthOverviewText.text = "+"+growthOverviewText.text;}else{ growthOverviewText.text = "-"+growthOverviewText.text;}
         growthOverviewText.color = GM.I.people.GrowthPercentage > 0? GM.I.art.green : GM.I.art.red;
         growthText.text = growthOverviewText.text;
         growthText.color = growthOverviewText.color;
@@ -99,13 +115,26 @@ public class PopulationMenu : MonoBehaviour
         ProcessMood(GM.I.people.culture,cultureText,cultureTextMenu);
         ProcessMood(GM.I.people.hope,hopeText,hopeTextMenu);
 
-        needEnergyRatioText.text = ""+(int)GM.I.resource.resources.Energy + "/" + (int)GM.I.people.NeedsThreshold; 
+        needEnergyRatioText.text = ""+(int)GM.I.resource.resources.Energy + "/" + (int)GM.I.people.NeedsThreshold;
+        needEnergyRatioText.color = (int)GM.I.resource.resources.Energy >= (int)GM.I.people.NeedsThreshold ? GM.I.art.green : GM.I.art.red;
         needMaterialRatioText.text = ""+(int)GM.I.resource.resources.Material + "/" + (int)GM.I.people.NeedsThreshold; 
+        needMaterialRatioText.color = (int)GM.I.resource.resources.Material >= (int)GM.I.people.NeedsThreshold ? GM.I.art.green : GM.I.art.red;
         needWaterRatioText.text = ""+(int)GM.I.resource.resources.Water + "/" + (int)GM.I.people.NeedsThreshold; 
+        needWaterRatioText.color = (int)GM.I.resource.resources.Water >= (int)GM.I.people.NeedsThreshold ? GM.I.art.green : GM.I.art.red;
 
-        comfortRatioText.text = ""+GM.I.people.TotalPopulation+"/"+GM.I.people.ComfortThreshold;
-        cultureRatioText.text = ""+GM.I.people.TotalPopulation+"/"+GM.I.people.CultureThreshold;
+        if(needEnergyRatioText.color == GM.I.art.red ||needWaterRatioText.color == GM.I.art.red ||needMaterialRatioText.color == GM.I.art.red){
+            needIcon.color = GM.I.art.red;
+        }else{
+            needIcon.color = GM.I.art.green;
+        }
 
+        comfortRatioText.text = ""+UIManager.HumanNotation(GM.I.people.TotalPopulation)+"/"+UIManager.HumanNotation((int)GM.I.people.ComfortThreshold);
+        comfortRatioText.color = GM.I.people.TotalPopulation <= GM.I.people.ComfortThreshold ? GM.I.art.green : GM.I.art.red;
+        comfortIcon.color = comfortRatioText.color;
+        cultureRatioText.text = ""+UIManager.HumanNotation(GM.I.people.TotalPopulation)+"/"+UIManager.HumanNotation((int)GM.I.people.CultureThreshold);
+        cultureRatioText.color = GM.I.people.TotalPopulation <= GM.I.people.CultureThreshold ? GM.I.art.green : GM.I.art.red;
+        cultureIcon.color = cultureRatioText.color;
+        hopeIcon.color = GM.I.people.hope < 0.5f? GM.I.art.red : GM.I.art.green;
     }
 
     void ProcessMood(float mood, Text text, Text text2){

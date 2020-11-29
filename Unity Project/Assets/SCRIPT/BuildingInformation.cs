@@ -348,6 +348,10 @@ public class BuildingInformation : MonoBehaviour
             projectLengthText.text = (GM.I.project.GetLength(selectedProject) - GM.I.project.GetTime(selectedProject)) + " months";
             startProjectButton.SetActive(selectedProject != selectedSpot.currentProject);
             stopProjectButton.SetActive(selectedProject == selectedSpot.currentProject);
+            if(GM.I.project.GetLevel(selectedProject) == 3 && !GM.I.project.IsConstant(selectedProject)){
+                startProjectButton.SetActive(false);
+                stopProjectButton.SetActive(false);
+            }
             projectDescriptionText.text = selectedProject.projectDescription;
             projectEffectText.text = selectedProject.effectDescription;
             projectCost.UpdateRessourceBox(selectedProject.monthlyCost);

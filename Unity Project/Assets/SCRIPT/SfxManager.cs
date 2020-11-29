@@ -15,6 +15,11 @@ public class SfxManager : MonoBehaviour
         source.PlayOneShot(clips[(int)sfx]);
     }
 
+    public void Play(AudioClip clip){
+        source.pitch = 1;
+        source.PlayOneShot(clip);
+    }
+
     public void PlayFaithfull(SFX sfx){
         sourceFaithfull.PlayOneShot(clips[(int)sfx]);
     }
@@ -22,7 +27,8 @@ public class SfxManager : MonoBehaviour
     public void SetVolume(float amount){
         source.volume = amount;
         sourceFaithfull.volume = amount;
-        Play(SFX.Tic);
+        if(!source.isPlaying)
+        Play(SFX.Talk);
     }
 }
 

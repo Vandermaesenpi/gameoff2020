@@ -19,7 +19,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 212db4d5b04fb544abf7d6f03e89e90e, type: 3}
   monthlyCost:
     r:
-    - -1
+    - -5
     - 0
     - 0
   type: 9

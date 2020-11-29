@@ -15,7 +15,7 @@ MonoBehaviour:
   projectName: HARD CORE DRILL
   projectLength: {x: 120, y: 600, z: 2400}
   projectDescription: Tough drills to tear and extract materials faster.
-  effectDescription: +50% material production
+  effectDescription: +25% material production
   sprite: {fileID: 21300000, guid: 4cb1a4620ca5cb64b8113516a5c364a8, type: 3}
   monthlyCost:
     r:
@@ -24,4 +24,4 @@ MonoBehaviour:
     - -3
   type: 3
   resourceType: 2
-  amount: {x: 1.5, y: 2.25, z: 3.375}
+  amount: {x: 1.25, y: 1.5, z: 2}

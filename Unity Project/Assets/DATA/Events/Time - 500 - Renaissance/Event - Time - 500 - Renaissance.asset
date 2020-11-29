@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Time - 500 - Renaissance
+  m_EditorClassIdentifier: 
+  eventName: RENAISSANCE
+  description: Your citizens are experiencing a renewed interest in 21th century
+    culture, lleading to a great increase in irony and detachement.
+  choices:
+  - {fileID: 11400000, guid: 9ac87381d0688ab4a872d3a4bda8bed4, type: 2}
+  - {fileID: 11400000, guid: 051ed98c233b1964d97f9a220c0d2aeb, type: 2}

@@ -15,13 +15,13 @@ MonoBehaviour:
   projectName: CAMPUS
   projectLength: {x: -1, y: 0, z: 0}
   projectDescription: Hub for scholars, artists, actors and thinkers.
-  effectDescription: +50000 culture capacity
+  effectDescription: +300'000 culture capacity
   sprite: {fileID: 21300000, guid: 586c3fa8544c1f447ace23882a0a601c, type: 3}
   monthlyCost:
     r:
-    - 0
-    - 0
-    - -0.5
+    - -2
+    - -2
+    - -2
   type: 8
   resourceType: 0
-  amount: {x: 50000, y: 1.1, z: 1.1}
+  amount: {x: 300000, y: 1.1, z: 1.1}

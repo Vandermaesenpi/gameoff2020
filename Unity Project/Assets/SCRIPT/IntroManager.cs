@@ -20,6 +20,7 @@ public class IntroManager : MonoBehaviour
     public int charPerVoice;
     public List<Sprite> facesScientist;
     public List<Sprite> facesPresident;
+    public List<Sprite> facesPresidentRadio;
     public Animator myAnimator;
     public Animator bootAnimator;
     public Animator tutorialScreenAnimator;
@@ -213,6 +214,10 @@ public class IntroManager : MonoBehaviour
                 faceImage = facePresidentImage;
                 faces = facesPresident;
                 pitch = 1f;
+            }else if(dialog[i][0] == 'R'){
+                faceImage = facePresidentImage;
+                faces = facesPresidentRadio;
+                pitch = 0.9f;
             }else{
                 faceImage = faceScientistImage;
                 faces = facesScientist;

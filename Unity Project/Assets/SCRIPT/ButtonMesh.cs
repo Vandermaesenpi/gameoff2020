@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class ButtonMesh : MonoBehaviour
 {
+    public EventSystem eventSystem;
     public GameObject normal;
     public GameObject highlight;
     public GameObject click;
@@ -12,6 +14,7 @@ public class ButtonMesh : MonoBehaviour
     public UnityEvent onClic;
     public UnityEvent onEnter;
     public UnityEvent onExit;
+    
 
     private void OnEnable() {
         if(highlight != null){
@@ -26,6 +29,7 @@ public class ButtonMesh : MonoBehaviour
     }
 
     private void OnMouseEnter() {
+        if(eventSystem.IsPointerOverGameObject()){return;}
         onEnter.Invoke();
         if(highlight != null){
             highlight.SetActive(true);
@@ -52,6 +56,7 @@ public class ButtonMesh : MonoBehaviour
     }
 
     private void OnMouseDown() {
+        if(eventSystem.IsPointerOverGameObject()){return;}
         onClic.Invoke();
         if(highlight != null){
             highlight.SetActive(false);

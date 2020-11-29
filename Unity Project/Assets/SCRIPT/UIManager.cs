@@ -24,6 +24,20 @@ public class UIManager : MonoBehaviour
         return HumanNotation((uint)number);
     }
 
+    public static string HumanNotationSigned(int number){
+        string newString = ""+Mathf.Abs(number);
+        for (int i = 3; i < newString.Length; i += 4)
+        {
+            newString = newString.Insert(newString.Length - i, "'");
+        }
+        if(number < 0){
+            newString = "-"+newString;
+        }else{
+            newString = "+"+newString;
+        }
+        return newString;
+    }
+
     public void ShowWinScreen(){
         gameScreen.SetActive(false);
         winScreen.SetActive(true);
@@ -36,6 +50,9 @@ public class UIManager : MonoBehaviour
     public void CloseAllUI(){
         if(populationMenu.gameObject.activeInHierarchy){
             populationMenu.ClicPopulationMenu();
+        }
+        if(populationMenu.moodMenu.activeInHierarchy){
+            populationMenu.ClicMoodMenu();
         }
         if(buildingMenu.gameObject.activeInHierarchy){
             buildingMenu.ClicBuildingMenu();

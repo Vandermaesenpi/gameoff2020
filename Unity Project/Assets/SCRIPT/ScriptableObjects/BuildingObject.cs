@@ -30,4 +30,5 @@ public class BuildingObject : ScriptableObject
     public string costInfo;
     [TextArea]
     public string shortageEffect;
+    public AudioClip constructionSound;
 }

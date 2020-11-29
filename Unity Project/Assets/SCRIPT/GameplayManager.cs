@@ -98,7 +98,7 @@ public class GameplayManager : MonoBehaviour
             timePaused = true;
 
             PlayerPrefs.SetInt("NewHome", 1);
-            if(GM.I.people.TotalPopulation >= 5000000){
+            if(GM.I.people.TotalPopulation >= 1000000){
                 PlayerPrefs.SetInt("BabyBoom", 1);
             }
             if(timer < 60f*45f){

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectName: ENTERTAINEMENT
   projectLength: {x: -1, y: 0, z: 0}
-  projectDescription: Makes jobless days a little more enjoyable.
-  effectDescription: Unemployment limit +10%
+  projectDescription: Makes life a little more enjoyable.
+  effectDescription: +100'000 culture capacity
   sprite: {fileID: 21300000, guid: f644542097012b74ebfc0b5b05c90fbd, type: 3}
   monthlyCost:
     r:
-    - -0.5
+    - -3
     - 0
     - 0
   type: 13
   resourceType: 0
-  amount: {x: 0.15, y: 0.1, z: 0.15}
+  amount: {x: 100000, y: 0.1, z: 0.15}

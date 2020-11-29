@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c242db8936a7ec44ea3b74a77301fd79, type: 3}
+  m_Name: Event - Time - 250 - Plague
+  m_EditorClassIdentifier: 
+  eventName: PLAGUE
+  description: A deadly plague is spreading in tyhe population. It is highly infectious
+    and could pose a serious threat to society.
+  choices:
+  - {fileID: 11400000, guid: 661fb00fa63ab1848bb048a7191245e6, type: 2}
+  - {fileID: 11400000, guid: 24101e8fd3027ef499ba27691bbc0ff5, type: 2}
+  - {fileID: 11400000, guid: 051ed98c233b1964d97f9a220c0d2aeb, type: 2}

@@ -28,7 +28,11 @@ public class ProjectManager : MonoBehaviour
                 if(IsConstant(p)){
                     return p.amount[0] * GetLevel(p);
                 }else{
-                    return p.amount[GetLevel(p)-1];
+                    if(GetLevel(p) == 0){
+                        return 1f;
+                    }else{
+                        return p.amount[GetLevel(p)-1];
+                    }
                 }
             }
         }
@@ -70,7 +74,7 @@ public class ProjectManager : MonoBehaviour
         for (int i = 0; i < projects.Count; i++)
         {
             if(!IsConstant(projects[i])){
-                if(projects[i].projectLength.x <= time[i]){
+                if(GetLength(projects[i]) <= time[i]){
                     levels[i]++;
                     time[i] = 0;
                 }

@@ -23,6 +23,9 @@ public class BuildingMenu : MonoBehaviour
             if(GM.I.ui.populationMenu.gameObject.activeInHierarchy){
                 GM.I.ui.populationMenu.ClicPopulationMenu();
             }
+            if(GM.I.ui.populationMenu.moodMenu.activeInHierarchy){
+                GM.I.ui.populationMenu.ClicMoodMenu();
+            }
             GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         }else{
             GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Normal);

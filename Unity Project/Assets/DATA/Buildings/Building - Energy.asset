@@ -50,3 +50,4 @@ MonoBehaviour:
   shortageEffect: 'Resource shortage!
 
     Production stopped'
+  constructionSound: {fileID: 8300000, guid: 9e8efc61b59a1c44e905f52de55493b7, type: 3}

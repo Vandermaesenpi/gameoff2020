@@ -26,11 +26,11 @@ public class PopulationManager : MonoBehaviour
     public bool holiday = true;
     
     // --------------Processed variables
-    public float Mood {get{return (needs*5f + culture + comfort + hope)/8f;}}
+    public float Mood {get{return (needs + culture + comfort + hope)/4f;}}
 
     public float NeedsThreshold{get{return 200 + GM.I.project.FX(FXT.Needs);}}
     public float ComfortThreshold{get{return GM.I.city.HousingSpace()+ GM.I.project.FX(FXT.Comfort);}}
-    public float CultureThreshold{get{return (float)(GM.I.city.Culture() * 50000f + GM.I.project.FX(FXT.Culture));}}
+    public float CultureThreshold{get{return (float)(GM.I.city.Culture() * 50000f + GM.I.project.FX(FXT.Culture)+ GM.I.project.FX(FXT.Idle));}}
     public uint GetPopulationRange(int min, int max){
         uint total = 0;
             for (int i = min * 12; i < max * 12; i++)
@@ -72,9 +72,9 @@ public class PopulationManager : MonoBehaviour
         }
     }
 
-    public float GrowthPercentage{
+    public int GrowthPercentage{
         get{
-            return (float)(MonthlyBirth - MonthlyDeath)/(float)TotalPopulation;
+            return MonthlyBirth - MonthlyDeath;
         }
     }
 
@@ -86,7 +86,7 @@ public class PopulationManager : MonoBehaviour
 
     public float UnemployementLimit{
         get{
-            return 0.25f + GM.I.project.FX(FXT.Idle)-1f;
+            return 0.20f;
         }
     }
 
@@ -120,7 +120,7 @@ public class PopulationManager : MonoBehaviour
             float deathFactor = 1f;
             deathFactor = (GM.I.city.ResourceShortage()? 2f: 1f);
             deathFactor *= GM.I.city.buildings[0].OverPopulated?2f:1f;
-            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * GM.I.project.FX(FXT.Death) * deathFactor);
+            int deathInSlice = (int)((float)Population[i] * DeathProbability[i] * GM.I.project.FX(FXT.Death) * deathFactor * (2f-Mood));
             deathInSlice = Mathf.Min(Population[i],deathInSlice);
             Population[i] -= deathInSlice;
             MonthlyDeath += deathInSlice;

@@ -113,6 +113,8 @@ public class BuildingSpot : MonoBehaviour
             buildingModel.SetActive(true);
             discovered = true;
             terraIncognita = false;
+            if(currentBuilding.constructionSound != null)
+                GM.I.sfx.Play(currentBuilding.constructionSound);
             storage = currentBuilding.baseStorage;
             foreach (Connection connection in connections)
             {
@@ -168,7 +170,7 @@ public class BuildingSpot : MonoBehaviour
                 efficiency = 0f;
                 costEfficiency = 0f;
             }else{
-                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation/(uint)GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation * ((float)currentBuilding.populationRequirement / (float)GM.I.city.WorkplaceSpace()), 0, currentBuilding.populationRequirement);
                 efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
                 costEfficiency = costEfficiencyModifier;
             }
@@ -178,7 +180,7 @@ public class BuildingSpot : MonoBehaviour
                 efficiency = 0f;
                 costEfficiency = 0f;
             }else{
-                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation/(uint)GM.I.city.Workplace(), 0, currentBuilding.populationRequirement);
+                population = (int)Mathf.Clamp(GM.I.people.WorkingPopulation * ((float)currentBuilding.populationRequirement / (float)GM.I.city.WorkplaceSpace()), 0, currentBuilding.populationRequirement);
                 efficiency = Mathf.Max(Mathf.Clamp((float)population/(float)currentBuilding.populationRequirement,0f,1f) + efficiencyModifier, 0f);
                 costEfficiency = costEfficiencyModifier;
             }

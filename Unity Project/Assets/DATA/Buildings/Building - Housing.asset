@@ -50,3 +50,4 @@ MonoBehaviour:
   shortageEffect: 'Resource shortage!
 
     Death/Month increased'
+  constructionSound: {fileID: 8300000, guid: 124fd25604790184392a95ecbc4d0939, type: 3}

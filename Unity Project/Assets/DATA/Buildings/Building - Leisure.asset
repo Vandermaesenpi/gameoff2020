@@ -21,11 +21,11 @@ MonoBehaviour:
   populationName: WORKERS
   ressourceType: 0
   projects:
-  - {fileID: 11400000, guid: eb8684d399a37c94a88331a1b2434682, type: 2}
-  - {fileID: 11400000, guid: 7cd47121bc7b7b94198bc9c163cdbfa1, type: 2}
   - {fileID: 11400000, guid: 90826b4787f4ebe46b2b1d085f6eb84f, type: 2}
-  - {fileID: 11400000, guid: fea1ec7a5e8058c48a6e7ea31660fd0f, type: 2}
   - {fileID: 11400000, guid: cf0e7eaf90fc2ff449dbed1ff1e738fc, type: 2}
+  - {fileID: 11400000, guid: 7cd47121bc7b7b94198bc9c163cdbfa1, type: 2}
+  - {fileID: 11400000, guid: fea1ec7a5e8058c48a6e7ea31660fd0f, type: 2}
+  - {fileID: 11400000, guid: eb8684d399a37c94a88331a1b2434682, type: 2}
   - {fileID: 11400000, guid: d88d879cc5685da46ac85484719f8f92, type: 2}
   production:
     r:
@@ -52,5 +52,6 @@ MonoBehaviour:
   decay: 0.002
   decayEffect: 
   maintenanceEffect: Maintenance pause current project
-  costInfo: 
+  costInfo: This building cost depends on the project
   shortageEffect: 
+  constructionSound: {fileID: 8300000, guid: 6c86cdc901f47654da7dc0b9f576e017, type: 3}
