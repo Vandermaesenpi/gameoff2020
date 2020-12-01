@@ -68,9 +68,9 @@ public class IntroManager : MonoBehaviour
         }
         myAnimator.Play("Supernova");
         GM.I.sfx.PlayFaithfull(SFX.SuperNova);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.5f);
         AudioDontDestroy.I.source.Stop();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3.5f);
         GM.I.audioManager.canPlay = true;
         yield return new WaitForSeconds(9f);
         dialogRoutine = StartCoroutine(ProcessDialogLine(aloneInSpaceDialog));
