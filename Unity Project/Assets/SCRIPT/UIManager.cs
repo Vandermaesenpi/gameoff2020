@@ -49,13 +49,13 @@ public class UIManager : MonoBehaviour
 
     public void CloseAllUI(){
         if(populationMenu.gameObject.activeInHierarchy){
-            populationMenu.ClicPopulationMenu();
+            populationMenu.ClicPopulationMenu(false);
         }
         if(populationMenu.moodMenu.activeInHierarchy){
-            populationMenu.ClicMoodMenu();
+            populationMenu.ClicMoodMenu(false);
         }
         if(buildingMenu.gameObject.activeInHierarchy){
-            buildingMenu.ClicBuildingMenu();
+            buildingMenu.ClicBuildingMenu(false);
         }
         buildingInformation.ShowBuildingInfo(null);
     }

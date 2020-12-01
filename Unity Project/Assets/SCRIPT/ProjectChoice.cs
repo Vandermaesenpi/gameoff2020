@@ -29,8 +29,8 @@ public class ProjectChoice : MonoBehaviour
         }else{
             for (var i = 1; i <= GM.I.project.GetLevel(project); i++)
             {
-                if(levelMarkers.Count > i){
-                    levelMarkers[i].SetActive(true);
+                if(levelMarkers.Count > i-1){
+                    levelMarkers[i-1].SetActive(true);
                 }
             }
             time.fillAmount = (float)GM.I.project.GetTime(project)/(float)GM.I.project.GetLength(project);

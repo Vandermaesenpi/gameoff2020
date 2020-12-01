@@ -21,5 +21,6 @@ public class AudioManager : MonoBehaviour
 
     public void SetVolume(float amount){
         audioSource.volume = amount;
+        AudioDontDestroy.I.source.volume = amount;
     }
 }

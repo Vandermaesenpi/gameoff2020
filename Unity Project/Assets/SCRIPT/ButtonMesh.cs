@@ -30,15 +30,17 @@ public class ButtonMesh : MonoBehaviour
 
     private void OnMouseEnter() {
         if(eventSystem.IsPointerOverGameObject()){return;}
-        onEnter.Invoke();
-        if(highlight != null){
-            highlight.SetActive(true);
-        }
-        if(normal != null){
-            normal.SetActive(false);
-        }
-        if(click != null){
-            click.SetActive(false);
+        if(GM.I.gameplay.currentTime < GM.I.gameplay.travelLenght){
+            onEnter.Invoke();
+            if(highlight != null){
+                highlight.SetActive(true);
+            }
+            if(normal != null){
+                normal.SetActive(false);
+            }
+            if(click != null){
+                click.SetActive(false);
+            }
         }
     }
 
@@ -57,21 +59,17 @@ public class ButtonMesh : MonoBehaviour
 
     private void OnMouseDown() {
         if(eventSystem.IsPointerOverGameObject()){return;}
-        onClic.Invoke();
-        if(highlight != null){
-            highlight.SetActive(false);
-        }
-        if(normal != null){
-            normal.SetActive(false);
-        }
-        if(click != null){
-            click.SetActive(true);
-        }
-    }
-
-    private void Update() {
-        if(GM.I.gameplay.currentTime >= GM.I.gameplay.travelLenght){
-            this.enabled = false;
+        if(GM.I.gameplay.currentTime < GM.I.gameplay.travelLenght){
+            onClic.Invoke();
+            if(highlight != null){
+                highlight.SetActive(false);
+            }
+            if(normal != null){
+                normal.SetActive(false);
+            }
+            if(click != null){
+                click.SetActive(true);
+            }
         }
     }
 

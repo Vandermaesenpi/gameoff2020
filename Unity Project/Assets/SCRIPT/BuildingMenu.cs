@@ -15,16 +15,19 @@ public class BuildingMenu : MonoBehaviour
     public RessourceBox cost;
     public RessourceBox constructionCost;
     public Text constructionTime;
-    public void ClicBuildingMenu(){
+
+    public AudioClip openSfx, closeSfx;
+
+    public void ClicBuildingMenu(bool sfx){
         bool value = !gameObject.activeInHierarchy;
         gameObject.SetActive(value);
         GM.I.city.ShowHoloMoon(value);
         if(value){
             if(GM.I.ui.populationMenu.gameObject.activeInHierarchy){
-                GM.I.ui.populationMenu.ClicPopulationMenu();
+                GM.I.ui.populationMenu.ClicPopulationMenu(false);
             }
             if(GM.I.ui.populationMenu.moodMenu.activeInHierarchy){
-                GM.I.ui.populationMenu.ClicMoodMenu();
+                GM.I.ui.populationMenu.ClicMoodMenu(false);
             }
             GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         }else{
@@ -34,7 +37,9 @@ public class BuildingMenu : MonoBehaviour
         {
             choice.InitializeMiniature();
         }
-        GM.I.sfx.Play(value? SFX.Tic : SFX.Tuc);
+        if(sfx){
+            GM.I.sfx.Play(value? openSfx : closeSfx);
+        }
     }
 
     private void Start() {

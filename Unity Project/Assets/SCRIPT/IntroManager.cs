@@ -68,7 +68,9 @@ public class IntroManager : MonoBehaviour
         }
         myAnimator.Play("Supernova");
         GM.I.sfx.PlayFaithfull(SFX.SuperNova);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
+        AudioDontDestroy.I.source.Stop();
+        yield return new WaitForSeconds(4f);
         GM.I.audioManager.canPlay = true;
         yield return new WaitForSeconds(9f);
         dialogRoutine = StartCoroutine(ProcessDialogLine(aloneInSpaceDialog));
@@ -193,6 +195,7 @@ public class IntroManager : MonoBehaviour
         researchButton.SetActive(true);
         leisureButton.SetActive(true);
         controlUIgroup.alpha = 1;
+        AudioDontDestroy.I.source.Stop();
         Analytics.CustomEvent("IntroSkipped");
     }
 

@@ -15,6 +15,6 @@ MonoBehaviour:
   eventName: ICE MELTER STRIKE
   description: A strike has has begun in a badly maintained ice melter.
   choices:
-  - {fileID: 11400000, guid: d829eeeeef4fdd04ab99adb126487b77, type: 2}
-  - {fileID: 11400000, guid: 0397d6e88d05cd44c846fe606453dbf3, type: 2}
-  - {fileID: 11400000, guid: d14472fdfa937b24db83497f034b43d6, type: 2}
+  - {fileID: 11400000, guid: 8b6c90992a95dc044ac17e826f2a6fea, type: 2}
+  - {fileID: 11400000, guid: 8c0222ac7fecbad479589f7d69c06713, type: 2}
+  - {fileID: 11400000, guid: f30258052baca404cb49fb19f9077ae5, type: 2}

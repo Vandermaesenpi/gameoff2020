@@ -174,9 +174,15 @@ public class PopulationManager : MonoBehaviour
 
     void ProcessCulture(){
         float cultureRatio = (float)TotalPopulation/CultureThreshold;
-        if(cultureRatio < 1){
+        if(cultureRatio < 0.5){
             culture += cultureGain;
-        }else{
+        }else if(cultureRatio < 0.75){
+            culture += cultureGain/2;
+        }else if(cultureRatio < 1){
+            culture += cultureGain/3;
+        }else if(cultureRatio < 1.25){
+            culture -= cultureDecay/2;
+        }else if(cultureRatio < 1.5){
             culture -= cultureDecay;
         }
         culture = Mathf.Clamp(culture, 0,1);

@@ -23,12 +23,12 @@ public class EventChecker : MonoBehaviour
         Event randomEvent = events[Random.Range(0,events.Count)];
         GM.I.ui.warningMenu.InitEventMenu(randomEvent);
         if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy){
-            GM.I.ui.buildingMenu.ClicBuildingMenu();
+            GM.I.ui.buildingMenu.ClicBuildingMenu(false);
         }if(GM.I.ui.populationMenu.gameObject.activeInHierarchy){
-            GM.I.ui.populationMenu.ClicPopulationMenu();
+            GM.I.ui.populationMenu.ClicPopulationMenu(false);
         }
         if(GM.I.ui.populationMenu.moodMenu.activeInHierarchy){
-            GM.I.ui.populationMenu.ClicMoodMenu();
+            GM.I.ui.populationMenu.ClicMoodMenu(false);
         }
         GM.I.ui.buildingInformation.ShowBuildingInfo(null);
         triggered = true;

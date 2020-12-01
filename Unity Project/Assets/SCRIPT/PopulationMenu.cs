@@ -41,24 +41,32 @@ public class PopulationMenu : MonoBehaviour
     public Text cultureRatioText;
     public Text hopeTextMenu;
 
-    public void ClicPopulationMenu(){
+    public AudioClip openPopSfx, openMoodSfx, closePopSfx, closeMoodSfx;
+
+    public void ClicPopulationMenu(bool sfx){
         bool value = !gameObject.activeInHierarchy;
         if(value){
             if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
-            GM.I.ui.buildingMenu.ClicBuildingMenu();
+            GM.I.ui.buildingMenu.ClicBuildingMenu(false);
             if(moodMenu.activeInHierarchy)
-            ClicMoodMenu();
+            ClicMoodMenu(false);
+        }
+        if(sfx){
+            GM.I.sfx.Play(value? openPopSfx : closePopSfx);
         }
         gameObject.SetActive(value);
     }
 
-    public void ClicMoodMenu(){
+    public void ClicMoodMenu(bool sfx){
         bool value = !moodMenu.activeInHierarchy;
         if(value){
             if(GM.I.ui.buildingMenu.gameObject.activeInHierarchy)
-            GM.I.ui.buildingMenu.ClicBuildingMenu();
+            GM.I.ui.buildingMenu.ClicBuildingMenu(false);
             if(gameObject.activeInHierarchy)
-            ClicPopulationMenu();
+            ClicPopulationMenu(false);
+        }
+        if(sfx){
+            GM.I.sfx.Play(value? openMoodSfx : closeMoodSfx);
         }
         moodMenu.SetActive(value);
     }

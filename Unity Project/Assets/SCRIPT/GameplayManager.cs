@@ -98,16 +98,28 @@ public class GameplayManager : MonoBehaviour
             timePaused = true;
 
             PlayerPrefs.SetInt("NewHome", 1);
-            if(GM.I.people.TotalPopulation >= 500000){
+            if(GM.I.people.TotalPopulation >= 1000000){
+                if(PlayerPrefs.GetInt("BabyBoom",0) == 0){
+                    Analytics.CustomEvent("BabyBoom");
+                }
                 PlayerPrefs.SetInt("BabyBoom", 1);
             }
             if(timer < 60f*45f){
+                if(PlayerPrefs.GetInt("LightSpeed",0) == 0){
+                    Analytics.CustomEvent("LightSpeed");
+                }
                 PlayerPrefs.SetInt("LightSpeed", 1);
             }
             if(GM.I.people.hope <= 0.05f){
+                if(PlayerPrefs.GetInt("Hopeless",0) == 0){
+                    Analytics.CustomEvent("Hopeless");
+                }
                 PlayerPrefs.SetInt("Hopeless", 1);
             }
             if(GM.I.people.holiday){
+                if(PlayerPrefs.GetInt("Holiday",0) == 0){
+                    Analytics.CustomEvent("Holiday");
+                }
                 PlayerPrefs.SetInt("Holiday", 1);
             }
             int terraIncognitCount = 0;

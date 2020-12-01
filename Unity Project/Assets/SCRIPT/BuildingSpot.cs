@@ -76,11 +76,12 @@ public class BuildingSpot : MonoBehaviour
         progressBar.color = currentBuilding.color;
         GM.I.city.SetBuildingSpotMode(BuildingSpotMode.Building);
         status = BuildingStatus.Construction;
-        GM.I.sfx.Play(SFX.Build);
+        GM.I.sfx.Play(SFX.Build, Random.Range(0.8f, 1.2f));
     }
 
     public void Destroy(){
         currentBuilding = null;
+        currentProject = null;
         Destroy(buildingModel);
         constructionModel.SetActive(false);
         progressBar.fillAmount = 0f;
