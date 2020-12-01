@@ -28,7 +28,7 @@ public class PopulationManager : MonoBehaviour
     // --------------Processed variables
     public float Mood {get{return (needs + culture + comfort + hope)/4f;}}
 
-    public float NeedsThreshold{get{return 200 + GM.I.project.FX(FXT.Needs);}}
+    public float NeedsThreshold{get{return 200 + GM.I.project.FX(FXT.Needs) + 5 * (TotalPopulation/50000);}}
     public float ComfortThreshold{get{return GM.I.city.HousingSpace()+ GM.I.project.FX(FXT.Comfort);}}
     public float CultureThreshold{get{return (float)(GM.I.city.Culture() * 50000f + GM.I.project.FX(FXT.Culture)+ GM.I.project.FX(FXT.Idle));}}
     public uint GetPopulationRange(int min, int max){
@@ -158,7 +158,7 @@ public class PopulationManager : MonoBehaviour
         }else{
             needs += cultureGain;
         }
-        needs = Mathf.Clamp(needs, 0,1);
+        needs = Mathf.Clamp(needs, needsDelta/3f,1);
     }
 
     void ProcessComfort(){

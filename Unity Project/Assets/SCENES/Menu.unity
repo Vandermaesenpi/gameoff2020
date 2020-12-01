@@ -17008,7 +17008,7 @@ PrefabInstance:
     - target: {fileID: 7841309341224748089, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}
       propertyPath: m_Text
-      value: Finish the game with 5% Hope or less
+      value: Finish the game with 25% Hope or less
       objectReference: {fileID: 0}
     - target: {fileID: 7900560377511039720, guid: 78e7f6d0a62b8894b991bcef4877caba,
         type: 3}

@@ -110,7 +110,7 @@ public class GameplayManager : MonoBehaviour
                 }
                 PlayerPrefs.SetInt("LightSpeed", 1);
             }
-            if(GM.I.people.hope <= 0.05f){
+            if(GM.I.people.hope <= 0.25f){
                 if(PlayerPrefs.GetInt("Hopeless",0) == 0){
                     Analytics.CustomEvent("Hopeless");
                 }
