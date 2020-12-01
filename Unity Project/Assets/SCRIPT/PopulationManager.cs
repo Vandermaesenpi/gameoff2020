@@ -60,7 +60,7 @@ public class PopulationManager : MonoBehaviour
     }
     public int MonthlyBirth{
         get{
-            return (int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood * (1f+GM.I.project.FX(FXT.Birth))); 
+            return (GM.I.city.ResourceShortage()? 0:(int)(((float)GetPopulationRange(reproducingAge) * reproducingChance) * Mood * (1f+GM.I.project.FX(FXT.Birth)))); 
         }
     }
 
@@ -111,7 +111,7 @@ public class PopulationManager : MonoBehaviour
 
     public void ProcessAging(){
         // Calculate births
-        int agingPouplationSlice = (GM.I.city.ResourceShortage()? 0: MonthlyBirth);
+        int agingPouplationSlice = MonthlyBirth;
         // Reset death counter
         MonthlyDeath = 0;
         // Kill

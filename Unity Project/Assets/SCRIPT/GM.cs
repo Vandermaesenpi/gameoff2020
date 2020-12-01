@@ -34,4 +34,8 @@ public class GM : MonoBehaviour
     public AudioManager audioManager;
     public TooltipManager tooltip;
     public IntroManager introManager;
+
+    public void Quit(){
+        Application.Quit();
+    }
 }
