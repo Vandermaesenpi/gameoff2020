@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event - Comfort - Heating
   m_EditorClassIdentifier: 
   eventName: COOLING PROBLEM
-  description: Wit the houses getting more and more crowded, the air flow is getting
+  description: With the houses getting more and more crowded, the air flow is getting
     hotter. The temperature has dramatically increased in the last few months and
     citizens are starting to notice.
   choices:
